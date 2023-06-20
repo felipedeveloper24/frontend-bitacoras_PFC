@@ -32,12 +32,12 @@ clienteAxios.interceptors.response.use(
         // Realiza las acciones necesarias, como redireccionar a la página de inicio de sesión
         Swal.fire(
             'Error',
-            'No tiene autorización',
+            `${error.response.data.mensaje}`,
             'error'
           )
         setTimeout(()=>{
         },3000)
-        window.location.href = "/"
+      
       }
       return Promise.reject(error);
     }

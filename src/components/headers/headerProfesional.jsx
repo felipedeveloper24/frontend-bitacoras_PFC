@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import logoubb from "../../assets/logoubb.png"
+import { Output } from "@mui/icons-material";
 
 const HeaderProfesional = ()=>{
     const [open, setOpen] = useState(false);
@@ -36,14 +37,20 @@ const HeaderProfesional = ()=>{
                         <MenuIcon  style={{color:"white"}} />
                     </IconButton>
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/")}>
+                    <ListItem button onClick={()=>navigate("/dashboard")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Inicio" />
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/admin")}>
-                        <ListItemText sx={{textAlign:"center"}} primary="Administración" />
+                    <ListItem button onClick={()=>navigate("/dashboard")}>
+                        <ListItemText sx={{textAlign:"center"}} primary="Empresas" />
                     </ListItem>
                     <ListItem button onClick={()=>navigate("/citaciones")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Citaciones" />
+                    </ListItem>
+                    <ListItem button onClick={()=>navigate("/")} >
+                         <ListItemText  sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>
+                               <p> Cerrar Sesión</p> <Output/>
+                         </ListItemText>
+                    
                     </ListItem>
                 </List>
             </Drawer>

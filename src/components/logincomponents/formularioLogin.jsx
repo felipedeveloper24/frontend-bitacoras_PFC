@@ -17,8 +17,8 @@ const FormularioLogin = ()=>{
     const {login} = useContext(AuthContext);
     
 
-    const onSubmit = async(data)=>{
-
+    const onSubmit = async(data,e)=>{
+        e.preventDefault();
         login(rut.formatted,data.contrasena);
     
         reset()

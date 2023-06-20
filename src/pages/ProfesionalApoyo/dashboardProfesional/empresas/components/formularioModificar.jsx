@@ -6,10 +6,21 @@ import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
 
 const FormularioModificar = ({empresa})=>{
+    const centro_practica = empresa.centro_practica == true ? 1 : 0
 
     const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState();
-    const [region,setRegion] = useState();
+    const [selectedValue, setSelectedValue] = useState(centro_practica);
+    const [region,setRegion] = useState("");
+
+    const getRegionComuna = useQuery("region",async()=>{
+        const response = await clienteAxios.post("comuna/getRegion",{
+            id_comuna: empresa.id_comuna
+        })
+        console.log(response.data.region)
+        return response.data.region.id_region;
+    })
+    
+
     const {register,handleSubmit,formState:{errors},control,reset} = useForm({
         defaultValues:{
             rut_empresa: "",
@@ -17,10 +28,13 @@ const FormularioModificar = ({empresa})=>{
             direccion: "",
             telefono: "",
             correo: "",
+            id_estado_empresa:"",
+            id_comuna:"",
+            region: ""
         }
     });
     const [comunas,setComunas] = useState([]);
-    const [comuna,setComuna] = useState();
+    const [comuna,setComuna] = useState("");
     
     const handleComuna = (event)=>{
         setComuna(event.target.value);
@@ -28,13 +42,19 @@ const FormularioModificar = ({empresa})=>{
 
     useEffect(()=>{
         if(empresa){
+            getRegionComuna.refetch();
              reset({
                 rut_empresa:empresa.rut_empresa,
                 razon_social:empresa.razon_social,
                 direccion:empresa.direccion,
                 telefono:empresa.telefono,
-                correo:empresa.correo
+                correo:empresa.correo,
+                centro_practica: centro_practica,
+                region: getRegionComuna.status=="success" && getRegionComuna.data
+                
              })
+           
+            
         }
     },[empresa, reset])
 
@@ -62,8 +82,11 @@ const FormularioModificar = ({empresa})=>{
         return response.data.comuna;
     })
     const getEstados = useQuery("estados",async()=>{
-       
+       const response = await clienteAxios.get("/estadoempresa/getall");
+       return response.data.estados;
     })
+
+  
 
     const onSubmit = (data)=>{
         const data_oficial = {
@@ -89,72 +112,114 @@ const FormularioModificar = ({empresa})=>{
                                
                                 <Controller name="rut_empresa" control={control} 
                                     render={({field})=>(
-                                        <TextField {...field} label="Rut" fullWidth />
+                                        <TextField {...field} label="Rut" fullWidth 
+                                            {...register("rut_empresa",{required:true})}                                        
+                                        />
                                     )}
                                 />
                             </Grid>
                         <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <TextField label="Razón social"
-                                {...register("razon_social",{required:true})}
-                                fullWidth />
+                            <Controller
+                                control={control}
+                                name="razon_social" 
+                                 render={({field})=>(
+                                    <TextField label="Razón social"
+                                    {...field}
+                                    {...register("razon_social",{required:true})}
+                                    fullWidth />
+                                )}
+                            />
                                 {errors.rut_empresa && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                         </Grid>
                         <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <TextField label="Dirección"
-                                {...register("direccion",{required:true})}
-                                fullWidth />
+                                <Controller name="direccion"
+                                    control={control}
+                                     render={({field})=>(
+                                        <TextField label="Dirección"
+                                        {...field}
+                                        {...register("direccion",{required:true})}
+                                        fullWidth />
+                                    )}
+                                />
+                               
                                 {errors.direccion && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                         </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <InputLabel id="yes-no-select-label">Centro de práctica</InputLabel>
-                                <Select required labelId="yes-no-select-label"
-                                        id="yes-no-select"
-                                        value={selectedValue}
-                                        label="Centro de práctica"
-                                        onChange={handleChange} 
-                                        fullWidth >
-                                    <MenuItem value={1}>Si</MenuItem>
-                                    <MenuItem value={0}>No</MenuItem>
-                                </Select>
+                                <InputLabel>Centro de práctica</InputLabel>
+                                <Controller
+                                    name="centro_practica"
+                                    control={control}
+                                    defaultValue={centro_practica}
+                                    render={({field})=>(
+                                        <Select required 
+                                            {...field}
+                                         
+                                            fullWidth >
+                                            <MenuItem value="">Seleccione</MenuItem>
+                                            <MenuItem value={1}>Si</MenuItem>
+                                            <MenuItem value={0}>No</MenuItem>
+                                        </Select>
+                                    )}
+                                />
+                              
                                 
                             </Grid>
 
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <TextField label="Correo" fullWidth 
-                                    {...register("correo",{required:true})}
-                                    
+                                <Controller
+                                    control={control}
+                                      name="correo"
+                                      render={({field})=>(
+                                        <TextField label="Correo"
+                                        {...field}
+                                        {...register("correo",{required:true})}
+                                        fullWidth />
+                                    )}
                                 />
+                               
                                 {errors.correo && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
 
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <TextField label="Teléfono" fullWidth 
-                                    {...register("telefono",{required:true})}
+                                <Controller
+                                     control={control}
+                                     name="telefono"
+                                     render={({field})=>(
+                                        <TextField label="Teléfono" fullWidth
+                                            {...field} 
+                                           {...register("telefono",{required:true})}
+                                        />
+                                    )}
                                 />
+                               
                                 {errors.telefono && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <InputLabel>Region</InputLabel>
-                                <Select 
-                                        
-                                        value={region}
-                                        label="Región"
-                                        onChange={handleRegion} 
-                                        fullWidth >
-                                        {
-                                            regiones.status == "success" && regiones.data.map((region,idx)=>{
-                                                return (
-                                                    <MenuItem key={idx} value={region.id_region} >{region.nombre_region}</MenuItem>
-                                                )
-                                            })
-                                        }
-                                </Select>
+                                <Controller
+                                    name="region"
+                                    control={control}
+                                    defaultValue={getRegionComuna.status=="success" && getRegionComuna.data}
+                                    render={({field})=>(
+                                        <Select 
+                                            {...field}
+                                            fullWidth >
+                                            {
+                                                regiones.status == "success" && regiones.data.map((region,idx)=>{
+                                                    return (
+                                                        <MenuItem key={idx} value={region.id_region} >{region.nombre_region}</MenuItem>
+                                                    )
+                                                })
+                                            }
+                                    </Select>
+                                    )}
+                                />
+                            
                                 
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <InputLabel>Comuna</InputLabel>
-                                <Select 
-                                        
+                                <Select                                    
                                         value={comuna}
                                         label="Comuna"
                                         onChange={handleComuna} 
@@ -171,7 +236,17 @@ const FormularioModificar = ({empresa})=>{
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <InputLabel>Estado Empresa</InputLabel>
-
+                                <Select defaultValue={empresa.id_estado_empresa}
+                                        
+                                        fullWidth >
+                                        {
+                                            getEstados.status == "success" && getEstados.data.map((estado,idx)=>{
+                                                return (
+                                                    <MenuItem key={idx} value={estado.id_estado_empresa} >{estado.nombre_estado_empresa}</MenuItem>
+                                                )
+                                            })
+                                        }
+                                </Select>
                             </Grid >
                           
 

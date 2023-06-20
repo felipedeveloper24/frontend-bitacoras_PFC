@@ -10,17 +10,21 @@ const AuthContext = createContext();
 const AuthProvider = ({children}) =>{
     const navigate = useNavigate();
     const [user,setUser] = useState(null);
+
     const login = async (rut,password)=>{
         try{
-            const response = await clienteAxios.post("/auth/login",{rut,password});
+            const response = await clienteAxios.post("/auth/login",{rut,contrasena:password});
             if(response.status==200){
-               
+                console.log(response.data);
                 switch(response.data.rol){
                     case 1:{
                         const userData = response.data;
                         setToken(response.data.token);
+                       
                         localStorage.setItem("rol",response.data.rol);
                         localStorage.setItem("rut",response.data.alumno.rut);
+                        localStorage.setItem("id_alumno",response.data.alumno.id_alumno)
+                        localStorage.setItem("id_inscribe",response.data.id_inscribe)
                         setUser(userData);
                         
                         Swal.fire(
@@ -29,6 +33,7 @@ const AuthProvider = ({children}) =>{
                             'success'
                           )
                         setTimeout(()=>{
+                            Swal.close()
                             navigate("/dashboard")
                         },3000)
                         break;

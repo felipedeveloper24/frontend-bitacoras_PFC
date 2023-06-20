@@ -38,8 +38,11 @@ const HeaderAlumno = ()=>{
                         <MenuIcon  style={{color:"white"}} />
                     </IconButton>
                     </ListItem>
-                    <ListItem button >
+                    <ListItem button onClick={()=>navigate("/dashboard")} >
                         <ListItemText sx={{textAlign:"center"}} primary="Inicio" />
+                    </ListItem>
+                    <ListItem button onClick={()=>navigate("/perfil")}>
+                        <ListItemText sx={{textAlign:"center"}} primary="Perfil" />
                     </ListItem>
                     <ListItem button >
                         <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />

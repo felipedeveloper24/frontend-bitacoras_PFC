@@ -77,7 +77,7 @@ const FormularioRegistro = () => {
                 if(response.status===200){
                     Swal.fire({
                         title:"Registrado",
-                        text:"El trabajador ha sido registrado correctamente",
+                        text:"La empresa ha sida registrada correctamente",
                         icon:"success",
                         confirmButtonText:"Aceptar",
                         customClass:{
