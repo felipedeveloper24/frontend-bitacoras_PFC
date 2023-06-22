@@ -8,6 +8,7 @@ import ModificarEmpresa from "../pages/ProfesionalApoyo/dashboardProfesional/emp
 import PerfilAlumno from "../pages/Alumno/perfil-alumno/PerfilAlumno";
 import DetalleOfertaPractica from "../pages/Alumno/detalleofertapractica/detalleofertapractica";
 import DetalleInscripcion from "../pages/Alumno/detalleInscripcion/DetalleInscripcion";
+import InscripcionPractica from "../pages/Alumno/inscripcion_practica/inscripcionPractica";
 
 
 const PrivateRoutes = ()=>{
@@ -24,6 +25,7 @@ const PrivateRoutes = ()=>{
                 <Route path="/perfil" element={<PerfilAlumno/>} />
                 <Route path="/detalleoferta/:id" element={<DetalleOfertaPractica/>} />
                 <Route path="/detalleinscripcion/:id" element={<DetalleInscripcion/>}/>
+                <Route path="/inscripcionpractica/:id" element={<InscripcionPractica/>} />
             </Routes>
         )
     }

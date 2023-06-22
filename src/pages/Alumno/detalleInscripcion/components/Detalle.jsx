@@ -48,7 +48,7 @@ const Detalle = ({id})=>{
                                             {data.modalidad.nombre_modalidad}
                                         </TableCell>
                                         <TableCell>
-                                            {data.representante == null ? "No registrado" : data.representante.nombre}
+                                            {data.representante == null ? "No registrado" : `${data.representante.nombre} ${data.representante.apellido} `}
                                         </TableCell>
                                         <TableCell>
                                             {data.nota_final == 10 ? "-----" : data.nota_final }

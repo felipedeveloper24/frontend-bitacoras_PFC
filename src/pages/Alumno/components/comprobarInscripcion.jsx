@@ -33,7 +33,7 @@ const ComprobarInscripcion = ()=>{
         return(
             <Grid sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
                 <Alert severity="warning" >No estas inscrito en el sistema</Alert>
-                <Button sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/detalleinscripcion/5`)} >Inscribir aquí</Button>
+                <Button sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/inscripcionpractica/${id_inscribe}`)} >Inscribir aquí</Button>
     
             </Grid>
         )

@@ -1,7 +1,7 @@
 import { Grid, Typography,Box ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from "@mui/material"
 
 const DatosPersonales = ({data})=>{
-
+    
     return (
         <Grid sx={{width:"100%"}}>
             <TableContainer component={Paper} sx={{ maxWidth: '70%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
@@ -49,12 +49,16 @@ const DatosPersonales = ({data})=>{
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
-                                       
                                         <TableCell>
                                                 Teléfono Personal: {data.telefono_personal}
                                         </TableCell>
                                         <TableCell>
                                                 Teléfono familiar: {data.telefono_familiar}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                                Carrera: {data.carrera.nombre_carrera}
                                         </TableCell>
                                     </TableRow>
                                     

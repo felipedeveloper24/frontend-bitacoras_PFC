@@ -1,4 +1,4 @@
-import { Alert, Grid, Typography ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Button} from "@mui/material"
+import { Alert, Grid, Typography ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Button, CircularProgress} from "@mui/material"
 import {useQuery} from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useNavigate } from "react-router-dom";
@@ -48,6 +48,13 @@ const OfertasPracticas = ()=>{
     if(status=="sucess" && !data.ofertas){
         <Grid sx={{display:"flex",flexDirection:"column"}} >
                 <Alert>No hay ofertas publicadas</Alert>
+        </Grid>
+    }
+    if(status == "loading"){
+        <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                Cargando datos.........
+                <CircularProgress/>
+                
         </Grid>
     }
     
