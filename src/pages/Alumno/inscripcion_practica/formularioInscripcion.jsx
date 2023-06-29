@@ -19,6 +19,7 @@ const FormularioInscripcion = ()=>{
     const [telefono, setTelefono] = useState("");
     const [correo, setCorreo] = useState("");
     const navigate = useNavigate();
+    
     const modalidades = useQuery("modalidades",async()=>{
         const response = await clienteAxios.get("/inscripcion/modalidades");
         if(response.status == 200){
@@ -105,32 +106,85 @@ const FormularioInscripcion = ()=>{
                 fecha_inicio:fecha_inicio,
                 fecha_fin:fecha_fin,
                 id_modalidad:select_modalidad,
-                id_oferta_practica: oferta,
+                id_oferta:Number(oferta),
                 id_representante: null,
-                id_inscribe:id_inscribe,
+                id_inscribe:Number(id_inscribe),
                 id_estado_inscripcion:1,
-                id_representante: "aqui va el response.data"
+            }
+            const response = await clienteAxios.post("/inscripcion/create",data_inscripcion);
+            if(response.status==200){
+                 Swal.fire({
+                        title:"Registrada",
+                        text:"La inscripción ha sida registrada correctamente",
+                        icon:"success",
+                        confirmButtonText:"Aceptar",
+                    })
+                    setTimeout(()=>{
+                        Swal.close();
+                        navigate("/dashboard")
+                    },2000)
             }
             //Hago una peticion solamente
         }else if(select_oferta == 0 && datos_evaluador == 1){
             // aqui hago dos
-            
             const data_evaluador = {
                 nombre:nombre,
                 apellido:apellido,
                 telefono:telefono,
                 correo:correo
             }
+            const response = await clienteAxios.post("/representante/create",data_evaluador);
+            if(response.status==200){
+                const data_inscripcion = {
+                    fecha_inscripcion_practica:fechaActual,
+                    fecha_inicio:fecha_inicio,
+                    fecha_fin:fecha_fin,
+                    id_modalidad:select_modalidad,
+                    id_oferta:null,
+                    id_representante: Number(response.data.representante.id_representante),
+                    id_inscribe:Number(id_inscribe),
+                    id_estado_inscripcion:1,
+                }
+                const response2 = await clienteAxios.post("/inscripcion/create",data_inscripcion);
+                if(response2.status==200){
+                    Swal.fire({
+                        title:"Registrada",
+                        text:"La inscripción ha sida registrada correctamente",
+                        icon:"success",
+                        confirmButtonText:"Aceptar",
+                    })
+                    setTimeout(()=>{
+                        Swal.close();
+                        navigate("/dashboard")
+                    },2000)
+                }
+            }
+
+            
+        }
+        if(select_oferta == 0 && datos_evaluador == 0){
             const data_inscripcion = {
                 fecha_inscripcion_practica:fechaActual,
                 fecha_inicio:fecha_inicio,
                 fecha_fin:fecha_fin,
                 id_modalidad:select_modalidad,
-                id_oferta_practica:null,
+                id_oferta:null,
                 id_representante: null,
-                id_inscribe:id_inscribe,
+                id_inscribe:Number(id_inscribe),
                 id_estado_inscripcion:1,
-                id_representante: "aqui va el response.data"
+            }
+            const response = await clienteAxios.post("/inscripcion/create",data_inscripcion);
+            if(response.status==200){
+                Swal.fire({
+                    title:"Registrada",
+                    text:"La inscripción ha sida registrada correctamente",
+                    icon:"success",
+                    confirmButtonText:"Aceptar",
+                })
+                setTimeout(()=>{
+                    Swal.close();
+                    navigate("/dashboard")
+                },2000)
             }
         }
     }

@@ -9,6 +9,8 @@ import PerfilAlumno from "../pages/Alumno/perfil-alumno/PerfilAlumno";
 import DetalleOfertaPractica from "../pages/Alumno/detalleofertapractica/detalleofertapractica";
 import DetalleInscripcion from "../pages/Alumno/detalleInscripcion/DetalleInscripcion";
 import InscripcionPractica from "../pages/Alumno/inscripcion_practica/inscripcionPractica";
+import ModificarDatos from "../pages/Alumno/inscripcion_practica/modificarDatos";
+import DocumentosInscripcion from "../pages/Alumno/documentos/documentosInscripcion";
 
 
 const PrivateRoutes = ()=>{
@@ -26,6 +28,8 @@ const PrivateRoutes = ()=>{
                 <Route path="/detalleoferta/:id" element={<DetalleOfertaPractica/>} />
                 <Route path="/detalleinscripcion/:id" element={<DetalleInscripcion/>}/>
                 <Route path="/inscripcionpractica/:id" element={<InscripcionPractica/>} />
+                <Route path="/modificarinscripcion/:id" element={<ModificarDatos/>} />
+                <Route path="/documentosinscripcion/:id" element={<DocumentosInscripcion/>} />
             </Routes>
         )
     }
