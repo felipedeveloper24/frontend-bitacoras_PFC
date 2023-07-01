@@ -43,8 +43,11 @@ const HeaderProfesional = ()=>{
                     <ListItem button onClick={()=>navigate("/dashboard")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Empresas" />
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/citaciones")}>
-                        <ListItemText sx={{textAlign:"center"}} primary="Citaciones" />
+                    <ListItem button onClick={()=>navigate("/ofertapracticas")} >
+                         <ListItemText primary="Oferta Prácticas" sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>
+                            
+                         </ListItemText>
+                    
                     </ListItem>
                     <ListItem button onClick={()=>navigate("/")} >
                          <ListItemText  sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>

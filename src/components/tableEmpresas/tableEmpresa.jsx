@@ -18,7 +18,6 @@ const TableEmpresa = ()=>{
     const navigate = useNavigate();
     const {data, status} = useQuery("empresas", async()=>{
         const response = await clienteAxios.get("/empresa/getall");
-        console.log(response.data);
         return response.data;
     });
     
@@ -133,8 +132,8 @@ const TableEmpresa = ()=>{
     if(status=="success" && data.empresas.length>0){
             
         return (
-            <TableContainer component={Paper} sx={{width:"100%"}}>
-            <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
+            <TableContainer  component={Paper} sx={{width:"90%",margin:"0px auto",marginBottom:"10px",maxHeight: 400}}>
+            <Table stickyHeader  aria-label="simple table">
                 <TableHead>
                 <TableRow>
                     <TableCell>ID</TableCell>

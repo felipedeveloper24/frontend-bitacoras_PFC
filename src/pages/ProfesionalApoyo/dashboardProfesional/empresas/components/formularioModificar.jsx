@@ -16,7 +16,7 @@ const FormularioModificar = ({empresa})=>{
         const response = await clienteAxios.post("comuna/getRegion",{
             id_comuna: empresa.id_comuna
         })
-        console.log(response.data.region)
+        
         return response.data.region.id_region;
     })
     

@@ -11,6 +11,9 @@ import DetalleInscripcion from "../pages/Alumno/detalleInscripcion/DetalleInscri
 import InscripcionPractica from "../pages/Alumno/inscripcion_practica/inscripcionPractica";
 import ModificarDatos from "../pages/Alumno/inscripcion_practica/modificarDatos";
 import DocumentosInscripcion from "../pages/Alumno/documentos/documentosInscripcion";
+import OfertaPractica from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/ofertapractica";
+import CrearOferta from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/components/crear_oferta";
+import ModificarOferta from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/components/modificarOferta";
 
 
 const PrivateRoutes = ()=>{
@@ -45,7 +48,9 @@ const PrivateRoutes = ()=>{
             <Routes>
                 <Route path="/dashboard" element={<DashboardProfesional/>} />
                 <Route path="/modificarEmpresa/:id" element={<ModificarEmpresa/>} />
-           
+                <Route path="/ofertapracticas" element={<OfertaPractica/>} />
+                <Route path="/crearoferta" element={<CrearOferta/>} />
+                <Route path="/modificaroferta/:id" element={<ModificarOferta/>} />
             </Routes>
         )
     }

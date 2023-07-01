@@ -110,7 +110,11 @@ const FormularioRegistro = () => {
 
     return (
         <>
-            <Button variant="contained" onClick={handleOpen}  sx={{width:"250px",margin:"0px auto",marginBottom:"10px"}} >Ingresar Empresa</Button>
+                <Grid sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                    <Typography variant="h5" sx={{textAlign:"center", marginRight:"10px"}}>Listado de empresas </Typography>
+                    <Button variant="contained" onClick={handleOpen}  sx={{marginBottom:"10px"}} >Ingresar Empresa</Button>
+                </Grid>
+          
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
                     <Box
                         sx={{

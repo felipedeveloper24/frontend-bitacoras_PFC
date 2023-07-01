@@ -15,7 +15,7 @@ const Empresas = ()=>{
                 flexDirection:"column"
             }}
         > 
-          <Typography variant="h4" sx={{textAlign:"center",fontFamily:"arial",marginTop:"20px",marginBottom:"10px"}}>Listado de empresas</Typography>
+         
             <FormularioRegistro/>
             <TableEmpresa/>
             
