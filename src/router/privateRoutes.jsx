@@ -14,6 +14,9 @@ import DocumentosInscripcion from "../pages/Alumno/documentos/documentosInscripc
 import OfertaPractica from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/ofertapractica";
 import CrearOferta from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/components/crear_oferta";
 import ModificarOferta from "../pages/ProfesionalApoyo/dashboardProfesional/ofertas_practica/components/modificarOferta";
+import ArchivosBitacoras from "../pages/Alumno/archivos_bitacora/Archivos_bitacoras";
+import ImagenesBitacoras from "../pages/Alumno/imagenesBitacora/imageneBitacoras";
+import Aptitudes from "../pages/Alumno/aptitudes/aptitudes";
 
 
 const PrivateRoutes = ()=>{
@@ -33,6 +36,9 @@ const PrivateRoutes = ()=>{
                 <Route path="/inscripcionpractica/:id" element={<InscripcionPractica/>} />
                 <Route path="/modificarinscripcion/:id" element={<ModificarDatos/>} />
                 <Route path="/documentosinscripcion/:id" element={<DocumentosInscripcion/>} />
+                <Route path="/archivosbitacora/:id" element ={<ArchivosBitacoras/>} />
+                <Route path="/imagenesbitacora/:id" element={<ImagenesBitacoras/>} />
+                <Route path="/aptitudes" element={<Aptitudes/>} />
             </Routes>
         )
     }

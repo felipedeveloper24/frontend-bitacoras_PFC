@@ -43,7 +43,7 @@ const MisAptitudes = ({id_alumno})=>{
         return (
             <Grid>
                   <Box sx={{ display: 'flex', flexDirection: 'column',alignItems:"center", minHeight: '100vh' }}>
-                        <Typography variant="h4" component="h1" gutterBottom sx={{ color: "darkblue", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
+                        <Typography variant="h4" component="h1" gutterBottom sx={{ color: "black", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
                             <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
                                 <PsychologyAltRoundedIcon sx={{ fontSize: "3rem", mr: 2 }} />
                                 Aptitudes del alumno
@@ -51,7 +51,7 @@ const MisAptitudes = ({id_alumno})=>{
                             </Box>
                         </Typography>
                    
-                    <TableContainer component={Paper} sx={{ maxWidth: '50%', boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
+                    <TableContainer component={Paper} sx={{ maxWidth: '80%', boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                         <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
                                 <TableRow>
@@ -64,7 +64,7 @@ const MisAptitudes = ({id_alumno})=>{
                                 {data.aptitudes.map((conocimiento, index) => (
                                     <TableRow key={index}>
                                         <TableCell >
-                                            <Typography variant="body1" sx={{ color: "black", transition: "all 1000ms", ':hover': { color: "orange", textAlign: "center", alignItems: "center" } }}>
+                                            <Typography variant="body1" sx={{ color: "black", transition: "all 1000ms" }}>
                                                 {conocimiento.aptitud.nombre_aptitud}
                                             </Typography>
                                         </TableCell>

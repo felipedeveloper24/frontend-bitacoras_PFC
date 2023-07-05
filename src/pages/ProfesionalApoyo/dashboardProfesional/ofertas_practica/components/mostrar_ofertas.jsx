@@ -49,9 +49,14 @@ const MostrarOfertas = ()=>{
     if(getOfertas.status == "success" && getOfertas.data.ofertas){    
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
-                <Grid sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
-                    <Typography variant="h5" sx={{textAlign:"center"}}>Ofertas de prácticas profesionales </Typography>
-                    <Button sx={{marginLeft:"10px"}} variant="contained" onClick={()=>navigate("/crearoferta")} >Añadir oferta</Button>
+                <Grid container spacing={1} sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                    <Grid item>
+                        <Typography variant="h5" sx={{textAlign:"center"}}>Ofertas de prácticas profesionales </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Button sx={{marginLeft:"10px"}} variant="contained" onClick={()=>navigate("/crearoferta")} >Añadir oferta</Button>
+                    </Grid>
+                    
                 </Grid>
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"20px"}}>
                     <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
@@ -98,9 +103,15 @@ const MostrarOfertas = ()=>{
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column",margin:"0px auto"}}>
                 
-                <Grid sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                <Grid container sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                    <Grid item>
                     <Typography variant="h5" sx={{textAlign:"center"}}>Ofertas de prácticas profesionales </Typography>
-                    <Button sx={{marginLeft:"10px"}} variant="contained" onClick={()=>navigate("/crearoferta")} >Añadir oferta</Button>
+                    </Grid>
+                    <Grid item>
+                    <Button sx={{marginLeft:"10px"}} variant="contained" onClick={()=>navigate("/crearoferta")} >Añadir oferta</Button>    
+                    </Grid>
+                    
+                    
                 </Grid>
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"20px"}}>
                     <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">

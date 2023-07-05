@@ -15,7 +15,6 @@ const AuthProvider = ({children}) =>{
         try{
             const response = await clienteAxios.post("/auth/login",{rut,contrasena:password});
             if(response.status==200){
-                console.log(response.data);
                 switch(response.data.rol){
                     case 1:{
                         const userData = response.data;
@@ -42,10 +41,11 @@ const AuthProvider = ({children}) =>{
                         const userData = response.data;
                         setToken(response.data.token);
                         localStorage.setItem("rol",response.data.rol);
+                        localStorage.setItem("id_usuario",response.data.id_usuario)
                         setUser(userData);
                         Swal.fire(
                             'Iniciando sesión',
-                            'Redireccionando .......',
+                            'Redireccionando ...',
                             'success'
                           )
                         setTimeout(()=>{

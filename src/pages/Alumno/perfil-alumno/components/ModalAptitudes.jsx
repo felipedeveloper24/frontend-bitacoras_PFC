@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 
 const ModalAptitudes = ({id_alumno})=>{
 
+  
+  
     const {handleSubmit,register,control} = useForm();
 
     const {data,status,refetch} = useQuery("aptitudes",async()=>{
@@ -24,8 +26,9 @@ const ModalAptitudes = ({id_alumno})=>{
     };
 
     const onSubmit = async(data)=>{
+       
         const response = await clienteAxios.post("/conocimiento/create",{
-            id_alumno:id_alumno,
+            id_alumno:Number(id_alumno),
             id_aptitud:data.id_aptitud
         })
         if(response.status == 200){
@@ -41,7 +44,7 @@ const ModalAptitudes = ({id_alumno})=>{
         }
     }
     if(status=="success"){
-        refetch()
+    
         return (
             <>
                 <Button variant="contained" onClick={handleOpen}  sx={{width:"250px",margin:"0px auto",marginBottom:"10px", marginTop:"20px"}} >Ingresar conocimiento</Button>

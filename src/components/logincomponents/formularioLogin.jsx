@@ -24,7 +24,7 @@ const FormularioLogin = ()=>{
         reset()
     }
     return (
-        <Card sx={{width:"40%",padding:"10px",margin:"0px auto",marginTop:"30px"}}>
+        <Card sx={{width:"90%",padding:"10px",margin:"0px auto",marginTop:"30px"}}>
             <CardContent sx={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <Typography sx={{fontSize:"20px",display:"flex",justifyContent:"center",alignItems:"center",textAlign:"center",marginTop:"5px",marginBottom:"15px"}}>Bienvenid@ <Input style={{marginLeft:"5px"}} /></Typography>
                 <form onSubmit={handleSubmit(onSubmit)} >

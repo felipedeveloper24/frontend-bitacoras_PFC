@@ -21,19 +21,28 @@ const ComprobarInscripcion = ()=>{
     if(status=="success" && data.inscrito_sistema){
      
         return(
-            <Grid sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
-                <Alert >Práctica inscrita en el sistema</Alert>
-                <Button sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/detalleinscripcion/${id_inscribe}`)} >Ver Inscripción</Button>
-    
+            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
+               
+                <Grid item>
+                    <Alert >Práctica inscrita en el sistema</Alert>
+                </Grid>
+                <Grid sx={{display:"flex"}} item>
+                    <Button  sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/detalleinscripcion/${id_inscribe}`)} >Ver Inscripción</Button>
+                </Grid>
             </Grid>
         )
     }
     if(status=="success" && data.inscrito_sistema==false){
      
         return(
-            <Grid sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
-                <Alert severity="warning" >No estas inscrito en el sistema</Alert>
-                <Button sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/inscripcionpractica/${id_inscribe}`)} >Inscribir aquí</Button>
+            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
+                <Grid item>
+                     <Alert severity="warning" >No estas inscrito en el sistema</Alert>
+                </Grid>
+                <Grid item sx={{display:"flex"}}>
+                     <Button sx={{marginLeft:"5px"}} variant="contained" onClick={()=>navigate(`/inscripcionpractica/${id_inscribe}`)} >Inscribir aquí</Button>
+                </Grid>
+                
     
             </Grid>
         )

@@ -4,7 +4,7 @@ const DatosPersonales = ({data})=>{
     
     return (
         <Grid sx={{width:"100%"}}>
-            <TableContainer component={Paper} sx={{ maxWidth: '70%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
+            <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                         <Table>
                         <TableHead sx={{ width: "100%", textAlign: "center" }}>
                         <TableRow>

@@ -4,25 +4,33 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import FormularioModificar from "./components/formularioModificar";
+import { useEffect, useState } from "react";
 
 
 const ModificarEmpresa = ()=>{
     const {id} = useParams();
 
-    const {data,status} = useQuery("empresa", async()=>{
-        const response = await clienteAxios.get(`/empresa/show/${id}`);
-        console.log(response.data);
-        if(response.status==200){
-            return response.data;
-        }
-    });
+    const [empresa,setEmpresa] = useState({});
+    const [loading,setLoading] = useState(true);
 
-    if(status=="success"){
+    const getEmpresa = async()=>{
+        const response = await clienteAxios.get(`/empresa/show/${id}`);
+        if(response.status==200){
+            setEmpresa(response.data.empresa)
+            setLoading(false)
+        
+        }
+    };
+
+    useEffect(()=>{
+        getEmpresa();
+    },[])
+    if(!loading){
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <HeaderProfesional/>
-                {/* <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}} >Empresa seleccionada: {empresa.data.empresa.razon_social} </Typography> */}
-                <FormularioModificar  empresa={data.empresa}  />
+                <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}} >Empresa seleccionada: {empresa.razon_social} </Typography>
+                <FormularioModificar  empresa={empresa}  />
             </Grid>
         )
     }   

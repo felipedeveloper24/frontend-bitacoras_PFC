@@ -28,9 +28,9 @@ const HeaderAlumno = ()=>{
                 
                 
              </Grid>
-             <Grid sx={{width:"70%",marginLeft:"65px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                      <img style={{width:"130px"}} src={logoubb} />
-            </Grid>
+                <Grid sx={{width:"70%",marginLeft:"45px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                        <img style={{width:"130px"}} src={logoubb} />
+                </Grid>
             <Drawer anchor="left" open={open}  width={300} onClose={handleToggleMenu}>
                 <List sx={{width:"300px",backgroundColor:"#326FA6",color:"white",height:"100vh" ,display:"flex",flexDirection:"column",alignItems:"center"}} >
                     <ListItem button onClick={handleToggleMenu}>
@@ -45,11 +45,15 @@ const HeaderAlumno = ()=>{
                         <ListItemText sx={{textAlign:"center"}} primary="Perfil" />
                     </ListItem>
                     <ListItem button >
-                        <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />
-                    </ListItem>
-                    <ListItem button >
                         <ListItemText sx={{textAlign:"center"}} primary="Inscripción" />
                     </ListItem>
+                    <ListItem button >
+                        <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />
+                    </ListItem>
+                    <ListItem button onClick={()=>navigate("/aptitudes")}>
+                        <ListItemText sx={{textAlign:"center"}} primary="Aptitudes" />
+                    </ListItem>
+                   
                     <ListItem button onClick={()=>navigate("/")} >
                          <ListItemText  sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>
                                <p> Cerrar Sesión</p> <Output/>

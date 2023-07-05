@@ -110,9 +110,14 @@ const FormularioRegistro = () => {
 
     return (
         <>
-                <Grid sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
-                    <Typography variant="h5" sx={{textAlign:"center", marginRight:"10px"}}>Listado de empresas </Typography>
-                    <Button variant="contained" onClick={handleOpen}  sx={{marginBottom:"10px"}} >Ingresar Empresa</Button>
+                <Grid container spacing={1} sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                    <Grid item>
+                        <Typography variant="h5" sx={{textAlign:"center", marginRight:"10px"}}>Listado de empresas </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" onClick={handleOpen}  sx={{marginBottom:"10px"}} >Ingresar Empresa</Button>
+                    </Grid>
+                    
                 </Grid>
           
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
@@ -130,7 +135,7 @@ const FormularioRegistro = () => {
                         p: 4,
                         }}
                     >
-                        <Typography variant="h5" sx={{textAlign:"center"}}>Registro de empresa <Business/> </Typography>
+                        <Typography variant="h5" sx={{textAlign:"center",display:"flex",justifyContent:"center", alignItems:"center"}}>Registro de empresa <Business style={{marginLeft:"5px"}}/> </Typography>
                     
                         <form method="POST" onSubmit={handleSubmit(onSubmit)} >
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>

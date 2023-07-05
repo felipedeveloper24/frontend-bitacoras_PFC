@@ -21,8 +21,7 @@ const DataAlumno = ()=>{
         return (
             <>
                  <DatosPersonales data={data}/>
-                 <ModalAptitudes id_alumno={data.id_alumno} />
-                 <MisAptitudes id_alumno={data.id_alumno}/>
+              
             </>
         )
     }
