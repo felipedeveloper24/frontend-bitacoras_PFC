@@ -49,6 +49,7 @@ const AuthProvider = ({children}) =>{
                             'success'
                           )
                         setTimeout(()=>{
+                            Swal.close()
                             navigate("/dashboard")
                         },3000)
                         break;
@@ -65,6 +66,7 @@ const AuthProvider = ({children}) =>{
                             'success'
                           )
                         setTimeout(()=>{
+                            Swal.close()
                             navigate("/dashboard")
                         },3000)
                         break;

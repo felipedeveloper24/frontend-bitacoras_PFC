@@ -21,6 +21,7 @@ import Empresas from "../pages/ProfesionalApoyo/dashboardProfesional/empresas";
 import EstadoPracticas from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/estado_practicas";
 import InformacionGeneral from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/informacion_general_practica";
 import VerDocumentosInscripcion from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/verdocumentosinscripcion";
+import EvaluarPractica from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/evaluarPractica";
 
 
 const PrivateRoutes = ()=>{
@@ -65,6 +66,7 @@ const PrivateRoutes = ()=>{
                 <Route path="/estadopracticas/:anio/:periodo/:asignatura/:carrera" element={<EstadoPracticas/>}/>
                 <Route path="/informaciongeneral/:inscribe" element={<InformacionGeneral/>} />
                 <Route path="/documentosinscripcion/:id" element={<VerDocumentosInscripcion/>} />
+                <Route path="/evaluarinscripcion/:id" element={<EvaluarPractica/>} />
             </Routes>
         )
     }

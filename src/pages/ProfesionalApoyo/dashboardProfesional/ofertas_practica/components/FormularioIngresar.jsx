@@ -65,17 +65,18 @@ const FormularioIngresar = ()=>{
     }
 
     return (
-        <form style={{width:"70%",margin:"0px auto"}} onSubmit={onSubmit}>
+        <form style={{width:"70%",margin:"0px auto",marginBottom:"10px"}} onSubmit={onSubmit}>
             <Card sx={{padding:"15px"}}>
                 <Grid container spacing={2}>
-                    <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField label="Descripcion" value={descripcion} required onChange={(e)=>{setDescripcion(e.target.value)}} fullWidth/>
+                    <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>
+                        <TextField label="Descripcion" multiline
+                                rows={5} value={descripcion} required onChange={(e)=>{setDescripcion(e.target.value)}} fullWidth/>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <TextField label="Cupos" value={cupos} type="number" required onChange={(e)=>{setCupos(e.target.value)}}  fullWidth/>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <FormControl margin="normal" fullWidth>
+                        <FormControl fullWidth>
                             <InputLabel>Experiencia Laboral</InputLabel>
                             <Select label="Experiencia Laboral" value={experiencia} onChange={(e)=>{setExperiencia(e.target.value)}} fullWidth>
                                 <MenuItem value={0}>No</MenuItem>

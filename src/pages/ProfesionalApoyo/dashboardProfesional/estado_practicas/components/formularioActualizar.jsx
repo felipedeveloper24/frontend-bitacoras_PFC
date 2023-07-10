@@ -3,16 +3,19 @@ import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const FormularioActualizar = ({id_estado,id_inscripcion})=>{
     
-    const [estado, setEstado] = useState("")
+    const [estado, setEstado] = useState(id_estado)
     const handleChangeEstado = (event) => {
         setEstado(event.target.value);
     };
+
+   
     
     const onSubmit = async(e)=>{
         e.preventDefault();
@@ -33,6 +36,7 @@ const FormularioActualizar = ({id_estado,id_inscripcion})=>{
             })
 
             setTimeout(()=>{
+               
                 window.location.reload()
             },2000)
         }
@@ -46,7 +50,7 @@ const FormularioActualizar = ({id_estado,id_inscripcion})=>{
     })
     if(getEstados.status=="success"){
         return (
-            <form action="" onSubmit={onSubmit}>
+            <form onSubmit={onSubmit}>
                 <Grid container>
                 
                     <Grid item lg={12}>

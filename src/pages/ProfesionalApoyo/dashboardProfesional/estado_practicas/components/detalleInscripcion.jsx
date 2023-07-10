@@ -2,7 +2,7 @@ import { TableBody , CircularProgress, Grid, Paper, Table, TableCell, TableConta
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import clienteAxios from "../../../../../helpers/clienteaxios";
-import { CheckCircleOutline, DoNotDisturb, Edit, FileCopy, TimerOutlined } from "@mui/icons-material";
+import { CheckCircleOutline, ContentPasteSearchOutlined, DoNotDisturb, Edit, FileCopy, TimerOutlined, Visibility } from "@mui/icons-material";
 import { useState } from "react";
 import FormularioActualizar from "./formularioActualizar";
 
@@ -80,7 +80,7 @@ const DetalleInscripcion = ({id})=>{
                                             {fecha_fin}
                                         </TableCell>
                                         <TableCell>
-                                            {data.inscripcion.observaciones== "" ? "----------" : data.observaciones }
+                                            {data.inscripcion.observaciones== "" ? "----------" : data.inscripcion.observaciones }
                                         </TableCell>
                                         <TableCell>
                                             {data.inscripcion.modalidad.nombre_modalidad}
@@ -114,11 +114,14 @@ const DetalleInscripcion = ({id})=>{
                                             <Tooltip title="Evaluar solicitud de inscripción" >
                                                  <Edit sx={{cursor:"pointer"}} onClick={handleOpen} />
                                             </Tooltip>
-                                            <Tooltip title="Evaluar inscripción" >
-                                                 <Edit sx={{cursor:"pointer"}} onClick={()=>{navigate(`/modificarinscripcion/${id}`)}} />
+                                            <Tooltip title="Evaluar práctica" >
+                                                 <ContentPasteSearchOutlined sx={{cursor:"pointer"}} onClick={()=>{navigate(`/evaluarinscripcion/${id}`)}} />
                                             </Tooltip>
                                             <Tooltip title="Documentos">
                                                   <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.inscripcion.id_inscripcion_practica}`)}} />
+                                            </Tooltip>
+                                            <Tooltip sx={{cursor:"pointer"}} title="Ver bitacoras alumno">
+                                                <Visibility />
                                             </Tooltip>
                                             
                                         </TableCell>
@@ -146,19 +149,19 @@ const DetalleInscripcion = ({id})=>{
                                 </TableHead>
                                     <TableBody>
                                     <TableRow>
-                                        <TableCell>Nombre {data.inscripcion.representante.nombre}</TableCell>
+                                        <TableCell>Nombre: {data.inscripcion.representante.nombre}</TableCell>
                                           
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell>Apellido {data.inscripcion.representante.apellido}</TableCell>
+                                        <TableCell>Apellido: {data.inscripcion.representante.apellido}</TableCell>
                                           
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell>Correo {data.inscripcion.representante.correo}</TableCell>
+                                        <TableCell>Correo: {data.inscripcion.representante.correo}</TableCell>
                                           
                                     </TableRow>   
                                     <TableRow>
-                                        <TableCell>Teléfono {data.inscripcion.representante.telefono}</TableCell>
+                                        <TableCell>Teléfono: {data.inscripcion.representante.telefono}</TableCell>
                                           
                                     </TableRow>
                                     </TableBody>
