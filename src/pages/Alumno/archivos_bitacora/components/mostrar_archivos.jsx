@@ -118,10 +118,12 @@ const MostrarArchivos = ()=>{
         )
     }
     if(getArchivos.status == "loading"){
+        return (
         <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             Cargando datos.........
             <CircularProgress/>
         </Grid>
+        )
     }
 
 }

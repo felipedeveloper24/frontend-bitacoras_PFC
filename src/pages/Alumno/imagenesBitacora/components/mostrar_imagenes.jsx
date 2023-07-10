@@ -124,10 +124,13 @@ const MostrarImagenes = ({id}) =>{
         )
     }
     if(getimagenes.status == "loading"){
-        <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        return (
+            <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             Cargando datos.........
             <CircularProgress/>
-        </Grid>
+            </Grid>
+        )
+       
         
     }
     

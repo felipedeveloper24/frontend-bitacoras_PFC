@@ -17,6 +17,10 @@ import ModificarOferta from "../pages/ProfesionalApoyo/dashboardProfesional/ofer
 import ArchivosBitacoras from "../pages/Alumno/archivos_bitacora/Archivos_bitacoras";
 import ImagenesBitacoras from "../pages/Alumno/imagenesBitacora/imageneBitacoras";
 import Aptitudes from "../pages/Alumno/aptitudes/aptitudes";
+import Empresas from "../pages/ProfesionalApoyo/dashboardProfesional/empresas";
+import EstadoPracticas from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/estado_practicas";
+import InformacionGeneral from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/informacion_general_practica";
+import VerDocumentosInscripcion from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/verdocumentosinscripcion";
 
 
 const PrivateRoutes = ()=>{
@@ -53,10 +57,14 @@ const PrivateRoutes = ()=>{
         return (
             <Routes>
                 <Route path="/dashboard" element={<DashboardProfesional/>} />
+                <Route path="/empresas" element={<Empresas/>} />
                 <Route path="/modificarEmpresa/:id" element={<ModificarEmpresa/>} />
                 <Route path="/ofertapracticas" element={<OfertaPractica/>} />
                 <Route path="/crearoferta" element={<CrearOferta/>} />
                 <Route path="/modificaroferta/:id" element={<ModificarOferta/>} />
+                <Route path="/estadopracticas/:anio/:periodo/:asignatura/:carrera" element={<EstadoPracticas/>}/>
+                <Route path="/informaciongeneral/:inscribe" element={<InformacionGeneral/>} />
+                <Route path="/documentosinscripcion/:id" element={<VerDocumentosInscripcion/>} />
             </Routes>
         )
     }
