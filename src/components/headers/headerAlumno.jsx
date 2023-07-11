@@ -17,7 +17,8 @@ const HeaderAlumno = ()=>{
     const handleToggleMenu = () => {
         setOpen(!open);
       };
-      
+    const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
+  
     return(
         <Grid container sx={{width:"100%",display:"flex",backgroundColor:"#326FA6",height:"80px", alignItems:"center"}}>
              <Grid sx={{width:"10%",display:"flex",justifyContent:"center"}}>
@@ -44,12 +45,15 @@ const HeaderAlumno = ()=>{
                     <ListItem button onClick={()=>navigate("/perfil")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Perfil" />
                     </ListItem>
-                    <ListItem button >
-                        <ListItemText sx={{textAlign:"center"}} primary="Inscripción" />
-                    </ListItem>
-                    <ListItem button >
-                        <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />
-                    </ListItem>
+                    
+                    {
+                        id_inscripcion_practica != "undefined" && (
+                            <ListItem button onClick={()=>navigate("/showbitalumno")} >
+                                 <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />
+                            </ListItem>
+                        )
+                    }
+                    
                     <ListItem button onClick={()=>navigate("/aptitudes")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Aptitudes" />
                     </ListItem>

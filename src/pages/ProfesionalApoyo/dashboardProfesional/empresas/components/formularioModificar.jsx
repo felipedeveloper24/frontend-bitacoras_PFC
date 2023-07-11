@@ -18,6 +18,8 @@ const FormularioModificar = ({empresa})=>{
     const [razon_social,setRazonSocial] = useState("");
     const [direccion,setDireccion] = useState("");
     const [centro_practica,setCentroPractica] = useState(empresa.centro_practica);
+    const [correo,setCorreo] = useState(empresa.correo)
+    const [telefono,setTelefono] = useState(empresa.telefono)
 
     const getRegionComuna = useQuery("region",async()=>{
         const response = await clienteAxios.post("comuna/getRegion",{
@@ -27,19 +29,6 @@ const FormularioModificar = ({empresa})=>{
         return response.data.region.id_region;
     })
     
-
-    const {register,handleSubmit,formState:{errors},control,reset} = useForm({
-        defaultValues:{
-            rut_empresa: "",
-            razon_social: "",
-            direccion: "",
-            telefono: "",
-            correo: "",
-            id_estado_empresa:"",
-            id_comuna:"",
-            region: ""
-        }
-    });
     const [comunas,setComunas] = useState([]);
     const [comuna,setComuna] = useState("");
     
@@ -53,17 +42,16 @@ const FormularioModificar = ({empresa})=>{
             setRut(empresa.rut_empresa)
             setRazonSocial(empresa.razon_social)
             setDireccion(empresa.direccion);
-             reset({
-                telefono:empresa.telefono,
-                correo:empresa.correo,
-                centro_practica: centro_practica,
-                region: getRegionComuna.status=="success" && getRegionComuna.data
-                
-             })
+            const is_centro = empresa.centro_practica == true ? 1 : 0
+            setCentroPractica(is_centro)
+            setCorreo(empresa.correo)
+            setTelefono(empresa.telefono)
+            let region_seleccionada = getRegionComuna.status == "success" && getRegionComuna.data
+            setRegion(region_seleccionada)
            
             
         }
-    },[empresa, reset])
+    },[empresa])
 
     const handleRegion = (event)=>{
         const id = event.target.value;
@@ -112,7 +100,7 @@ const FormularioModificar = ({empresa})=>{
 
     return (
         <Grid sx={{width:"75%",margin:"0px auto"}}>
-           <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+           <form method="POST" onSubmit={onSubmit}>
                 <Grid container spacing={2} sx={{marginTop:"10px"}}>
 
                      <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
@@ -127,9 +115,12 @@ const FormularioModificar = ({empresa})=>{
                         <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <FormControl fullWidth>
                                     <InputLabel>Centro de práctica</InputLabel>
-                                        <Select required      
-                                            fullWidth >
-                                            <MenuItem value="">Seleccione</MenuItem>
+                                        <Select label="Centro de práctica" required      
+                                            fullWidth
+                                            value={centro_practica}
+                                            onChange={(e)=>{setCentroPractica(e.target.value)}}
+                                            >
+                            
                                             <MenuItem value={1}>Si</MenuItem>
                                             <MenuItem value={0}>No</MenuItem>
                                         </Select>
@@ -137,17 +128,26 @@ const FormularioModificar = ({empresa})=>{
                             </Grid>
 
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                        <TextField label="Correo" fullWidth />
+                                    <TextField label="Correo" 
+                                    
+                                    value={correo}
+                                    onChange = {(e)=>{setCorreo(e.target.value)}}
+                                    
+                                    fullWidth />
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField label="Teléfono" fullWidth/>
+                                    <TextField label="Teléfono" value={telefono} onChange={(e)=>{setTelefono(e.target.value)}} fullWidth/>
                             </Grid>
 
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <FormControl margin="normal" fullWidth>
                                 <InputLabel>Region</InputLabel>
                                 
-                                        <Select fullWidth >
+                                        <Select 
+                                        value={region}
+                                        onChange={(e)=>{setRegion(e.target.value)}}
+                                        fullWidth >
+
                                             {
                                                 regiones.status == "success" && regiones.data.map((region,idx)=>{
                                                     return (

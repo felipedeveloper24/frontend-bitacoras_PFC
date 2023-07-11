@@ -18,12 +18,15 @@ const AuthProvider = ({children}) =>{
                 switch(response.data.rol){
                     case 1:{
                         const userData = response.data;
+                       
                         setToken(response.data.token);
                        
                         localStorage.setItem("rol",response.data.rol);
                         localStorage.setItem("rut",response.data.alumno.rut);
                         localStorage.setItem("id_alumno",response.data.alumno.id_alumno)
                         localStorage.setItem("id_inscribe",response.data.id_inscribe)
+                        localStorage.setItem("id_inscripcion_practica",response.data.id_inscripcion_practica)
+                        localStorage.setItem("id_usuario",response.data.id_usuario)
                         setUser(userData);
                         
                         Swal.fire(

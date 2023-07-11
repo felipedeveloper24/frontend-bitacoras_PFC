@@ -22,6 +22,10 @@ import EstadoPracticas from "../pages/ProfesionalApoyo/dashboardProfesional/esta
 import InformacionGeneral from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/informacion_general_practica";
 import VerDocumentosInscripcion from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/verdocumentosinscripcion";
 import EvaluarPractica from "../pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/evaluarPractica";
+import BitAlumnoRender from "../pages/Alumno/BitacoraAlumno/CreateBitacoAlumno/BitaAlumnoRender";
+import RenderBitaAlumno from "../pages/Alumno/BitacoraAlumno/ShowBitaAlum/RenderBitaAlumno";
+import RenderDetailsAlumno from "../pages/Alumno/BitacoraAlumno/DetailsAlumno/RenderDetailsAlumno";
+import EditingBitAlumno from "../pages/Alumno/BitacoraAlumno/ModificarAlumno/EditingBitAlumno";
 
 
 const PrivateRoutes = ()=>{
@@ -44,6 +48,10 @@ const PrivateRoutes = ()=>{
                 <Route path="/archivosbitacora/:id" element ={<ArchivosBitacoras/>} />
                 <Route path="/imagenesbitacora/:id" element={<ImagenesBitacoras/>} />
                 <Route path="/aptitudes" element={<Aptitudes/>} />
+                <Route path="/bitacoralumno" element={<BitAlumnoRender />} />
+                <Route path="/showbitalumno" element={<RenderBitaAlumno/>} />
+                <Route path="/detailsbitacoralumno/:id" element={<RenderDetailsAlumno/>} />
+                <Route path="/modificarbitacoralumno/:id" element={<EditingBitAlumno/>} />
             </Routes>
         )
     }
