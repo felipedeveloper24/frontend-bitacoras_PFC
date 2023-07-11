@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import HeaderJefe from "../../../components/headers/headerJefe";
+import ShowBitaJefe from "./BitacoraJefe/ShowBitaJefe";
 
 
 const DashboardJefeCarrera = ()=>{
@@ -11,7 +12,7 @@ const DashboardJefeCarrera = ()=>{
             flexDirection:"column"
         }}>
             <HeaderJefe/>
-            <Typography>Dashboard jefe de carrera</Typography>
+            <ShowBitaJefe/>
         </Grid>
     );
 }

@@ -63,8 +63,9 @@ const CreateBitaAlumno = () => {
                   confirmButtonText: "Aceptar"
                   
                 })
-                console.log('POR ACA PUEDE ESTAR EL ERROR');
+                
                 setTimeout(() => {
+                  Swal.close()
                   navigate("/showbitalumno")
                 }, 1000);
         

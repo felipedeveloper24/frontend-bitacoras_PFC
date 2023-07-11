@@ -106,18 +106,15 @@ const BitacoraDelete = async (id) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center', // Centrado vertical
       minHeight: '100vh', // Ocupar al menos toda la altura de la pantalla
-      paddingBottom: '85px'
+
     }}>
       <Box
         sx={{
           display: 'flex',
-          marginBottom: '50px',
           justifyContent: 'center', // Centrado horizontal
           alignItems: 'center', // Centrado vertical
           color: 'inherit',
-          marginTop: '60px',
           '&:hover': {
             color: 'orange',
             cursor: 'default',
@@ -125,26 +122,28 @@ const BitacoraDelete = async (id) => {
         }}
       >
         
-        <Typography variant="h3" style={{fontSize:35}}>
+        <Typography variant="h3" style={{fontSize:35,display:"flex",alignItems:"center",marginTop:"30px",marginBottom:"15px"}}>
           Bitácoras del Alumno
+          <ContentPasteGoIcon style={{ fontSize: 35}} color="inherit" />
         </Typography>
-        <ContentPasteGoIcon style={{ fontSize: 35}} color="inherit" />
+       
       </Box>
       {!data.bitacoras ? ( <>
         <Typography variant="h5">No hay bitácoras disponibles.</Typography>
         <Button sx={{marginTop:"10px"}} onClick={()=>{navigate("/bitacoralumno")}} variant="contained">Haz click Aquí para crear una bitácora</Button>
         </>
       ) : (
+        <>
+          <Button variant="contained" onClick={()=>{navigate("/bitacoralumno")}} sx={{marginBottom:"15px"}}>Crear Bitácora</Button>
         <TableContainer sx={{
-          // border: '1px solid black', // Agrega un borde
+      // Agrega un borde
           borderRadius: '5px', // Redondea los bordes
           maxHeight: '400px', // Altura máxima
           overflow: 'auto', // Muestra una barra de desplazamiento cuando el contenido sobrepasa la altura máxima
           boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)', // Añade sombra
-          marginBottom: 'auto',
           maxWidth: '70%', // Para centrar horizontalmente
           paddingBottom: '5px',
-          margin: 'auto' // Para centrar horizontalmente
+          // Para centrar horizontalmente
         }}>
           <Table>
             <TableHead>
@@ -194,6 +193,7 @@ const BitacoraDelete = async (id) => {
             </TableBody>
           </Table>
         </TableContainer>
+        </>
       )}
     </Container>
   );
