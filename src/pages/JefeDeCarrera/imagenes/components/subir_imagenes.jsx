@@ -21,7 +21,7 @@ const SubirImagenes = ({id})=>{
         formData.append("archivo",archivo)
 
 
-        const response = await clienteAxios.post("/archivoalumno/create",formData,{
+        const response = await clienteAxios.post("/archivojefe/create",formData,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -89,7 +89,7 @@ const SubirImagenes = ({id})=>{
         <>
         <Grid sx={{display:"flex",margin:"0px auto", marginTop:"15px"}}>
             <Typography variant="h5">Listado de imágenes</Typography>
-            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir Imagen</Button>
+            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir archivo</Button>
         </Grid>
        
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>

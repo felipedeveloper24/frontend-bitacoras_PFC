@@ -1,10 +1,12 @@
 import { Alert, Box, Button, Card, Grid, Input, Modal, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+
 import Swal from "sweetalert2";
 import clienteAxios from "../../../../helpers/clienteaxios";
 
-const SubirImagenes = ({id})=>{
 
+
+const SubirArchivo = ({id})=>{
     const [open, setOpen] = useState(false);
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
@@ -21,16 +23,15 @@ const SubirImagenes = ({id})=>{
         formData.append("archivo",archivo)
 
 
-        const response = await clienteAxios.post("/archivoalumno/create",formData,{
+        const response = await clienteAxios.post("/archivojefe/create",formData,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
         })
-        
         if(response.status==200){
             Swal.fire({
                 title:"Registrado",
-                text:"La imagen ha sido registrada correctamente",
+                text:"El pdf ha sido registrado correctamente",
                 icon:"success",
                 confirmButtonText:"Aceptar"
                 
@@ -44,38 +45,23 @@ const SubirImagenes = ({id})=>{
     }
 
     const handleArchivoSeleccionado = (e)=>{
-        
-        if(e.target.files[0].size <= 1000000){
-            
-            if(e.target.files[0].name.includes(".png") || e.target.files[0].name.includes(".PNG") ||  e.target.files[0].name.includes(".jpg") || e.target.files[0].name.includes(".JPG") ){
-                setPdf(false);
-               
-                setArchivo(e.target.files[0]);
-                setExtension(e.target.files[0].name.split(".")[1])
-            }else{
-                    setPdf(true);
-                    Swal.fire({
-                        title:"Error",
-                        text:"El tipo de archivo no es el formato señalado.",
-                        icon:"error",
-                        confirmButtonText:"Aceptar"
-                    })
-                    setTimeout(()=>{
-                    },2000)
-            
-            }
+    
+        if(e.target.files[0].name.includes(".pdf")){
+            setPdf(false);
+            setArchivo(e.target.files[0]);
+            setExtension(e.target.files[0].name.split(".")[1])
         }else{
-            setPdf(true);
-            Swal.fire({
-                title:"Error",
-                text:"Has pasado el límite de tamaño permitido",
-                icon:"error",
-                confirmButtonText:"Aceptar"
-            })
-            setTimeout(()=>{
-            },2000)
-        }
+                setPdf(true);
+                Swal.fire({
+                    title:"Error",
+                    text:"El tipo de archivo no es pdf",
+                    icon:"error",
+                    confirmButtonText:"Aceptar"
+                })
+                setTimeout(()=>{
+                },2000)
         
+        }
         
         
     }
@@ -88,8 +74,8 @@ const SubirImagenes = ({id})=>{
     return (
         <>
         <Grid sx={{display:"flex",margin:"0px auto", marginTop:"15px"}}>
-            <Typography variant="h5">Listado de imágenes</Typography>
-            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir Imagen</Button>
+            <Typography variant="h5">Listado de archivos</Typography>
+            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir archivo</Button>
         </Grid>
        
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
@@ -115,7 +101,7 @@ const SubirImagenes = ({id})=>{
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} >
                                     <TextField required type="file" onChange={handleArchivoSeleccionado}
                                     fullWidth />
-                                    <Alert sx={{marginTop:"5px"}} severity="info">Por favor subir imágenes (png , jpg), Tamaño máximo 1MB.</Alert>    
+                                    <Alert sx={{marginTop:"5px"}} severity="info">Por favor subir archivos .pdf</Alert>    
                                 </Grid>
                                 
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} sx={{marginTop:"10px"}}>
@@ -130,4 +116,5 @@ const SubirImagenes = ({id})=>{
     )
 }
 
-export default SubirImagenes;
+
+export default SubirArchivo;

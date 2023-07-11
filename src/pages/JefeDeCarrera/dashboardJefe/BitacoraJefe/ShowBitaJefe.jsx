@@ -9,6 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
 import Swal from 'sweetalert2';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import { DocumentScanner, Image } from "@mui/icons-material";
 
 const ShowBitaJefe = () => {
   const { id } = useParams();
@@ -138,7 +139,7 @@ const ShowBitaJefe = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell >Título:</TableCell>
+                <TableCell>Título:</TableCell>
                 <TableCell >Estado Bitácora:</TableCell>
                 <TableCell >Tipo Bitácora:</TableCell>
                 <TableCell>Acciones:</TableCell>
@@ -147,8 +148,8 @@ const ShowBitaJefe = () => {
             </TableHead>
             <TableBody>
               {data.bitacojefe.map((bitacora, idx) => (
-                <TableRow key={idx}>
-                  <TableCell >{bitacora.titulo}</TableCell>
+                <TableRow key={idx} >
+                  <TableCell style={{ wordWrap: 'break-word', maxWidth: '300px' }}>{bitacora.titulo}</TableCell>
                   <TableCell >{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
                   <TableCell >{bitacora.tipo_bitacora.nombre_tipo_bitacora} </TableCell>
 
@@ -170,6 +171,19 @@ const ShowBitaJefe = () => {
                       </Tooltip>
                      
                     </IconButton>
+                    <IconButton onClick={() => navigate(`/archivosbitacora/${bitacora.id_bitacora}`)}>
+                      <Tooltip title="Documentos Bitacora">
+                         <DocumentScanner/>
+                      </Tooltip>
+                     
+                    </IconButton>
+                    <IconButton onClick={() => navigate(`/imagenesbitacora/${bitacora.id_bitacora}`)}>
+                      <Tooltip title="Imágenes Bitácora">
+                         <Image/>
+                      </Tooltip>
+                     
+                    </IconButton>
+
                   </TableCell>
                 </TableRow>
               ))}

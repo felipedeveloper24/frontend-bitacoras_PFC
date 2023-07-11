@@ -30,6 +30,8 @@ import BitacorasJefe from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/Bit
 import BitacoraRender from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/BitacoraRender";
 import DetailsBitacora from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/DetailsBitacora";
 import EditingBit from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/EditingBit";
+import ArchivosBitacorasJefe from "../pages/JefeDeCarrera/archivosbitacoras/archivosbitacoras";
+import ImagenesBitacorasJefe from "../pages/JefeDeCarrera/imagenes/imagenesbitacoras";
 
 
 const PrivateRoutes = ()=>{
@@ -63,11 +65,12 @@ const PrivateRoutes = ()=>{
         return (
             <Routes>
                 <Route path="/dashboard" element={<DashboardJefeCarrera/>} />
-
                 <Route path="/bitacorajefe" element={<BitacorasJefe />} />
                 <Route path="/showbitacorajefe" element={<BitacoraRender />} />
                 <Route path="/detailsbitacorajefe/:id" element={<DetailsBitacora/>} />
                 <Route path="/modificarbitacorajefe/:id" element={<EditingBit/>}/>
+                <Route path="/archivosbitacora/:id" element ={<ArchivosBitacorasJefe/>} />
+                <Route path="/imagenesbitacora/:id" element ={<ImagenesBitacorasJefe/>} />
             </Routes>
         )
     }

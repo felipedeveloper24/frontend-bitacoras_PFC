@@ -158,7 +158,7 @@ const BitacoraDelete = async (id) => {
             <TableBody>
               {data.bitacoras.map((bitacora, idx) => (
                 <TableRow key={idx}>
-                  <TableCell style={{ width: '33%', height: '50px' }}>{bitacora.titulo}</TableCell>
+                  <TableCell style={{ width: '33%', height: '50px' , wordWrap: 'break-word', maxWidth: '300px' }}>{bitacora.titulo}</TableCell>
                   <TableCell style={{ width: '33%', height: '50px' }}>{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
                   <TableCell style={{ width: '33%', height: '50px' }}>
                     <IconButton onClick={() => handleNavigate(bitacora.id_bitacora)}>
