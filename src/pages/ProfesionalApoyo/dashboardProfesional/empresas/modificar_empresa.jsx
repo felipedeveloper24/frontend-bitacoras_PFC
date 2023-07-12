@@ -9,31 +9,14 @@ import { useEffect, useState } from "react";
 
 const ModificarEmpresa = ()=>{
     const {id} = useParams();
-
-    const [empresa,setEmpresa] = useState({});
-    const [loading,setLoading] = useState(true);
-
-    const getEmpresa = async()=>{
-        const response = await clienteAxios.get(`/empresa/show/${id}`);
-        if(response.status==200){
-            setEmpresa(response.data.empresa)
-            setLoading(false)
-        
-        }
-    };
-
-    useEffect(()=>{
-        getEmpresa();
-    },[])
-    if(!loading){
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <HeaderProfesional/>
-                <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}} >Empresa seleccionada: {empresa.razon_social} </Typography>
-                <FormularioModificar  empresa={empresa}  />
+               
+                <FormularioModificar  id={id}  />
             </Grid>
         )
-    }   
+       
     
 }
 

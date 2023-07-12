@@ -120,8 +120,8 @@ const DetalleInscripcion = ({id})=>{
                                             <Tooltip title="Documentos">
                                                   <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.inscripcion.id_inscripcion_practica}`)}} />
                                             </Tooltip>
-                                            <Tooltip sx={{cursor:"pointer"}} title="Ver bitacoras alumno">
-                                                <Visibility />
+                                            <Tooltip  title="Ver bitacoras alumno">
+                                                <Visibility sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/bitacoras/${data.inscripcion.id_inscripcion_practica}`)}} />
                                             </Tooltip>
                                             
                                         </TableCell>
@@ -178,7 +178,6 @@ const DetalleInscripcion = ({id})=>{
             <Grid>
               
                 <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle inscripción</Typography>
-                <Button variant="contained" sx={{margin:"0px auto", display:"block"}}>Dar aviso a alumno</Button>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
@@ -195,7 +194,7 @@ const DetalleInscripcion = ({id})=>{
                             </TableHead>
                                
                             </Table>
-                            <Alert severity="error" sx={{textAlign:"center"}}>El alumno tiene inscrita la práctica via intranet, pero no está registrado en nuestro sistema</Alert>
+                            <Alert severity="error" sx={{textAlign:"center"}}>El alumno tiene inscrita la práctica via intranet, pero no está registrado en el sistema de prácticas profesionales</Alert>
                         </TableContainer>
             </Grid>
         )

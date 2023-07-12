@@ -21,8 +21,11 @@ import clienteAxios from "../../../../helpers/clienteaxios";
 import { AssignmentReturn, Image } from "@mui/icons-material";
 const ShowBitaAlumno = () => {
     const {id} = useParams();
+    const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
+  
     const {data, status, refetch} = useQuery("bitacoralumno", async () => {
-        const response = await clienteAxios.get(`bitacoralumno/getall`);
+        const response = await clienteAxios.get(`/bitacoralumno/getall/${id_inscripcion_practica}`);
+        console.log(response.data)
         return response.data;
     }, {
         refetchOnWindowFocus: false

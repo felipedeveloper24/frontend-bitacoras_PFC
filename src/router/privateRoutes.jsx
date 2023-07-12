@@ -32,6 +32,9 @@ import DetailsBitacora from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/D
 import EditingBit from "../pages/JefeDeCarrera/dashboardJefe/BitacoraJefe/EditingBit";
 import ArchivosBitacorasJefe from "../pages/JefeDeCarrera/archivosbitacoras/archivosbitacoras";
 import ImagenesBitacorasJefe from "../pages/JefeDeCarrera/imagenes/imagenesbitacoras";
+import AptitudesAlumno from "../pages/ProfesionalApoyo/dashboardProfesional/aptitudes_alumno/AptitudesAlumno";
+import BitacorasAlumno from "../pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/bitacorasAlumno";
+import DetalleBitacora from "../pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/detalleBitacora";
 
 
 const PrivateRoutes = ()=>{
@@ -87,6 +90,9 @@ const PrivateRoutes = ()=>{
                 <Route path="/informaciongeneral/:inscribe" element={<InformacionGeneral/>} />
                 <Route path="/documentosinscripcion/:id" element={<VerDocumentosInscripcion/>} />
                 <Route path="/evaluarinscripcion/:id" element={<EvaluarPractica/>} />
+                <Route path="/aptitudes/:id" element={<AptitudesAlumno/>} />
+                <Route path="/bitacoras/:id" element={<BitacorasAlumno/>} />
+                <Route path="/detallebitacora/:id" element={<DetalleBitacora/>} />
             </Routes>
         )
     }

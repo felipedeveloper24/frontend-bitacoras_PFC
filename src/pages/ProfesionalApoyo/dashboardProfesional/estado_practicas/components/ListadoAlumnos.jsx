@@ -1,7 +1,7 @@
 import { Grid, Table, TableContainer, TableRow,TableHead ,Typography, TableCell, Alert, Paper, TableBody, Tooltip, CircularProgress } from "@mui/material";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
-import { Visibility } from "@mui/icons-material";
+import { Psychology, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 
@@ -20,6 +20,7 @@ const ListadoAlumnos = ({anio,periodo,asignatura,carrera})=>{
         }) 
 
         if(response.status==200){
+            
             return response.data;
         }   
     })
@@ -52,6 +53,9 @@ const ListadoAlumnos = ({anio,periodo,asignatura,carrera})=>{
                                         <Tooltip title="Ver inscripción practica profesional">
                                             <Visibility sx={{cursor:"pointer"}} onClick={()=>{navigate(`/informaciongeneral/${alumno.id_inscripcion}`)}}/>
                                         </Tooltip>
+                                        <Tooltip title="Conocimentos">
+                                             <Psychology sx={{cursor:"pointer"}} onClick={()=>{navigate(`/aptitudes/${alumno.id_alumno}`)}} /> 
+                                        </Tooltip>
                                         
                                     </TableCell>
                                     
@@ -80,7 +84,7 @@ const ListadoAlumnos = ({anio,periodo,asignatura,carrera})=>{
                 </TableHead>
                
             </Table>
-            <Alert severity="error">No hay alumnos inscritos desde intranet</Alert>
+            <Alert severity="error">No hay alumnos inscritos desde intranet.</Alert>
             </TableContainer>
         )
     }

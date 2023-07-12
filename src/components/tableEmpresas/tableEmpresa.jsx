@@ -153,6 +153,7 @@ const TableEmpresa = ()=>{
                         data.empresas.map((empresa,idx)=>{
                             return (
                                 <TableRow key={idx}>
+                                  
                                     <TableCell>{empresa.id_empresa}</TableCell>
                                     <TableCell>{empresa.rut_empresa}</TableCell>
                                     <TableCell>{empresa.razon_social}</TableCell>

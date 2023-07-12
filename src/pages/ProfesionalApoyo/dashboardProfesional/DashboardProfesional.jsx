@@ -7,6 +7,7 @@ import Contadorpractica2 from "../components/contadorpractica2";
 import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const DashboardProfesional = ()=>{
     const [anio,setanio] = useState(2023)
@@ -35,7 +36,14 @@ const DashboardProfesional = ()=>{
             id_asignatura:620509
         })
         if(response.status == 200){
-            
+            if(!response.data.alumnos_ieci){
+                Swal.fire({
+                    title:"Error",
+                    text:response.data.mensaje,
+                    icon:"error",
+                    confirmButtonText:"Aceptar",
+                })
+            }
             return response.data
         }
     })
@@ -81,6 +89,10 @@ const DashboardProfesional = ()=>{
                 <Grid container spacing={2}>
                     <Grid xs={11} xl={6} lg={4} md={4} sm={10} item>               
                             <TextField placeholder="202x" value={anio}
+                            type="number"
+                            inputProps={{
+                                min:2000
+                            }}
                              onChange={(e)=>{
                                 setanio(e.target.value);
                                 

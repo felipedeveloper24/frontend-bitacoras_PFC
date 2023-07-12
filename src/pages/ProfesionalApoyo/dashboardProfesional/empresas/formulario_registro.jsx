@@ -23,16 +23,7 @@ const FormularioRegistro = () => {
         setComuna(event.target.value);
     }
 
-    const handleRegion = (event)=>{
-        const id = event.target.value;
-       
-        const actualiza = getcomunas.status=="success" && getcomunas.data.filter((comuna)=>{
-            return comuna.id_region === id; 
-        })
-        setComunas(actualiza);
-    
-        setRegion(event.target.value);
-    }
+   
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
@@ -85,7 +76,7 @@ const FormularioRegistro = () => {
                         }
                     })
                     setTimeout(()=>{
-                        navigate("/dashboard");
+                        navigate("/empresas");
                         window.location.reload();
                     },2000)
                 }
@@ -96,11 +87,7 @@ const FormularioRegistro = () => {
     
       
     }
-    const regiones = useQuery("regiones", async()=>{
-        const response = await clienteAxios.get("/comuna/getall");
-        //console.log(response.data.regiones);
-        return response.data.regiones
-    });
+    
 
     const getcomunas = useQuery("comunas", async()=>{
         const response = await clienteAxios.get("/comuna/getComunas");
@@ -185,24 +172,7 @@ const FormularioRegistro = () => {
                                 />
                                 {errors.telefono && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                             </Grid>
-                            <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
-                                <InputLabel>Region</InputLabel>
-                                <Select 
-                                        
-                                        value={region}
-                                        label="Región"
-                                        onChange={handleRegion} 
-                                        fullWidth >
-                                        {
-                                            regiones.status == "success" && regiones.data.map((region,idx)=>{
-                                                return (
-                                                    <MenuItem key={idx} value={region.id_region} >{region.nombre_region}</MenuItem>
-                                                )
-                                            })
-                                        }
-                                </Select>
-                                
-                            </Grid>
+                            
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
                                 <InputLabel>Comuna</InputLabel>
                                 <Select 
@@ -212,7 +182,7 @@ const FormularioRegistro = () => {
                                         onChange={handleComuna} 
                                         fullWidth >
                                         {
-                                            getcomunas.status == "success" && comunas.map((comuna,idx)=>{
+                                            getcomunas.status == "success" && getcomunas.data.map((comuna,idx)=>{
                                                 return (
                                                     <MenuItem key={idx} value={comuna.id_comuna} >{comuna.nombre}</MenuItem>
                                                 )
