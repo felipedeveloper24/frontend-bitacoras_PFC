@@ -9,6 +9,7 @@ const OfertasPracticas = ()=>{
     const {data,status} = useQuery("ofertas",async()=>{
         const response = await clienteAxios.get("/oferta/getall");
         if(response.status==200){
+            console.log(response.data)
             return response.data;
         }
     });
@@ -45,17 +46,24 @@ const OfertasPracticas = ()=>{
             </Grid>
         )    
     }
-    if(status=="sucess" && !data.ofertas){
-        <Grid sx={{display:"flex",flexDirection:"column"}} >
-                <Alert>No hay ofertas publicadas</Alert>
-        </Grid>
+    
+    if(status=="success" && !data.ofertas){
+        return(
+            <Grid sx={{width:"40%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column"}} >
+                <Alert severity="error">No hay ofertas publicadas</Alert>
+            </Grid>
+        )
+        
     }
     if(status == "loading"){
-        <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        return (
+            <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                 Cargando datos.........
                 <CircularProgress/>
                 
-        </Grid>
+            </Grid>
+        )   
+        
     }
     
 }

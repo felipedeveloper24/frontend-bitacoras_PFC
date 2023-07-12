@@ -27,7 +27,7 @@ const HeaderProfesional = ()=>{
                 
                 
              </Grid>
-             <Grid sx={{width:"70%",marginLeft:"65px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+             <Grid sx={{width:"70%",marginLeft:"45px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                       <img style={{width:"130px"}} src={logoubb} />
             </Grid>
             <Drawer anchor="left" open={open}  width={300} onClose={handleToggleMenu}>
