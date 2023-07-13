@@ -57,7 +57,7 @@ const DetalleInscripcion = ({id})=>{
                      
                     </Box>
                 </Modal>
-                <Typography sx={{textAlign:"center",marginTop:"25px",marginTop:"25px", display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle Inscripción <EditNote style={{fontSize:30,marginLeft:"5px"}}/> </Typography>
+                <Typography sx={{textAlign:"center",marginTop:"25px", display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle Inscripción <EditNote style={{fontSize:30,marginLeft:"5px"}}/> </Typography>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>

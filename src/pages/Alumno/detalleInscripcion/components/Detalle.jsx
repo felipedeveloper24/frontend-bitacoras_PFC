@@ -15,7 +15,7 @@ const Detalle = ({id})=>{
     const formato = (texto)=>{
         return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
     }
-    if(status=="success"){
+    if(status=="success" && data){
 
             
             let fecha_inicio = data.fecha_inicio.split("T")[0];
