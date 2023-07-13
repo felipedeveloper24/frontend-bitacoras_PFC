@@ -47,6 +47,8 @@ const MostrarOfertas = ()=>{
 
     }
     if(getOfertas.status == "success" && getOfertas.data.ofertas){    
+        const ofertas = getOfertas.data.ofertas.reverse()
+        
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <Grid container spacing={1} sx={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
@@ -73,7 +75,7 @@ const MostrarOfertas = ()=>{
                         </TableHead>
                         <TableBody>
                             {
-                                getOfertas.data.ofertas.map((oferta,idx)=>(
+                                ofertas.map((oferta,idx)=>(
                                     <TableRow key={idx}>
                                         <TableCell>{oferta.descripcion}</TableCell>
                                         <TableCell>{oferta.experiencia_laboral == true ? "Si" : "No"}</TableCell>

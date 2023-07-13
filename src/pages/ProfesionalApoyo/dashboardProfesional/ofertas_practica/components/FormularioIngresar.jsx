@@ -64,13 +64,24 @@ const FormularioIngresar = ()=>{
         }
     }
 
+    const remainingChars = 1000 - descripcion.length;
+    const remainingCharsColor = remainingChars > 200 ? 'green' : remainingChars > 100 ? 'orange' : 'red';
+
     return (
         <form style={{width:"70%",margin:"0px auto",marginBottom:"10px"}} onSubmit={onSubmit}>
             <Card sx={{padding:"15px"}}>
                 <Grid container spacing={2}>
                     <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>
                         <TextField label="Descripcion" multiline
-                                rows={5} value={descripcion} required onChange={(e)=>{setDescripcion(e.target.value)}} fullWidth/>
+                                rows={5} value={descripcion} required onChange={(e)=>{setDescripcion(e.target.value)}} fullWidth InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                inputProps={{
+                                    maxLength: 1001,
+                                }}/>
+                                <p style={{ color: remainingCharsColor, fontSize: '15px', textAlign: 'center' }}>
+                                {remainingChars >= 0 ? `Carácteres restantes: ${remainingChars}` : 'Has superado el límite de carácteres. Por favor, reduce tu descripción.'}
+                            </p>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <TextField label="Cupos" value={cupos} type="number" required onChange={(e)=>{setCupos(e.target.value)}}  fullWidth/>
@@ -128,7 +139,7 @@ const FormularioIngresar = ()=>{
                             </FormControl>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={12} md={6} sm={10} sx={{display:"flex",justifyContent:"center"}}>
-                        <Button type="submit" variant="contained">Enviar datos</Button>
+                        <Button type="submit" variant="contained" disabled={remainingChars === -1}>Enviar datos</Button>
                     </Grid>
                 </Grid>
             </Card>
