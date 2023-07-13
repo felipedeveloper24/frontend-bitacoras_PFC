@@ -1,4 +1,4 @@
-import {  Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert, FormControl } from "@mui/material"
+import {  Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert, FormControl, Card } from "@mui/material"
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "@mui/material/Select";
@@ -106,7 +106,10 @@ const FormularioModificar = ({id})=>{
     }
     if(!loading){
         return (
-            <Grid sx={{width:"75%",margin:"0px auto"}}>
+            <Grid sx={{width:"90%",margin:"0px auto"}}>
+                <Card sx={{padding:"20px",marginTop:"15px"}}>
+
+         
                  <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}} >Empresa seleccionada: {empresa.razon_social} </Typography>
                <form method="POST" onSubmit={onSubmit}>
                     <Grid container spacing={2} sx={{marginTop:"10px"}}>
@@ -188,16 +191,18 @@ const FormularioModificar = ({id})=>{
                                 </Grid >
                               
     
-                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
+                                <Grid sx={{display:"flex",justifyContent:"center",alignItems:"center"}} item xs={12} xl={12} lg={12} md={12} sm={12}>
                                     <Button variant="contained"
                                         type="submit"
                                         fullWidth
+                                        sx={{width:"50%",margin:"0px auto"}}
                                     >
                                         Actualizar Empresa
                                     </Button>
                                 </Grid>
                             </Grid>
                         </form>
+                    </Card>
             </Grid>
         )
     }

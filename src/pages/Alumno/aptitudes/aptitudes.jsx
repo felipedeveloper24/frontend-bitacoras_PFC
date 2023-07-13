@@ -1,9 +1,10 @@
-import { CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import HeaderAlumno from "../../../components/headers/headerAlumno";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import MisAptitudes from "../perfil-alumno/components/misApitudes";
 import ModalAptitudes from "../perfil-alumno/components/ModalAptitudes";
+import { PsychologyAltOutlined, PsychologyAltRounded, PsychologyRounded } from "@mui/icons-material";
 
 
 
@@ -14,9 +15,17 @@ const Aptitudes = ()=>{
         return(
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <HeaderAlumno/>
+                <Typography variant="h5" sx={{ color: "black",textAlign:"center", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
+                            <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                                <PsychologyAltRounded sx={{ fontSize: "3rem", mr: 2 }} />
+                                Aptitudes del alumno
+                                <PsychologyAltRounded sx={{ fontSize: "3rem", ml: 2 }} />
+                            </Box>
+                </Typography>
+                
+           
                 <ModalAptitudes id_alumno={id_alumno} />
                 <MisAptitudes id_alumno={id_alumno} />
-                
             </Grid>
         )
     

@@ -115,7 +115,7 @@ const ShowBitaJefe = () => {
         }}
       >
         
-        <Typography variant="h3" style={{fontSize:35,marginTop:"20px",marginBottom:"15px", display:"flex",justifyContent:"center",alignItems:"center"}} >
+        <Typography variant="h3" style={{fontSize:35,marginTop:"20px", display:"flex",justifyContent:"center",alignItems:"center"}} >
           Bitácoras
           <ContentPasteGoIcon style={{ fontSize: 35}} color="inherit" />
         </Typography>
@@ -130,7 +130,7 @@ const ShowBitaJefe = () => {
         </>
       ) : (
         <>
-        <Button variant="contained" onClick={()=>{navigate("/bitacorajefe")}} sx={{marginLeft:"10px",marginBottom:"15px"}}>Crear Bitácoras</Button>
+        <Button variant="contained" onClick={()=>{navigate("/bitacorajefe")}} sx={{marginBottom:"15px"}}>Crear Bitácoras</Button>
        
         <TableContainer 
           // border: '1px solid black', // Agrega un borde

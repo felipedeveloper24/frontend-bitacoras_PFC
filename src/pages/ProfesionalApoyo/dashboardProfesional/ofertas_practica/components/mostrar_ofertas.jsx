@@ -1,7 +1,7 @@
 import { Alert, Button, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
-import { Add, Delete, Edit } from "@mui/icons-material";
+import { Add, Delete, Edit, Work } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -49,9 +49,9 @@ const MostrarOfertas = ()=>{
     if(getOfertas.status == "success" && getOfertas.data.ofertas){    
         return (
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
-                <Grid container spacing={1} sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                <Grid container spacing={1} sx={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
                     <Grid item>
-                        <Typography variant="h5" sx={{textAlign:"center"}}>Ofertas de prácticas profesionales </Typography>
+                        <Typography variant="h5" sx={{textAlign:"center",display:"flex",alignItems:"center"}}>Ofertas de Prácticas <Work style={{marginLeft:"5px"}}/></Typography>
                     </Grid>
                     <Grid item>
                         <Button sx={{marginLeft:"10px"}} variant="contained" onClick={()=>navigate("/crearoferta")} >Añadir oferta</Button>

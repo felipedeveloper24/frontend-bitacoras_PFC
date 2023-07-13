@@ -166,7 +166,7 @@ const ModificarBitacoraJefe = () => {
 
 
     return (
-        <Container maxWidth="sm" sx={{ marginTop: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
+        <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
             <Card sx={{ padding: '20px' }}>
                 <Typography
                     component="h2"
@@ -178,15 +178,15 @@ const ModificarBitacoraJefe = () => {
                         transition: 'color 0.3s',
                         '&:hover': { color: 'orange' },
                         textAlign: 'center',
-                        alignSelf: 'center',
-                        justifyContent: 'center',
-                        fontSize: '30px'
+                        fontSize: '23px',
+                        justifyContent:"center"
+                        
                     }}
                 >
 
-                    <SpeakerNotesIcon sx={{ fontSize: '2rem', verticalAlign: 'middle', marginRight: '10px' }} />
+                    
                     Bitácora Jefe de Carrera
-
+                    <SpeakerNotesIcon sx={{ fontSize: '1.5rem', verticalAlign: 'middle', marginRight: '10px',marginLeft:"11px" }} />
                 </Typography>
 
 

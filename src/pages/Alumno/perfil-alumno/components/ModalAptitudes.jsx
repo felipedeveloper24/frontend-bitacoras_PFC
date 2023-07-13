@@ -47,7 +47,7 @@ const ModalAptitudes = ({id_alumno})=>{
     
         return (
             <>
-                <Button variant="contained" onClick={handleOpen}  sx={{width:"250px",margin:"0px auto",marginBottom:"10px", marginTop:"20px"}} >Ingresar conocimiento</Button>
+                <Button variant="contained" onClick={handleOpen}  sx={{width:"250px",margin:"0px auto",marginBottom:"15px", marginTop:"10px"}} >Ingresar conocimiento</Button>
                 <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
                         <Box
                             sx={{

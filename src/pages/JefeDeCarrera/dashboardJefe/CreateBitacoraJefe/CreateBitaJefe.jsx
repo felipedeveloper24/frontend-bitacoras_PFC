@@ -100,7 +100,7 @@ const BitacoraForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ marginTop: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
+    <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
       <Card sx={{padding:'20px'}}>
       <Typography
         component="h2"

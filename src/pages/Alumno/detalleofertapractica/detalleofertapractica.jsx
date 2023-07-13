@@ -16,10 +16,11 @@ const DetalleOfertaPractica = ()=>{
         return(
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                 <HeaderAlumno/>
-                <Typography sx={{textAlign:"center",marginTop:"15px"}} variant="h5">Detalle oferta</Typography>
+                
                 {
                     getOferta.status=="success" && getOferta.data.oferta &&
                     <Card sx={{width:"80%",padding:"40px"}}>
+                        <Typography sx={{textAlign:"center"}} variant="h5">Detalle oferta</Typography>
                         <Card sx={{padding:"30px"}}>
                              <Typography sx={{marginBottom:"10px",fontFamily:"cursive"}}> Descripción: {getOferta.data.oferta.descripcion}</Typography>
                              <cite style={{fontFamily:"cursive"}}>Empresa: {getOferta.data.oferta.empresa.razon_social} </cite>

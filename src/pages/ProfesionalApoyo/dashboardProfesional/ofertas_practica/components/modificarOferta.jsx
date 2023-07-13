@@ -88,7 +88,7 @@ const ModificarOferta = ()=>{
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <HeaderProfesional/>
                 <Typography variant="h6" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}}>Modificar oferta</Typography>
-                <form style={{width:"70%",margin:"0px auto"}} onSubmit={onSubmit}>
+                <form style={{width:"90%",margin:"0px auto"}} onSubmit={onSubmit}>
                 <Card sx={{padding:"15px",marginBottom:"10px"}}>
                     <Grid container spacing={2}>
                         <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>
@@ -150,7 +150,7 @@ const ModificarOferta = ()=>{
                                 </FormControl>
                         </Grid>
                         <Grid item xs={11} xl={6} lg={12} md={6} sm={10} sx={{display:"flex",justifyContent:"center"}}>
-                            <Button type="submit" variant="contained">Enviar datos</Button>
+                            <Button sx={{width:"60%"}} type="submit" variant="contained">Enviar datos</Button>
                         </Grid>
                     </Grid>
                 </Card>

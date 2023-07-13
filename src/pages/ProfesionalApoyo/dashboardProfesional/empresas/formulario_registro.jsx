@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert } from "@mui/material";
 import Select from "@mui/material/Select"
 import { useState } from "react";
-import { Business } from "@mui/icons-material";
+import { Apartment, Business } from "@mui/icons-material";
 import { useQuery } from "react-query";
 
 import Swal from "sweetalert2";
@@ -97,9 +97,9 @@ const FormularioRegistro = () => {
 
     return (
         <>
-                <Grid container spacing={1} sx={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
+                <Grid container spacing={1} sx={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",marginTop:"15px"}}>
                     <Grid item>
-                        <Typography variant="h5" sx={{textAlign:"center", marginRight:"10px"}}>Listado de empresas </Typography>
+                        <Typography variant="h5" sx={{textAlign:"center",display:"flex", alignItems:"center"}}>Listado de empresas <Apartment style={{fontSize:30,marginLeft:"5px"}} /> </Typography>
                     </Grid>
                     <Grid item>
                         <Button variant="contained" onClick={handleOpen}  sx={{marginBottom:"10px"}} >Ingresar Empresa</Button>

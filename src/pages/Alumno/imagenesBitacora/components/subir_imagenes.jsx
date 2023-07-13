@@ -2,6 +2,7 @@ import { Alert, Box, Button, Card, Grid, Input, Modal, TextField, Typography } f
 import { useState } from "react";
 import Swal from "sweetalert2";
 import clienteAxios from "../../../../helpers/clienteaxios";
+import { PhotoSizeSelectActual } from "@mui/icons-material";
 
 const SubirImagenes = ({id})=>{
 
@@ -87,9 +88,9 @@ const SubirImagenes = ({id})=>{
       };
     return (
         <>
-        <Grid sx={{display:"flex",margin:"0px auto", marginTop:"15px"}}>
-            <Typography variant="h5">Listado de imágenes</Typography>
-            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir Imagen</Button>
+        <Grid sx={{display:"flex",margin:"0px auto",flexDirection:"column", marginTop:"15px"}}>
+            <Typography variant="h5" sx={{display:"flex",alignItems:"center"}} >Listado de imágenes <PhotoSizeSelectActual style={{fontSize:30,marginLeft:"5px"}}/> </Typography>
+            <Button variant="contained" sx={{marginBottom:"10px",marginTop:"10px"}} onClick={handleOpen}  >Subir Imagen</Button>
         </Grid>
        
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
@@ -99,7 +100,7 @@ const SubirImagenes = ({id})=>{
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: "40%",
+                        width: "75%",
                         bgcolor: 'background.paper',
                         maxHeight: '80vh',
                         boxShadow: 24,
@@ -111,7 +112,7 @@ const SubirImagenes = ({id})=>{
               
                         <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Subir Archivo</Typography>
                 
-                            <Grid container sx={{width:"100%",display:"flex",justifyContent:"center"}} >
+                            <Grid container sx={{width:"90%",display:"flex",justifyContent:"center"}} >
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} >
                                     <TextField required type="file" onChange={handleArchivoSeleccionado}
                                     fullWidth />

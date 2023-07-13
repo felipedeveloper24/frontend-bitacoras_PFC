@@ -2,6 +2,7 @@ import { Alert, Box, Button, Card, Grid, Input, Modal, TextField, Typography } f
 import { useState } from "react";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
+import { StickyNote2 } from "@mui/icons-material";
 
 
 
@@ -73,9 +74,9 @@ const SubirArchivo = ({id})=>{
       };
     return (
         <>
-        <Grid sx={{display:"flex",margin:"0px auto", marginTop:"15px"}}>
-            <Typography variant="h5">Listado de archivos</Typography>
-            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir archivo</Button>
+        <Grid sx={{display:"flex",margin:"0px auto",flexDirection:"column", marginTop:"15px"}}>
+            <Typography variant="h5" sx={{display:"flex",alignItems:"center"}}>Listado de archivos <StickyNote2 style={{marginLeft:"5px"}}/> </Typography>
+            <Button variant="contained" sx={{marginTop:"10px",marginBottom:"12px"}} onClick={handleOpen}  >Subir archivo</Button>
         </Grid>
        
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>
@@ -93,7 +94,7 @@ const SubirArchivo = ({id})=>{
                         p: 4,
                         }}
                 >
-                    <form action="" onSubmit={onSubmit} style={{width:"100%",margin:"0px auto",display:"flex",flexDirection:"column"}}>
+                    <form action="" onSubmit={onSubmit} style={{width:"90%",margin:"0px auto",display:"flex",flexDirection:"column"}}>
               
                         <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Subir Archivo</Typography>
                 

@@ -89,7 +89,7 @@ const MostrarImagenes = ({id}) =>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
            
-                <TableContainer component={Paper} sx={{width:"50%",margin:"0px auto",marginTop:"15px"}}>
+                <TableContainer component={Paper} sx={{width:"80%",margin:"0px auto",marginTop:"15px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>

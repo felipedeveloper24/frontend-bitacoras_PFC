@@ -34,8 +34,8 @@ const FormularioLogin = ()=>{
                             label="Rut" 
                             name="rut"
                             value={rut.formatted} 
-                            onChange={(e)=>updateRut(e.target.value)}
-
+                            onChange={(e)=>{updateRut(e.target.value);console.log(e.target.value)}}
+                            required
                             />
                             <PermIdentity style={{width:"40px"}}/>
                             {rut.formatted.length>0 && !isValid && <Alert style={{width:"60%",marginTop:"10px"}} severity="error">Rut inválido</Alert> }
@@ -44,6 +44,7 @@ const FormularioLogin = ()=>{
                         </Box>
                         <Box sx={{marginBottom:"15px",display:"flex",justifyContent:"center",alignItems:"center",flexWrap:"wrap"}}>
                             <TextField  type="password" label="Contraseña"
+                                required
                                 name="contrasena"
                                 {...register("contrasena",{required:true})}
                             />

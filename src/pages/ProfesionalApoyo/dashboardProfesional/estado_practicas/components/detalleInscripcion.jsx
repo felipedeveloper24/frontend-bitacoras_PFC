@@ -2,7 +2,7 @@ import { TableBody , CircularProgress, Grid, Paper, Table, TableCell, TableConta
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import clienteAxios from "../../../../../helpers/clienteaxios";
-import { CheckCircleOutline, ContentPasteSearchOutlined, DoNotDisturb, Edit, FileCopy, TimerOutlined, Visibility } from "@mui/icons-material";
+import { CheckCircleOutline, ContentPasteSearchOutlined, DoNotDisturb, Edit, EditNote, FileCopy, TimerOutlined, Visibility } from "@mui/icons-material";
 import { useState } from "react";
 import FormularioActualizar from "./formularioActualizar";
 
@@ -57,7 +57,7 @@ const DetalleInscripcion = ({id})=>{
                      
                     </Box>
                 </Modal>
-                <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle inscripción</Typography>
+                <Typography sx={{textAlign:"center",marginTop:"25px",marginTop:"25px", display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle Inscripción <EditNote style={{fontSize:30,marginLeft:"5px"}}/> </Typography>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
@@ -88,7 +88,7 @@ const DetalleInscripcion = ({id})=>{
                                         <TableCell>
                                             {data.inscripcion.nota_final == 0 ? "-----" : data.inscripcion.nota_final }
                                         </TableCell>
-                                        <TableCell sx={{display:"flex"}}>
+                                        <TableCell>
                                             {
                                                 data.inscripcion.estado_inscripcion.id_estado_inscripcion == 1 && (
                                                     <TimerOutlined style={{marginRight:"5px"}} />

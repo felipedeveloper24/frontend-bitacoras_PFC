@@ -16,10 +16,14 @@ const Detalle = ({id})=>{
         return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
     }
     if(status=="success"){
-        let fecha_inicio = data.fecha_inicio.split("T")[0];
-         fecha_inicio = (formato(fecha_inicio))
-         let fecha_fin = data.fecha_fin.split("T")[0];
-         fecha_fin = formato(fecha_fin)
+
+            
+            let fecha_inicio = data.fecha_inicio.split("T")[0];
+            fecha_inicio = (formato(fecha_inicio))
+            let fecha_fin = data.fecha_fin.split("T")[0];
+            fecha_fin = formato(fecha_fin)
+        
+       
         return (
             <Grid>
                 <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle inscripción</Typography>
@@ -57,7 +61,7 @@ const Detalle = ({id})=>{
                                         <TableCell>
                                             {data.nota_final == 0 ? "-----" : data.nota_final }
                                         </TableCell>
-                                        <TableCell sx={{display:"flex"}}>
+                                        <TableCell >
                                             {
                                                 data.estado_inscripcion.id_estado_inscripcion == 1 && (
                                                     <TimerOutlined style={{marginRight:"5px"}} />

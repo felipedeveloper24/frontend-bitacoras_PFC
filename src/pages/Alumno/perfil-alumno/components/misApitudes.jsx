@@ -43,13 +43,7 @@ const MisAptitudes = ({id_alumno})=>{
         return (
             <Grid>
                   <Box sx={{ display: 'flex', flexDirection: 'column',alignItems:"center", minHeight: '100vh' }}>
-                        <Typography variant="h4" component="h1" gutterBottom sx={{ color: "black", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
-                            <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
-                                <PsychologyAltRoundedIcon sx={{ fontSize: "3rem", mr: 2 }} />
-                                Aptitudes del alumno
-                                <PsychologyAltRoundedIcon sx={{ fontSize: "3rem", ml: 2 }} />
-                            </Box>
-                        </Typography>
+                       
                    
                     <TableContainer component={Paper} sx={{ maxWidth: '80%', boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                         <Table>

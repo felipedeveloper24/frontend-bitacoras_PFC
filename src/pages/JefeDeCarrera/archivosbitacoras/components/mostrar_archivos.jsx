@@ -88,7 +88,7 @@ const MostrarArchivos = ()=>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
            
-                <TableContainer component={Paper} sx={{width:"70%",margin:"0px auto",marginTop:"10px"}}>
+                <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>

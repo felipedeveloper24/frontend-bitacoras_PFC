@@ -38,17 +38,18 @@ const DetailsBitaJefe = () => {
             display: 'flex',
             alignItems: 'center',
             color: 'inherit',
-            marginBottom: '55px',
+            marginBottom: '25px',
             '&:hover': {
               color: 'orange',
               cursor: 'default',
             },
           }}
         >
-          <Typography variant="h3" style={{ fontSize: 35, marginTop: '45px' }}>
+          <Typography variant="h3" style={{ fontSize: 30,display:"flex",alignItems:"center"}}>
             Detalles de la bitácora
+            <ContentPasteSearchIcon style={{ fontSize: 30 }} color="inherit" />
           </Typography>
-          <ContentPasteSearchIcon style={{ fontSize: 35, marginTop: '45px' }} color="inherit" />
+         
         </Box>
         <TableContainer sx={{
           marginBottom: '30px',

@@ -5,7 +5,7 @@ import clienteAxios from "../../../../helpers/clienteaxios";
 import FileSaver from "file-saver";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Delete, Download } from "@mui/icons-material";
+import { Delete, Download, FileCopyOutlined } from "@mui/icons-material";
 
 
 
@@ -44,6 +44,7 @@ const VerDocumentosInscripcion = ()=>{
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
 
                 <HeaderProfesional/>
+                <Typography variant="h5" sx={{textAlign:"center",marginTop:"15px"}}>Listado de archivos <FileCopyOutlined/> </Typography>
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
@@ -65,8 +66,8 @@ const VerDocumentosInscripcion = ()=>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
                 <HeaderProfesional/>
-                <Typography variant="h5" sx={{textAlign:"center",marginTop:"15px"}}>Listado de archivos</Typography>
-                <TableContainer component={Paper} sx={{width:"50%",margin:"0px auto",marginTop:"10px"}}>
+                <Typography variant="h5" sx={{margin:"0px auto",marginTop:"15px",display:"flex",alignItems:"center"}}>Listado de archivos <FileCopyOutlined style={{fontSize:30}}/> </Typography>
+                <TableContainer component={Paper} sx={{width:"85%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>

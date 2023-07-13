@@ -235,7 +235,7 @@ const FormularioModificarInscripcion = ()=>{
 
     return (
         <form style={{width:"75%",margin:"0px auto",marginTop:"10px",marginBottom:"10px"}} onSubmit={onSubmit}>
-            <Typography sx={{textAlign:"center",marginBottom:"15px"}}>Actualizar datos de inscripción de práctica</Typography>
+            <Typography variant="h5" sx={{textAlign:"center",marginBottom:"15px"}}>Modificar Inscripción</Typography>
         <Card sx={{padding:"20px"}}>
             <Grid container spacing={2}>
                 <Grid item  xs={11} xl={6} lg={6} md={6} sm={10}>
@@ -296,7 +296,7 @@ const FormularioModificarInscripcion = ()=>{
             </Grid>
             <Grid container spacing={2}>
 
-                                <Grid item xs={12} xl={12} lg={12} md={12} sm={10} ><Typography sx={{textAlign:"center"}}>Datos evaluador</Typography></Grid>
+                                <Grid item xs={12} xl={12} lg={12} md={12} sm={10} ><Typography variant="h6" sx={{textAlign:"center"}}>Datos evaluador</Typography></Grid>
                                
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                    <TextField value={nombre} onChange={(e)=>{setNombre(e.target.value)}} required label="Nombre"  fullWidth/>

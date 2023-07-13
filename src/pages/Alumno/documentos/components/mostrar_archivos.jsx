@@ -19,7 +19,7 @@ const MostrarArchivos = ({id})=>{
                 const Urls = pdfsData.map((pdf,index)=>{
                     const pdfData = new Uint8Array(pdf.archivo.data);
                     const pdfBlob = new Blob([pdfData],{type:'application/pdf'});
-                    console.log(pdfBlob);
+                  
                     return { blob: pdfBlob, nombre: `${pdf.nombre}`, id_archivo: pdf.id_archivo };
                 })
                 setArchivos(Urls)
@@ -85,7 +85,7 @@ const MostrarArchivos = ({id})=>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
            
-                <TableContainer component={Paper} sx={{width:"50%",margin:"0px auto",marginTop:"10px"}}>
+                <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
