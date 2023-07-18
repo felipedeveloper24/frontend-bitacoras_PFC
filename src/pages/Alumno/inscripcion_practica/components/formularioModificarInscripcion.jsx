@@ -236,18 +236,18 @@ const FormularioModificarInscripcion = ()=>{
     return (
         <form style={{width:"75%",margin:"0px auto",marginTop:"10px",marginBottom:"10px"}} onSubmit={onSubmit}>
             <Typography variant="h5" sx={{textAlign:"center",marginBottom:"15px"}}>Modificar Inscripción</Typography>
-        <Card sx={{padding:"20px"}}>
+        <Card sx={{padding:"20px",backgroundColor:"#f4f5f7"}}>
             <Grid container spacing={2}>
                 <Grid item  xs={11} xl={6} lg={6} md={6} sm={10}>
-                    <TextField required label="Fecha Inicio" value={fecha_inicio} onChange={(e)=>{setFechaInicio(e.target.value)}} InputLabelProps={{shrink:true}} type="date" fullWidth />
+                    <TextField sx={{backgroundColor:"white"}} required label="Fecha Inicio" value={fecha_inicio} onChange={(e)=>{setFechaInicio(e.target.value)}} InputLabelProps={{shrink:true}} type="date" fullWidth />
                 </Grid>
                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField label="Fecha Fin" value={fecha_fin} required onChange={(e)=>{setFechaFin(e.target.value)}} type="date" InputLabelProps={{shrink:true}}  fullWidth />
+                        <TextField sx={{backgroundColor:"white"}} label="Fecha Fin" value={fecha_fin} required onChange={(e)=>{setFechaFin(e.target.value)}} type="date" InputLabelProps={{shrink:true}}  fullWidth />
                 </Grid>
                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
                             <InputLabel id="select-modalidad">Modalidad</InputLabel>
-                            <Select id="select-modalidad" required onChange={(e)=>{setSelectModalidad(e.target.value)}} value={select_modalidad}  label="Modalidad" fullWidth>                            
+                            <Select sx={{backgroundColor:"white"}} id="select-modalidad" required onChange={(e)=>{setSelectModalidad(e.target.value)}} value={select_modalidad}  label="Modalidad" fullWidth>                            
                                 {
                                     modalidades.status == "success" && modalidades.data.map((modalidad,idx)=>(
                                         <MenuItem value={modalidad.id_modalidad} key={idx} >{modalidad.nombre_modalidad}</MenuItem>
@@ -260,6 +260,7 @@ const FormularioModificarInscripcion = ()=>{
                         <FormControl variant="outlined" margin="normal" fullWidth>
                             <InputLabel htmlFor="select-oferta">¿Tiene oferta de práctica?</InputLabel>
                             <Select 
+                            sx={{backgroundColor:"white"}}
                             required
                             id="select-oferta"
                             value={select_oferta} 
@@ -277,7 +278,7 @@ const FormularioModificarInscripcion = ()=>{
                                     <Grid  item xs={11} xl={6} lg={6} md={6} sm={10}>
                                         <FormControl variant="outlined" margin="normal" fullWidth>
                                             <InputLabel htmlFor="select_practica">Oferta de práctica</InputLabel>
-                                            <Select required value={oferta} onChange={(e)=>{setOferta(e.target.value)}} id="select_practica" label="Oferta de práctica" sx={{marginTop:"10px"}}  fullWidth>
+                                            <Select  required value={oferta} onChange={(e)=>{setOferta(e.target.value)}} id="select_practica" label="Oferta de práctica" sx={{marginTop:"10px",backgroundColor:"white"}}  fullWidth>
                                                 {
                                                     ofertas.status=="success" && Array.isArray(ofertas.data) == true  && (
                                                     
@@ -299,16 +300,16 @@ const FormularioModificarInscripcion = ()=>{
                                 <Grid item xs={12} xl={12} lg={12} md={12} sm={10} ><Typography variant="h6" sx={{textAlign:"center"}}>Datos evaluador</Typography></Grid>
                                
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                   <TextField value={nombre} onChange={(e)=>{setNombre(e.target.value)}} required label="Nombre"  fullWidth/>
+                                   <TextField sx={{backgroundColor:"white"}} value={nombre} onChange={(e)=>{setNombre(e.target.value)}} required label="Nombre"  fullWidth/>
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                   <TextField value={apellido} label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
+                                   <TextField sx={{backgroundColor:"white"}} value={apellido} label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                   <TextField value={telefono} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
+                                   <TextField sx={{backgroundColor:"white"}} value={telefono} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                   <TextField value={correo} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
+                                   <TextField sx={{backgroundColor:"white"}} value={correo} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
                                </Grid>
 
                            </Grid>

@@ -191,18 +191,18 @@ const FormularioInscripcion = ()=>{
 
     return (
         <form method="post" onSubmit={onSubmit} style={{width:"75%",margin:"0px auto"}}>
-            <Card sx={{padding:"25px"}}>
+            <Card sx={{padding:"25px",backgroundColor:"#f4f5f7"}}>
                 <Grid container spacing={2}>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField required label="Fecha Inicio" onChange={handleFechaInicio} InputLabelProps={{shrink:true}} type="date" fullWidth />
+                        <TextField sx={{backgroundColor:"white"}} required label="Fecha Inicio" onChange={handleFechaInicio} InputLabelProps={{shrink:true}} type="date" fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField label="Fecha Fin" required onChange={handleFechaFin} type="date" InputLabelProps={{shrink:true}}  fullWidth />
+                        <TextField sx={{backgroundColor:"white"}} label="Fecha Fin" required onChange={handleFechaFin} type="date" InputLabelProps={{shrink:true}}  fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
                             <InputLabel id="select-modalidad">Modalidad</InputLabel>
-                            <Select id="select-modalidad" required onChange={handleModalidad} value={select_modalidad}  label="Modalidad" fullWidth>                            
+                            <Select sx={{backgroundColor:"white"}} id="select-modalidad" required onChange={handleModalidad} value={select_modalidad}  label="Modalidad" fullWidth>                            
                                 {
                                     modalidades.status == "success" && modalidades.data.map((modalidad,idx)=>(
                                         <MenuItem value={modalidad.id_modalidad} key={idx} >{modalidad.nombre_modalidad}</MenuItem>
@@ -215,6 +215,7 @@ const FormularioInscripcion = ()=>{
                         <FormControl variant="outlined" margin="normal" fullWidth>
                             <InputLabel htmlFor="select-oferta">¿Tiene oferta de práctica?</InputLabel>
                             <Select 
+                            sx={{backgroundColor:"white"}}
                             required
                             id="select-oferta"
                             value={select_oferta} 
@@ -232,7 +233,7 @@ const FormularioInscripcion = ()=>{
                                     <Grid  item xs={11} xl={6} lg={6} md={6} sm={10}>
                                         <FormControl variant="outlined" margin="normal" fullWidth>
                                             <InputLabel htmlFor="select_practica">Oferta de práctica</InputLabel>
-                                            <Select required value={oferta} onChange={(e)=>{setOferta(e.target.value)}} id="select_practica" label="Oferta de práctica" sx={{marginTop:"10px"}}  fullWidth>
+                                            <Select required value={oferta} onChange={(e)=>{setOferta(e.target.value)}} id="select_practica" label="Oferta de práctica" sx={{marginTop:"10px",backgroundColor:"white"}}  fullWidth>
                                                 {
                                                     ofertas.status=="success" && (
                                                         ofertas.data.map((oferta,idx)=>(
@@ -249,7 +250,7 @@ const FormularioInscripcion = ()=>{
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl variant="outlined" margin="normal" fullWidth>
                             <InputLabel htmlFor="select_evaluador" id="select-evaluador">¿Desea agregar al evaluador?</InputLabel>
-                            <Select value={datos_evaluador} required label="¿Desea agregar al evaluador?" onChange={(event) =>{setDatosEvaluador(event.target.value)}} id="select-evaluador" fullWidth>                            
+                            <Select sx={{backgroundColor:"white"}} value={datos_evaluador} required label="¿Desea agregar al evaluador?" onChange={(event) =>{setDatosEvaluador(event.target.value)}} id="select-evaluador" fullWidth>                            
                                     <MenuItem value={1}>Si</MenuItem>
                                     <MenuItem value={0}>No</MenuItem>
                             </Select>
@@ -263,16 +264,16 @@ const FormularioInscripcion = ()=>{
                                     <Typography>Datos evaluador</Typography>
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField onChange={(e)=>{setNombre(e.target.value)}} required label="Nombre"  fullWidth/>
+                                    <TextField sx={{backgroundColor:"white"}} onChange={(e)=>{setNombre(e.target.value)}} required label="Nombre"  fullWidth/>
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
+                                    <TextField sx={{backgroundColor:"white"}} label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
+                                    <TextField sx={{backgroundColor:"white"}} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
+                                    <TextField sx={{backgroundColor:"white"}} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
                                 </Grid>
 
                             </Grid>

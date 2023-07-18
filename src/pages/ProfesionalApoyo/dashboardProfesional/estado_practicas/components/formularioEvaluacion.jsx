@@ -60,7 +60,7 @@ const FormularioEvaluacion = ({ id }) => {
     if (!loading) {
         return (
             <form style={{ width: "60%", margin: "0px auto" }} onSubmit={onSubmit}>
-                <Card sx={{ padding: "15px" }}>
+                <Card sx={{ padding: "15px",backgroundColor:"#f4f5f7" }}>
                     <Grid container spacing={2}>
                         <Grid item lg={12}>
                             <TextField
@@ -77,6 +77,7 @@ const FormularioEvaluacion = ({ id }) => {
                                 inputProps={{
                                     maxLength: 1001,
                                 }}
+                                sx={{backgroundColor:"white"}}
                             />
                             <p style={{ color: remainingCharsColor, fontSize: '15px', textAlign: 'center' }}>
                                 {remainingChars >= 0 ? `Carácteres restantes: ${remainingChars}` : 'Has superado el límite de carácteres. Por favor, reduce tu observación.'}
@@ -88,6 +89,7 @@ const FormularioEvaluacion = ({ id }) => {
                                 value={nota_final}
                                 onChange={(e) => { setNotaFinal(e.target.value) }}
                                 inputMode="numeric"
+                                sx={{backgroundColor:"white"}}
                                 inputProps={{
                                     min: 10,
                                     max: 70

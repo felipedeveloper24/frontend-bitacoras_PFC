@@ -167,7 +167,7 @@ const ModificarBitacoraJefe = () => {
 
     return (
         <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
-            <Card sx={{ padding: '20px' }}>
+            <Card sx={{ padding: '20px',backgroundColor:"#f4f5f7" }}>
                 <Typography
                     component="h2"
                     sx={{
@@ -180,7 +180,7 @@ const ModificarBitacoraJefe = () => {
                         textAlign: 'center',
                         fontSize: '23px',
                         justifyContent:"center"
-                        
+                    
                     }}
                 >
 
@@ -196,6 +196,7 @@ const ModificarBitacoraJefe = () => {
                     onChange={(e) => setTitulo(e.target.value)}
                     fullWidth
                     margin="normal"
+                    sx={{backgroundColor:"white"}}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -214,6 +215,7 @@ const ModificarBitacoraJefe = () => {
                     value={fecha_creacion}
                     onChange={(e) => setFechaCreacion(e.target.value)}
                     fullWidth
+                    sx={{backgroundColor:"white"}}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
@@ -224,6 +226,7 @@ const ModificarBitacoraJefe = () => {
                 <TextField
                     label="Hora de Inicio"
                     type="time"
+                    sx={{backgroundColor:"white"}}
                     value={hora_inicio}
                     onChange={(e) => setHoraInicio(e.target.value)}
                     fullWidth
@@ -237,6 +240,7 @@ const ModificarBitacoraJefe = () => {
                 <TextField
                     label="Hora de Fin"
                     type="time"
+                    sx={{backgroundColor:"white"}}
                     value={hora_fin}
                     onChange={(e) => setHoraFin(e.target.value)}
                     fullWidth
@@ -252,6 +256,7 @@ const ModificarBitacoraJefe = () => {
                     <FormControl variant="outlined" fullWidth margin='normal'>
                         <InputLabel htmlFor="bitacora-select">Seleccione tipo bitácora</InputLabel>
                         <Select
+                        sx={{backgroundColor:"white"}}
                             value={TipoBitacora}
                             onChange={(e) => setTipoBitacora(e.target.value)}
                             id="bitacora-select"
@@ -270,6 +275,7 @@ const ModificarBitacoraJefe = () => {
                 <FormControl variant="outlined" fullWidth margin='normal'>
                     <InputLabel htmlFor="estado-select">Seleccione estado bitácora</InputLabel>
                     <Select
+                        sx={{backgroundColor:"white"}}
                         value={estado}
                         onChange={(e) => setEstado(e.target.value)}
                         id="estado-select"
@@ -291,6 +297,7 @@ const ModificarBitacoraJefe = () => {
                 <TextField
                     label="Descripción"
                     value={descripcion}
+                    sx={{backgroundColor:"white"}}
                     onChange={(e) => setDescripcion(e.target.value)}
                     fullWidth
                     margin="normal"
@@ -317,7 +324,7 @@ const ModificarBitacoraJefe = () => {
                     alignItems="center"
                     p={1}
                     m={1}
-                    bgcolor="background.paper"
+                  
                     sx={{ margin: '20px auto' }}
                 >
                     <Button

@@ -101,7 +101,7 @@ const BitacoraForm = () => {
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
-      <Card sx={{padding:'20px'}}>
+      <Card sx={{padding:'20px',backgroundColor:"#f4f5f7"}}>
       <Typography
         component="h2"
         sx={{
@@ -130,6 +130,7 @@ const BitacoraForm = () => {
         onChange={(e) => setTitulo(e.target.value)}
         fullWidth
         margin="normal"
+        sx={{backgroundColor:"white"}}
         InputLabelProps={{
           shrink: true,
         }}
@@ -163,6 +164,7 @@ const BitacoraForm = () => {
         value={fecha_creacion}
         onChange={(e) => setFechaCreacion(e.target.value)}
         fullWidth
+        sx={{backgroundColor:"white"}}
         margin="normal"
         InputLabelProps={{
           shrink: true,
@@ -176,6 +178,7 @@ const BitacoraForm = () => {
         value={hora_inicio}
         onChange={(e) => setHoraInicio(e.target.value)}
         fullWidth
+        sx={{backgroundColor:"white"}}
         margin="normal"
         InputLabelProps={{
           shrink: true,
@@ -186,6 +189,7 @@ const BitacoraForm = () => {
       <TextField
         label="Hora de Fin"
         type="time"
+        sx={{backgroundColor:"white"}}
         value={hora_fin}
         onChange={(e) => setHoraFin(e.target.value)}
         fullWidth
@@ -201,6 +205,7 @@ const BitacoraForm = () => {
         <FormControl variant="outlined" fullWidth margin='normal'>
           <InputLabel htmlFor="bitacora-select">Seleccione tipo bitácora</InputLabel>
           <Select
+          sx={{backgroundColor:"white"}}
             value={TipoBitacora}
             onChange={(e) => setTipoBitacora(e.target.value)}
             id="bitacora-select"
@@ -219,6 +224,7 @@ const BitacoraForm = () => {
       <TextField
         label="Descripción"
         value={descripcion}
+        sx={{backgroundColor:"white"}}
         onChange={(e) => setDescripcion(e.target.value)}
         fullWidth
         margin="normal"

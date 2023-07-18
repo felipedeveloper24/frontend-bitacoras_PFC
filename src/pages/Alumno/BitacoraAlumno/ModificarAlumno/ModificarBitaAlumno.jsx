@@ -139,7 +139,7 @@ const ModificarBitaAlumno = () => {
 
     return (
         <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '50px' }}>
-            <Card sx={{ padding: '20px' }}>
+            <Card sx={{ padding: '20px',backgroundColor:"#f4f5f7" }}>
                 <Typography
                     component="h2"
                     sx={{
@@ -167,6 +167,7 @@ const ModificarBitaAlumno = () => {
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
                     fullWidth
+                    sx={{backgroundColor:"white"}}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
@@ -183,6 +184,7 @@ const ModificarBitaAlumno = () => {
                 <TextField
                     label="Fecha de Creación"
                     type="date"
+                    sx={{backgroundColor:"white"}}
                     value={fecha_creacion}
                     onChange={(e) => setFechaCreacion(e.target.value)}
                     fullWidth
@@ -199,6 +201,7 @@ const ModificarBitaAlumno = () => {
                     value={hora_inicio}
                     onChange={(e) => setHoraInicio(e.target.value)}
                     fullWidth
+                    sx={{backgroundColor:"white"}}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
@@ -210,6 +213,7 @@ const ModificarBitaAlumno = () => {
                     label="Hora de Fin"
                     type="time"
                     value={hora_fin}
+                    sx={{backgroundColor:"white"}}
                     onChange={(e) => setHoraFin(e.target.value)}
                     fullWidth
                     margin="normal"
@@ -220,6 +224,7 @@ const ModificarBitaAlumno = () => {
                   <FormControl margin="normal" fullWidth>
                     <InputLabel>Estado Bitácora</InputLabel>
                     <Select label="Estado Bitácora"
+                    sx={{backgroundColor:"white"}}
                     value={estado}
                     onChange={(e)=>{setEstado(e.target.value)}}
                     fullWidth>
@@ -232,6 +237,7 @@ const ModificarBitaAlumno = () => {
                 </FormControl>
 
                 <TextField
+                sx={{backgroundColor:"white"}}
                     label="Descripción"
                     value={descripcion}
                     onChange={(e) => setDescripcion(e.target.value)}
@@ -260,7 +266,7 @@ const ModificarBitaAlumno = () => {
                     alignItems="center"
                     p={1}
                     m={1}
-                    bgcolor="background.paper"
+                   
                     sx={{ margin: '20px auto' }}
                 >
                     <Button

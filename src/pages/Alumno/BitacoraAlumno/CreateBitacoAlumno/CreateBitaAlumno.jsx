@@ -100,7 +100,7 @@ const CreateBitaAlumno = () => {
 
       return (
         <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom:'50px' }}>
-          <Card sx={{padding:'20px'}}>
+          <Card sx={{padding:'20px',backgroundColor:"#f4f5f7"}}>
           <Typography
             component="h2"
             sx={{
@@ -129,6 +129,7 @@ const CreateBitaAlumno = () => {
             onChange={(e) => setTitulo(e.target.value)}
             fullWidth
             margin="normal"
+            sx={{backgroundColor:"white"}}
             InputLabelProps={{
               shrink: true,
             }}
@@ -148,6 +149,7 @@ const CreateBitaAlumno = () => {
             value={fecha_creacion}
             onChange={(e) => setFechaCreacion(e.target.value)}
             fullWidth
+            sx={{backgroundColor:"white"}}
             margin="normal"
             InputLabelProps={{
               shrink: true,
@@ -159,6 +161,7 @@ const CreateBitaAlumno = () => {
             label="Hora de Inicio"
             type="time"
             value={hora_inicio}
+            sx={{backgroundColor:"white"}}
             onChange={(e) => setHoraInicio(e.target.value)}
             fullWidth
             margin="normal"
@@ -174,6 +177,7 @@ const CreateBitaAlumno = () => {
             value={hora_fin}
             onChange={(e) => setHoraFin(e.target.value)}
             fullWidth
+            sx={{backgroundColor:"white"}}
             margin="normal"
             InputLabelProps={{
               shrink: true,
@@ -189,6 +193,7 @@ const CreateBitaAlumno = () => {
             margin="normal"
             multiline
             rows={10}
+            sx={{backgroundColor:"white"}}
             variant="outlined"
             InputLabelProps={{
               shrink: true,

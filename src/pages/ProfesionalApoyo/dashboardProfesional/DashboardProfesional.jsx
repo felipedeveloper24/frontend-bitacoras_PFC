@@ -84,24 +84,25 @@ const DashboardProfesional = ()=>{
             flexDirection:"column"
         }}>
             <HeaderProfesional/>
-            <Typography variant="h6" sx={{textAlign:"center",marginTop:"15px", marginBottom:"10px"}}>Ingrese el semestre y periodo</Typography>
-            <form onSubmit={onSubmit} style={{width:"70%",margin:"0px auto"}}>
-                <Grid container spacing={2}>
-                    <Grid xs={11} xl={6} lg={4} md={4} sm={10} item>               
+            <Typography variant="h6" sx={{textAlign:"center",marginTop:"20px", marginBottom:"16px"}}>Ingrese el semestre y período</Typography>
+            <form onSubmit={onSubmit} style={{width:"70%",borderRadius:"5px",backgroundColor:"#f4f5f7",padding:"15px",margin:"0px auto",marginTop:"15px",marginBottom:"15px"}}>
+                <Grid container spacing={4} sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                    <Grid xs={11} xl={6} lg={5} md={4} sm={10} item>               
                             <TextField placeholder="202x" value={anio}
                             type="number"
                             inputProps={{
                                 min:2000
                             }}
+                            sx={{backgroundColor:"white"}}
                              onChange={(e)=>{
                                 setanio(e.target.value);
                                 
                                 }} label="Año" fullWidth />
                     </Grid>
-                    <Grid item xs={11} xl={6} lg={4} md={4} sm={10}> 
+                    <Grid item xs={11} xl={6} lg={5} md={4} sm={10}> 
                         <FormControl fullWidth>
-                            <InputLabel>Seleccione periodo</InputLabel>
-                            <Select onChange={
+                            <InputLabel>Seleccione Período</InputLabel>
+                            <Select sx={{backgroundColor:"white"}} onChange={
                                 (e)=>{setPeriodo(e.target.value)
                                   
                                 }} value={periodo_academico} label="Seleccione periodo" fullWidth>
@@ -110,7 +111,7 @@ const DashboardProfesional = ()=>{
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={11} xl={6} lg={3} md={3} sm={4} sx={{display:"flex",alignItems:"center"}}>
+                    <Grid item xs={11} xl={6} lg={2} md={3} sm={4} sx={{display:"flex",alignItems:"center"}}>
                         <Button type="submit" variant="contained">Buscar</Button>
                     </Grid>
                 </Grid>
@@ -118,7 +119,7 @@ const DashboardProfesional = ()=>{
             <Typography variant="h6" sx={{textAlign:"center",marginTop:"10px",fontSize:{xs: '1.3rem', sm: '1.4rem' }}}>Ingeniería de Ejecución en Computación e Informática </Typography>
             <Grid container spacing={2} sx={{display:"flex", justifyContent:"center",marginTop:"10px"}}>
                 <Grid item xs={11} xl={5} lg={5} md={5} sm={10}>
-                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                    <Card sx={{paddingTop:"20px",backgroundColor:"#f4f5f7",paddingBottom:"40px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                         <Typography variant="h5" sx={{textAlign:"center"}}>Práctica profesional 1</Typography>
                         {
                             getListadoPractica1IECI.status == "success" && <Typography variant="h6" sx={{textAlign:"center"}}>Alumnos inscritos: {getListadoPractica1IECI.data.cantidad_alumnos} </Typography>
@@ -130,7 +131,7 @@ const DashboardProfesional = ()=>{
                     </Card>
                 </Grid>
                 <Grid item xs={11} xl={5} lg={5} md={5} sm={10}>
-                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",backgroundColor:"#f4f5f7",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                         <Typography variant="h5" sx={{textAlign:"center"}}>Práctica profesional 2</Typography>
                         {
                             getListadoPractica2IECI.status == "success" && <Typography variant="h6" sx={{textAlign:"center"}}>Alumnos inscritos: {getListadoPractica2IECI.data.cantidad_alumnos} </Typography>
@@ -142,10 +143,10 @@ const DashboardProfesional = ()=>{
                     </Card>
                 </Grid>
             </Grid>
-            <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",fontSize:{xs: '1.3rem', sm: '1.4rem' }}}>Ingeniería de Civil en Informática </Typography>
+            <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",fontSize:{xs: '1.3rem', sm: '1.4rem' }}}>Ingeniería Civil en Informática </Typography>
             <Grid container spacing={2} sx={{display:"flex", justifyContent:"center",marginTop:"10px",marginBottom:"20px"}}>
                 <Grid item xs={11} xl={5} lg={5} md={5} sm={10}>
-                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",backgroundColor:"#f4f5f7",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                         <Typography variant="h5" sx={{textAlign:"center"}}>Práctica profesional 1</Typography>
                         {
                             getListadoPractica1ICINF.status == "success" && <Typography variant="h6" sx={{textAlign:"center"}}>Alumnos inscritos: {getListadoPractica1ICINF.data.cantidad_alumnos} </Typography>
@@ -156,7 +157,7 @@ const DashboardProfesional = ()=>{
                     </Card>
                 </Grid>
                 <Grid item xs={11} xl={5} lg={5} md={5} sm={10}>
-                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                    <Card sx={{paddingTop:"20px",paddingBottom:"40px",backgroundColor:"#f4f5f7",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                         <Typography variant="h5" sx={{textAlign:"center"}}>Práctica profesional 2</Typography>
                         {
                             getListadoPractica2ICINF.status == "success" && <Typography variant="h6" sx={{textAlign:"center"}}>Alumnos inscritos: {getListadoPractica2ICINF.data.cantidad_alumnos} </Typography>

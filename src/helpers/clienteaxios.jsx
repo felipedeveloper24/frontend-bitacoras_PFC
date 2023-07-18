@@ -4,7 +4,9 @@ import { deleteToken, getToken } from "./tokenUtilities";
 
 
 const clienteAxios = axios.create({
-    baseURL:"http://localhost:3000/api"
+    //baseURL:"http://localhost:3000/api"
+    baseURL: "http://146.83.194.142:1153/api"
+    
 })
 
 
