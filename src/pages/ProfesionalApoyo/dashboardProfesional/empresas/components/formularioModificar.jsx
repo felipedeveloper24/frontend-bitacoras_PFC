@@ -107,7 +107,7 @@ const FormularioModificar = ({id})=>{
     if(!loading){
         return (
             <Grid sx={{width:"90%",margin:"0px auto"}}>
-                <Card sx={{padding:"20px",marginTop:"15px"}}>
+                <Card sx={{padding:"20px",marginTop:"15px",backgroundColor:"#f4f5f7"}}>
 
          
                  <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}} >Empresa seleccionada: {empresa.razon_social} </Typography>
@@ -115,18 +115,19 @@ const FormularioModificar = ({id})=>{
                     <Grid container spacing={2} sx={{marginTop:"10px"}}>
     
                          <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <TextField label="Rut" fullWidth  value={rut_empresa} onChange={(e)=>{setRut(e.target.value)}} />
+                            
+                                <TextField sx={{backgroundColor:"white"}} label="Rut" fullWidth  value={rut_empresa} onChange={(e)=>{setRut(e.target.value)}} />
                                 </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                        <TextField label="Razón social" value={razon_social} onChange={(e)=>{setRazonSocial(e.target.value)}} fullWidth />
+                                        <TextField sx={{backgroundColor:"white"}} label="Razón social" value={razon_social} onChange={(e)=>{setRazonSocial(e.target.value)}} fullWidth />
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>    
-                                            <TextField label="Dirección" value={direccion} onChange={(e)=>{setDireccion(e.target.value)}} fullWidth />
+                                            <TextField label="Dirección" sx={{backgroundColor:"white"}} value={direccion} onChange={(e)=>{setDireccion(e.target.value)}} fullWidth />
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                     <FormControl fullWidth>
                                         <InputLabel>Centro de práctica</InputLabel>
-                                            <Select label="Centro de práctica" required      
+                                            <Select sx={{backgroundColor:"white"}} label="Centro de práctica" required      
                                                 fullWidth
                                                 value={centro_practica}
                                                 onChange={(e)=>{setCentroPractica(e.target.value)}}
@@ -140,20 +141,23 @@ const FormularioModificar = ({id})=>{
     
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                         <TextField label="Correo" 
-                                        
+                                        sx={{backgroundColor:"white"}}
                                         value={correo}
                                         onChange = {(e)=>{setCorreo(e.target.value)}}
                                         
                                         fullWidth />
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                        <TextField label="Teléfono" value={telefono} onChange={(e)=>{setTelefono(e.target.value)}} fullWidth/>
+                                        <TextField label="Teléfono"
+                                        sx={{backgroundColor:"white"}}
+                                        value={telefono} onChange={(e)=>{setTelefono(e.target.value)}} fullWidth/>
                                 </Grid>
     
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                     <FormControl margin="normal" fullWidth>
                                         <InputLabel>Comuna</InputLabel>
-                                        <Select                                    
+                                        <Select                     
+                                                sx={{backgroundColor:"white"}}               
                                                 value={comuna}
                                                 label="Comuna"
                                                 onChange={handleComuna} 
@@ -176,6 +180,7 @@ const FormularioModificar = ({id})=>{
                                     <FormControl  margin="normal" fullWidth>
                                         <InputLabel>Estado Empresa</InputLabel>
                                         <Select label="Estado Empresa"
+                                        sx={{backgroundColor:"white"}}
                                                 value={estado}
                                                 onChange={(e)=>{setEstado(e.target.value)}}
                                                 fullWidth >

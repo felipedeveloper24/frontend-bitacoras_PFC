@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert } from "@mui/material";
+import { Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert, FormControl } from "@mui/material";
 import Select from "@mui/material/Select"
 import { useRef, useState } from "react";
 import { Apartment, Business } from "@mui/icons-material";
@@ -152,6 +152,8 @@ const FormularioRegistro = () => {
                                 {errors.direccion && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                         </Grid>
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
+                                <FormControl fullWidth>
+
                                 <InputLabel id="yes-no-select-label">Centro de práctica</InputLabel>
                                 <Select labelId="yes-no-select-label"
                                         id="yes-no-select"
@@ -162,6 +164,7 @@ const FormularioRegistro = () => {
                                     <MenuItem value={1}>Si</MenuItem>
                                     <MenuItem value={0}>No</MenuItem>
                                 </Select>
+                                </FormControl>
                                 
                             </Grid>
 
@@ -175,12 +178,15 @@ const FormularioRegistro = () => {
                             </Grid>
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
                                 <TextField label="Teléfono" fullWidth 
+                                type="number"
+                                placeholder="9xxxxxxxx"
                                     {...register("telefono",{required:true})}
                                 />
                                 {errors.telefono && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
                             </Grid>
                             
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
+                                <FormControl fullWidth>
                                 <InputLabel>Comuna</InputLabel>
                                 <Select 
                                         
@@ -196,6 +202,7 @@ const FormularioRegistro = () => {
                                             })
                                         }
                                 </Select>
+                                </FormControl>
                                 
                             </Grid>
                           

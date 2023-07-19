@@ -67,7 +67,7 @@ const ModificarOferta = () => {
     const getoferta = async () => {
         const response = await clienteAxios.get(`/oferta/show/${id}`)
         if (response.status == 200) {
-            console.log(response.data)
+            
 
             setLoading(false)
             setDescripcion(response.data.oferta.descripcion)
@@ -93,7 +93,7 @@ const ModificarOferta = () => {
             <Grid sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
                 <HeaderProfesional />
                 <Typography variant="h6" sx={{ textAlign: "center", marginTop: "10px", marginBottom: "10px" }}>Modificar oferta</Typography>
-                <form style={{ width: "70%", margin: "0px auto" }} onSubmit={onSubmit}>
+                <form style={{ width: "85%", margin: "0px auto" }} onSubmit={onSubmit}>
                     <Card sx={{ padding: "15px", marginBottom: "10px" }}>
                         <Grid container spacing={2}>
                             <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>

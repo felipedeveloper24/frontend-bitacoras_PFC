@@ -68,11 +68,12 @@ const FormularioIngresar = ()=>{
     const remainingCharsColor = remainingChars > 200 ? 'green' : remainingChars > 100 ? 'orange' : 'red';
 
     return (
-        <form style={{width:"70%",margin:"0px auto",marginBottom:"10px"}} onSubmit={onSubmit}>
-            <Card sx={{padding:"15px"}}>
+        <form style={{width:"85%",margin:"0px auto",marginBottom:"10px"}} onSubmit={onSubmit}>
+            <Card sx={{padding:"15px",backgroundColor:"#f4f5f7"}}>
                 <Grid container spacing={2}>
                     <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>
                         <TextField label="Descripcion" multiline
+                            sx={{backgroundColor:"white"}}
                                 rows={5} value={descripcion} required onChange={(e)=>{setDescripcion(e.target.value)}} fullWidth InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -84,12 +85,12 @@ const FormularioIngresar = ()=>{
                             </p>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField label="Cupos" value={cupos} type="number" required onChange={(e)=>{setCupos(e.target.value)}}  fullWidth/>
+                        <TextField sx={{backgroundColor:"white"}} label="Cupos" value={cupos} type="number" required onChange={(e)=>{setCupos(e.target.value)}}  fullWidth/>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl fullWidth>
                             <InputLabel>Experiencia Laboral</InputLabel>
-                            <Select label="Experiencia Laboral" value={experiencia} onChange={(e)=>{setExperiencia(e.target.value)}} fullWidth>
+                            <Select sx={{backgroundColor:"white"}} label="Experiencia Laboral" value={experiencia} onChange={(e)=>{setExperiencia(e.target.value)}} fullWidth>
                                 <MenuItem value={0}>No</MenuItem>
                                 <MenuItem value={1}>Si</MenuItem>
                                
@@ -99,7 +100,7 @@ const FormularioIngresar = ()=>{
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10} >
                         <FormControl margin="normal" fullWidth>
                             <InputLabel>Modalidad</InputLabel>
-                            <Select required label="Modalidad" value={modalidad} onChange={(e)=>{setModalidad(e.target.value)}} fullWidth>
+                            <Select sx={{backgroundColor:"white"}} required label="Modalidad" value={modalidad} onChange={(e)=>{setModalidad(e.target.value)}} fullWidth>
                                 {
                                     getmodalidades.status=="success" && (
                                         getmodalidades.data.map((modalidad,idx)=>(
@@ -113,7 +114,7 @@ const FormularioIngresar = ()=>{
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
                             <InputLabel>Empresa</InputLabel>
-                            <Select required label="Empresa" value={empresa} onChange={(e)=>{setEmpresa(e.target.value)}} fullWidth>
+                            <Select sx={{backgroundColor:"white"}} required label="Empresa" value={empresa} onChange={(e)=>{setEmpresa(e.target.value)}} fullWidth>
                                 {
                                     getEmpresas.status=="success" && Array.isArray(getEmpresas.data) && (
                                         getEmpresas.data.map((empresa,idx)=>(
@@ -127,7 +128,7 @@ const FormularioIngresar = ()=>{
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
                             <InputLabel>Periodo académico</InputLabel> 
-                            <Select label="Periodo académico" value={periodo} onChange={(e)=>{setPeriodo(e.target.value)}} fullWidth>
+                            <Select label="Periodo académico" sx={{backgroundColor:"white"}} value={periodo} onChange={(e)=>{setPeriodo(e.target.value)}} fullWidth>
                                 {
                                         getPeriodos.status=="success" && Array.isArray(getPeriodos.data) && (
                                             getPeriodos.data.map((periodo,idx)=>(
