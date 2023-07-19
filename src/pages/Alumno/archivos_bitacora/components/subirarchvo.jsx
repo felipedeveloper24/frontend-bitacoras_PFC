@@ -3,14 +3,19 @@ import { useState } from "react";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 import { StickyNote2 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 
 
 const SubirArchivo = ({id})=>{
+    const id_bitacora = id;
     const [open, setOpen] = useState(false);
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
     const [isPdf, setPdf] = useState(true)
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const onSubmit = async(e)=>{
 
         e.preventDefault();
@@ -38,7 +43,10 @@ const SubirArchivo = ({id})=>{
 
             })
             setTimeout(()=>{
-                window.location.reload();
+                navigate(`/archivosbitacora/${id_bitacora}`)
+                setOpen(false);
+                queryClient.refetchQueries("archivos_bitacora")
+                Swal.close()
             },2000)
         }
 

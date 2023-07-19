@@ -52,8 +52,8 @@ const ShowBitaJefe = () => {
           })
           setTimeout(() => {
             Swal.close()
-            navigate("/showbitacorajefe");
-            window.location.reload();
+            refetch()
+           
           }, 2000)
         } else {
           Swal.fire({

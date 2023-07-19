@@ -6,7 +6,7 @@ import { Delete, Download } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import clienteAxios from "../../../../helpers/clienteaxios";
 
 
@@ -14,7 +14,9 @@ const MostrarArchivos = ()=>{
 
     const [archivos,setArchivos] = useState([]);
     const {id} = useParams();
-    const getArchivos = useQuery("archivos", async()=>{
+    const id_bitacora = id;
+    const navigate = useNavigate();
+    const getArchivos = useQuery("archivos_jefe", async()=>{
         const response = await clienteAxios.get(`/archivojefe/getpdf/${id}`)
         if(response.status==200){
             if(response.data.archivos){
@@ -56,7 +58,8 @@ const MostrarArchivos = ()=>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        getArchivos.refetch();
                     },2000)
                    
                 }

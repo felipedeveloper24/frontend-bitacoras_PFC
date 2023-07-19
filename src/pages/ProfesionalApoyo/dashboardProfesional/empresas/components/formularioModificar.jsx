@@ -99,7 +99,7 @@ const FormularioModificar = ({id})=>{
             })
             setTimeout(()=>{
                 navigate("/empresas");
-                window.location.reload();
+                Swal.close()
             },2000)
         }
       

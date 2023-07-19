@@ -6,13 +6,17 @@ import { useState } from "react";
 import { Delete, Download } from "@mui/icons-material";
 import FileSaver from "file-saver";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 
 const MostrarImagenes = ({id}) =>{
     const [archivos,setArchivos] = useState([]);
-    const getimagenes = useQuery("imagenes",async()=>{
+    const id_bitacora = id;
+    const navigate = useNavigate();
+    const getimagenes = useQuery("imagenes_bitacora_alumno",async()=>{
         const response = await clienteAxios.get(`/archivoalumno/getimagenes/${id}`) 
-       
+        
         if(response.status==200){
             if(response.data.archivos){
                 const imagesData = response.data.archivos;
@@ -56,7 +60,9 @@ const MostrarImagenes = ({id}) =>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        navigate(`/imagenesbitacora/${id_bitacora}`)
+                        getimagenes.refetch()
                     },2000)
                    
                 }

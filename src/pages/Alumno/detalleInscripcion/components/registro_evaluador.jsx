@@ -36,7 +36,6 @@ const RegistroEvaluador = () => {
                 })
                 setTimeout(()=>{
                     Swal.close();
-                    window.location.reload();
                     navigate(`/detalleinscripcion/${id_inscribe}`)
                 },2000)
              }

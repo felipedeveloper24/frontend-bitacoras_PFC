@@ -1,19 +1,22 @@
 
 import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { Delete, Download } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const MostrarArchivos = ()=>{
 
     const [archivos,setArchivos] = useState([]);
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const {id} = useParams();
-    const getArchivos = useQuery("archivos", async()=>{
+    const id_bitacora = id;
+    const getArchivos = useQuery("archivos_bitacora", async()=>{
         const response = await clienteAxios.get(`/archivoalumno/getpdf/${id}`)
         if(response.status==200){
             if(response.data.archivos){
@@ -55,7 +58,9 @@ const MostrarArchivos = ()=>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        navigate(`/archivosbitacora/${id_bitacora}`)
+                        getArchivos.refetch();
                     },2000)
                    
                 }

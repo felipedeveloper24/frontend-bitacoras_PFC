@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const MostrarImagenes = ({id}) =>{
     const [archivos,setArchivos] = useState([]);
-    const getimagenes = useQuery("imagenes",async()=>{
+    const getimagenes = useQuery("imagenes_jefe",async()=>{
         const response = await clienteAxios.get(`/archivojefe/getimagenes/${id}`) 
        
         if(response.status==200){
@@ -56,7 +56,8 @@ const MostrarImagenes = ({id}) =>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        getimagenes.refetch();
                     },2000)
                    
                 }

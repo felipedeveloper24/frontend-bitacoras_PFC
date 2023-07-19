@@ -1,17 +1,20 @@
 import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { Delete, Download } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
+import { useNavigate } from "react-router-dom";
 
 
 
 const MostrarArchivos = ({id})=>{
-
+    const id_inscripcion = id
     const [archivos,setArchivos] = useState([]);
-    const getArchivos = useQuery("archivos", async()=>{
+    const navigate = useNavigate();
+    const queryClient = useQueryClient()
+    const getArchivos = useQuery("archivosinscripcion", async()=>{
         const response = await clienteAxios.get(`/archivoinscripcion/getall/${id}`)
         if(response.status==200){
             if(response.data.archivos){
@@ -53,7 +56,9 @@ const MostrarArchivos = ({id})=>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        navigate(`/documentosinscripcion/${id_inscripcion}`)
+                        queryClient.refetchQueries("archivosinscripcion")
                     },2000)
                    
                 }

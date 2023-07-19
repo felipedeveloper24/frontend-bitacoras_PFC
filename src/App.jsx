@@ -9,6 +9,7 @@ import Login from './pages/login/login'
 import DashboardAlumno from './pages/Alumno/Dashboard'
 import PublicRoutes from './router/publicRoutes'
 import PrivateRoutes from './router/privateRoutes'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 
 const queryClient = new QueryClient();
@@ -19,11 +20,14 @@ function App() {
     return(
       <BrowserRouter>
         <QueryClientProvider client={queryClient} >
-          <AuthProvider>
+          
+              <AuthProvider>
                     <PublicRoutes/>
                     <PrivateRoutes/>
               </AuthProvider>
+           
           </QueryClientProvider>
+         
         </BrowserRouter>
       )
  

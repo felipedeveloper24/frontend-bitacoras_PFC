@@ -37,7 +37,8 @@ const MostrarOfertas = ()=>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        window.location.reload()
+                        Swal.close();
+                        getOfertas.refetch();
                     },2000)
                    
                 }

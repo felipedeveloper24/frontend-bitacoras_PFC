@@ -3,6 +3,8 @@ import { useState } from "react";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 import { StickyNote2 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 
 
@@ -12,6 +14,10 @@ const SubirArchivo = ({id})=>{
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
     const [isPdf, setPdf] = useState(true)
+    const navigate = useNavigate();
+
+    const queryClient = useQueryClient();
+    
     const onSubmit = async(e)=>{
 
         e.preventDefault();
@@ -23,6 +29,9 @@ const SubirArchivo = ({id})=>{
         formData.append("id_inscripcion",Number(id))
         formData.append("archivo",archivo)
 
+        console.log(id);
+
+       
 
         const response = await clienteAxios.post("/archivoinscripcion/create",formData,{
             headers:{
@@ -39,7 +48,10 @@ const SubirArchivo = ({id})=>{
 
             })
             setTimeout(()=>{
-                window.location.reload();
+                Swal.close();
+                setOpen(false)
+                navigate(`/documentosinscripcion/${id}`)
+                queryClient.refetchQueries("archivosinscripcion")
             },2000)
         }
 

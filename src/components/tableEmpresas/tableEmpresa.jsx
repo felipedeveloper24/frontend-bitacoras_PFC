@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const TableEmpresa = ()=>{
     const navigate = useNavigate();
-    const {data, status} = useQuery("empresas", async()=>{
+    const {data, status,refetch} = useQuery("empresas", async()=>{
         const response = await clienteAxios.get("/empresa/getall");
         return response.data;
     });
@@ -45,8 +45,9 @@ const TableEmpresa = ()=>{
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
-                        navigate("/dashboard");
-                        window.location.reload();
+                        refetch()
+                        Swal.close();
+
                     },2000)
               }else{
                 Swal.fire({

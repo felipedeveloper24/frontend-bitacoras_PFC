@@ -3,6 +3,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { PhotoSizeSelectActual } from "@mui/icons-material";
+import { useQueryClient } from "react-query";
 
 const SubirImagenes = ({id})=>{
 
@@ -10,6 +11,7 @@ const SubirImagenes = ({id})=>{
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
     const [isPdf, setPdf] = useState(true)
+    const queryClient = useQueryClient();
     const onSubmit = async(e)=>{
 
         e.preventDefault();
@@ -38,7 +40,9 @@ const SubirImagenes = ({id})=>{
 
             })
             setTimeout(()=>{
-                window.location.reload();
+                Swal.close();
+                setOpen(false)
+                queryClient.refetchQueries("imagenes_jefe");
             },2000)
         }
 

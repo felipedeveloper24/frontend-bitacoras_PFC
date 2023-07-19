@@ -3,13 +3,19 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { PhotoSizeSelectActual } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 const SubirImagenes = ({id})=>{
 
+    const id_bitacora = id;
     const [open, setOpen] = useState(false);
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
     const [isPdf, setPdf] = useState(true)
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
     const onSubmit = async(e)=>{
 
         e.preventDefault();
@@ -38,7 +44,10 @@ const SubirImagenes = ({id})=>{
 
             })
             setTimeout(()=>{
-                window.location.reload();
+                Swal.close();
+                navigate(`/imagenesbitacora/${id_bitacora}`);
+                setOpen(false);
+                queryClient.refetchQueries("imagenes_bitacora_alumno");
             },2000)
         }
 
@@ -61,8 +70,7 @@ const SubirImagenes = ({id})=>{
                         icon:"error",
                         confirmButtonText:"Aceptar"
                     })
-                    setTimeout(()=>{
-                    },2000)
+                    
             
             }
         }else{

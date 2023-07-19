@@ -1,7 +1,7 @@
 import { Box, Button, Typography,Modal, Grid, FormGroup, FormControlLabel, Checkbox, Select, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 
@@ -24,7 +24,7 @@ const ModalAptitudes = ({id_alumno})=>{
     const handleOpen = () => {
         setOpen(true);
     };
-
+    const queryClient = useQueryClient()
     const onSubmit = async(data)=>{
        
         const response = await clienteAxios.post("/conocimiento/create",{
@@ -39,7 +39,9 @@ const ModalAptitudes = ({id_alumno})=>{
                 confirmButtonText:"Aceptar"
             })
             setTimeout(()=>{
-                window.location.reload();
+                Swal.close();
+                setOpen(false)
+                queryClient.refetchQueries("misapitudes")
             },2000)
         }
     }

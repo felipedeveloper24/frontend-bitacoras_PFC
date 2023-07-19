@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Grid,Button, Box,TextField,Typography, Modal, MenuItem, InputLabel, Alert } from "@mui/material";
 import Select from "@mui/material/Select"
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Apartment, Business } from "@mui/icons-material";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -17,11 +17,15 @@ const FormularioRegistro = () => {
     const {register,handleSubmit,formState:{errors}} = useForm();
     const [comunas,setComunas] = useState([]);
     const [comuna,setComuna] = useState("");
+    const queryClient = useQueryClient();
 
-
+    const formRef = useRef(null)
     const handleComuna = (event)=>{
         setComuna(event.target.value);
     }
+    const handleReset = () => {
+        
+      };
 
    
     const handleChange = (event) => {
@@ -76,8 +80,11 @@ const FormularioRegistro = () => {
                         }
                     })
                     setTimeout(()=>{
-                        navigate("/empresas");
-                        window.location.reload();
+                   
+                        setOpen(false);
+                        queryClient.refetchQueries("empresas")
+                        formRef.current.reset(); 
+                        Swal.close();
                     },2000)
                 }
             
@@ -124,7 +131,7 @@ const FormularioRegistro = () => {
                     >
                         <Typography variant="h5" sx={{textAlign:"center",display:"flex",justifyContent:"center", alignItems:"center"}}>Registro de empresa <Business style={{marginLeft:"5px"}}/> </Typography>
                     
-                        <form method="POST" onSubmit={handleSubmit(onSubmit)} >
+                        <form method="POST" ref={formRef} onSubmit={handleSubmit(onSubmit)} >
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
                                 <TextField label="Rut" fullWidth 
                                 {...register("rut_empresa",{required:true})}
@@ -159,7 +166,7 @@ const FormularioRegistro = () => {
                             </Grid>
 
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
-                                <TextField label="Correo" fullWidth 
+                                <TextField label="Correo" fullWidth type="email"
                                     {...register("correo",{required:true})}
                                     
                                 />

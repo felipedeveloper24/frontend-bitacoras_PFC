@@ -4,6 +4,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { StickyNote2 } from "@mui/icons-material";
+import { useQueryClient } from "react-query";
 
 
 
@@ -12,6 +13,7 @@ const SubirArchivo = ({id})=>{
     const [archivo,setArchivo] = useState(null);
     const [extension,setExtension] = useState(null)
     const [isPdf, setPdf] = useState(true)
+    const queryClient = useQueryClient();
     const onSubmit = async(e)=>{
 
         e.preventDefault();
@@ -39,7 +41,9 @@ const SubirArchivo = ({id})=>{
 
             })
             setTimeout(()=>{
-                window.location.reload();
+                 Swal.close();
+                 queryClient.refetchQueries("archivos_jefe");
+                 setOpen(false);
             },2000)
         }
 

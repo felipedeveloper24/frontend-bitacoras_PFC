@@ -1,5 +1,5 @@
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const FormularioActualizar = ({id_estado,id_inscripcion})=>{
+const FormularioActualizar = ({id_estado,id_inscripcion,setopen})=>{
+   
     
+    const queryClient = useQueryClient();
     const [estado, setEstado] = useState(id_estado)
     const handleChangeEstado = (event) => {
         setEstado(event.target.value);
@@ -36,8 +38,9 @@ const FormularioActualizar = ({id_estado,id_inscripcion})=>{
             })
 
             setTimeout(()=>{
-               
-                window.location.reload()
+                queryClient.refetchQueries("detalleinscripcion")
+                Swal.close();
+                setopen(false);
             },2000)
         }
     }
@@ -50,7 +53,7 @@ const FormularioActualizar = ({id_estado,id_inscripcion})=>{
     })
     if(getEstados.status=="success"){
         return (
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} style={{width:"100%"}}>
                 <Grid container>
                 
                     <Grid item lg={12}>

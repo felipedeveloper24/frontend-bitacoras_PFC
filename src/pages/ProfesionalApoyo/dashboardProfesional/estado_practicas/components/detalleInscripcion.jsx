@@ -43,7 +43,7 @@ const DetalleInscripcion = ({id})=>{
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: "50%",
+                        width: "70%",
                         bgcolor: 'background.paper',
                         maxHeight: '80vh',
                         boxShadow: 24,
@@ -53,7 +53,7 @@ const DetalleInscripcion = ({id})=>{
                     >
                         <Typography variant="h5" sx={{textAlign:"center",display:"flex",justifyContent:"center", alignItems:"center"}}>Actualizar estado de solicitud </Typography>
                      
-                       <FormularioActualizar id_estado={data.inscripcion.estado_inscripcion.id_estado_inscripcion} id_inscripcion={data.inscripcion.id_inscripcion_practica}/>
+                       <FormularioActualizar setopen ={setOpen} id_estado={data.inscripcion.estado_inscripcion.id_estado_inscripcion} id_inscripcion={data.inscripcion.id_inscripcion_practica}/>
                      
                     </Box>
                 </Modal>

@@ -59,7 +59,7 @@ const ModificarOferta = () => {
             })
             setTimeout(() => {
                 navigate("/ofertapracticas");
-                window.location.reload();
+                
             }, 2000)
         }
     }

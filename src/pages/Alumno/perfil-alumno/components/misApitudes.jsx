@@ -9,7 +9,16 @@ import { useEffect, useState } from "react";
 const MisAptitudes = ({id_alumno})=>{
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(true)
+    const getAptitudes = useQuery("misapitudes",async ()=>{
+        const response = await clienteAxios.post("/alumno/showAptitudes",{
+            id_alumno:id_alumno
+        });
+        if(response.status==200){
+            return response.data
+        }
+    });
 
+    /*
     const getApitudes = async()=>{
         const response = await clienteAxios.post("/alumno/showAptitudes",{
             id_alumno:id_alumno
@@ -22,7 +31,7 @@ const MisAptitudes = ({id_alumno})=>{
     useEffect(()=>{
         getApitudes()
     },[])
-
+    */
     const eliminar_conocimiento = async(id_conocimiento)=>{
         
         const response = await clienteAxios.delete(`/conocimiento/delete/${id_conocimiento}`);
@@ -34,12 +43,15 @@ const MisAptitudes = ({id_alumno})=>{
                 confirmButtonText:"Aceptar"
             })
             setTimeout(()=>{
-                window.location.reload();
+                Swal.close();   
+                getAptitudes.refetch();
             },2000)
+         
         }
     }
 
-    if(!loading && data.aptitudes ){
+    if(getAptitudes.status=="success" && getAptitudes.data.aptitudes ){
+ 
         return (
             <Grid>
                   <Box sx={{ display: 'flex', flexDirection: 'column',alignItems:"center", minHeight: '100vh' }}>
@@ -55,7 +67,7 @@ const MisAptitudes = ({id_alumno})=>{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {data.aptitudes.map((conocimiento, index) => (
+                                {getAptitudes.data.aptitudes.map((conocimiento, index) => (
                                     <TableRow key={index}>
                                         <TableCell >
                                             <Typography variant="body1" sx={{ color: "black", transition: "all 1000ms" }}>
@@ -78,7 +90,7 @@ const MisAptitudes = ({id_alumno})=>{
             </Grid>
         )
     }
-    if(!loading && !data.aptitudes){
+    if(getAptitudes.status=="success" && !getAptitudes.data.aptitudes){
      
         return (
             <Grid sx={{width:"40%",margin:"0px auto",marginTop:"20px"}}>
@@ -87,7 +99,7 @@ const MisAptitudes = ({id_alumno})=>{
             </Grid>
         )
     }
-    if(loading){
+    if(getAptitudes.status=="loading"){
         return (
             <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                 Cargando datos.........

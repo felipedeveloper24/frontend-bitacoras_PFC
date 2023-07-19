@@ -9,6 +9,7 @@ import SubirArchivo from "./components/subirarchivo";
 
 const DocumentosInscripcion = ()=>{
     const {id} = useParams();
+    
     return (
         <Grid sx={{
             width:"100%",

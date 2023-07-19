@@ -25,7 +25,7 @@ const ShowBitaAlumno = () => {
   
     const {data, status, refetch} = useQuery("bitacoralumno", async () => {
         const response = await clienteAxios.get(`/bitacoralumno/getall/${id_inscripcion_practica}`);
-        console.log(response.data)
+        
         return response.data;
     }, {
         refetchOnWindowFocus: false
@@ -64,8 +64,9 @@ const BitacoraDelete = async (id) => {
             confirmButtonText: "Aceptar"
           })
           setTimeout(() => {
-            navigate("/showbitalumno");
-            window.location.reload();
+            Swal.close();
+            refetch()
+            
           }, 2000)
         } else {
           Swal.fire({

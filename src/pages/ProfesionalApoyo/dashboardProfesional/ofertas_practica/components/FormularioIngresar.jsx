@@ -59,7 +59,7 @@ const FormularioIngresar = ()=>{
             })
             setTimeout(()=>{
                 navigate("/ofertapracticas");
-                window.location.reload();
+                Swal.close();
             },2000)
         }
     }
