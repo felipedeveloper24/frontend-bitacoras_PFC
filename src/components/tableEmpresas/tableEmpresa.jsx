@@ -73,8 +73,8 @@ const TableEmpresa = ()=>{
                     <TableRow>
                         <TableCell>ID_EMPRESA</TableCell>
                         <TableCell >RUT</TableCell>
-                        <TableCell >Razon Social</TableCell>
-                        <TableCell>Direción</TableCell>
+                        <TableCell >Razón Social</TableCell>
+                        <TableCell>Dirección</TableCell>
                         <TableCell>Centro Práctica</TableCell>
                         <TableCell>Correo</TableCell>
                         <TableCell>Teléfono</TableCell>
@@ -99,8 +99,8 @@ const TableEmpresa = ()=>{
                 <TableRow>
                     <TableCell>ID</TableCell>
                     <TableCell >RUT</TableCell>
-                    <TableCell >Razon Social</TableCell>
-                    <TableCell>Direción</TableCell>
+                    <TableCell >Razón Social</TableCell>
+                    <TableCell>Dirección</TableCell>
                     <TableCell>Centro Práctica</TableCell>
                     <TableCell>Correo</TableCell>
                     <TableCell>Teléfono</TableCell>
@@ -139,8 +139,8 @@ const TableEmpresa = ()=>{
                 <TableRow>
                     <TableCell>ID</TableCell>
                     <TableCell >RUT</TableCell>
-                    <TableCell >Razon Social</TableCell>
-                    <TableCell>Direción</TableCell>
+                    <TableCell >Razón Social</TableCell>
+                    <TableCell>Dirección</TableCell>
                     <TableCell>Centro Práctica</TableCell>
                     <TableCell>Correo</TableCell>
                     <TableCell>Teléfono</TableCell>

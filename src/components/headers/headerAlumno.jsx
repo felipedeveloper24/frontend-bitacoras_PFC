@@ -49,7 +49,7 @@ const HeaderAlumno = ()=>{
                     {
                         id_inscripcion_practica != "undefined" && (
                             <ListItem button onClick={()=>navigate("/showbitalumno")} >
-                                 <ListItemText sx={{textAlign:"center"}} primary="Bitacoras" />
+                                 <ListItemText sx={{textAlign:"center"}} primary="Bitácoras" />
                             </ListItem>
                         )
                     }

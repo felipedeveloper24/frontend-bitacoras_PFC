@@ -96,6 +96,7 @@ const PrivateRoutes = ()=>{
             </Routes>
         )
     }
+   
 
 };
 
