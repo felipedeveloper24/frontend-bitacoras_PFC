@@ -12,7 +12,7 @@ import { Output } from "@mui/icons-material";
 
 const HeaderJefe = ()=>{
     const location = useLocation().pathname;
-    console.log(location);
+
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const handleToggleMenu = () => {

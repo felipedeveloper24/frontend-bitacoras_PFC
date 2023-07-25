@@ -28,7 +28,6 @@ const ModificarBitaAlumno = () => {
         const response = await clienteAxios.get(`/bitacoralumno/show/${id}`)
         if (response.status == 200) {
             // console.log("AQUIIIIIIIIII")
-            console.log(response.data)
             setLoading(false)
             setTitulo(response.data.bitacora.titulo)
             setDescripcion(response.data.bitacora.descripcion)

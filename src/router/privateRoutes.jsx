@@ -64,6 +64,7 @@ const PrivateRoutes = ()=>{
             </Routes>
         )
     }
+    /*
     if(rol && rol == 2){
         return (
             <Routes>
@@ -96,6 +97,7 @@ const PrivateRoutes = ()=>{
             </Routes>
         )
     }
+    */
    
 
 };

@@ -59,6 +59,7 @@ const ModificarOferta = () => {
             })
             setTimeout(() => {
                 navigate("/ofertapracticas");
+                Swal.close();
                 
             }, 2000)
         }

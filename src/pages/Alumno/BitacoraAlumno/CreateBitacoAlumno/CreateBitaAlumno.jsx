@@ -54,7 +54,7 @@ const CreateBitaAlumno = () => {
             });
 
 
-            console.log(response.data);
+            
             if (response.status === 200) {
                 Swal.fire({
                   title: "Registrada",
