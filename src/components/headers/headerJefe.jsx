@@ -39,7 +39,7 @@ const HeaderJefe = ()=>{
                         <MenuIcon  style={{color:"white"}} />
                     </IconButton>
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/dashboard")}>
+                    <ListItem button onClick={()=>navigate("/jefedecarrera")}>
                         <ListItemText sx={{textAlign:"center"}} primary="Inicio" />
                     </ListItem>
                     <ListItem button onClick={()=>navigate("/")} >

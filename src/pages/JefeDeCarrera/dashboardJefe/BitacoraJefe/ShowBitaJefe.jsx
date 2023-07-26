@@ -171,13 +171,13 @@ const ShowBitaJefe = () => {
                       </Tooltip>
                      
                     </IconButton>
-                    <IconButton onClick={() => navigate(`/archivosbitacora/${bitacora.id_bitacora}`)}>
+                    <IconButton onClick={() => navigate(`/archivosbitacorajefe/${bitacora.id_bitacora}`)}>
                       <Tooltip title="Documentos Bitacora">
                          <DocumentScanner/>
                       </Tooltip>
                      
                     </IconButton>
-                    <IconButton onClick={() => navigate(`/imagenesbitacora/${bitacora.id_bitacora}`)}>
+                    <IconButton onClick={() => navigate(`/imagenesbitacorajefe/${bitacora.id_bitacora}`)}>
                       <Tooltip title="Imágenes Bitácora">
                          <Image/>
                       </Tooltip>

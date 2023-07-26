@@ -153,7 +153,7 @@ const ModificarBitacoraJefe = () => {
                 })
                 setTimeout(() => {
                     Swal.close()
-                    navigate("/dashboard")
+                    navigate("/jefedecarrera")
                 }, 1000);
 
             }

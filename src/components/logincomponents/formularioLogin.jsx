@@ -34,7 +34,7 @@ const FormularioLogin = ()=>{
                             label="Rut" 
                             name="rut"
                             value={rut.formatted} 
-                            onChange={(e)=>{updateRut(e.target.value);console.log(e.target.value)}}
+                            onChange={(e)=>{updateRut(e.target.value)}}
                             required
                             />
                             <PermIdentity style={{width:"40px"}}/>

@@ -128,7 +128,7 @@ const FormularioIngresar = ()=>{
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
                             <InputLabel>Periodo académico</InputLabel> 
-                            <Select label="Periodo académico" sx={{backgroundColor:"white"}} value={periodo} onChange={(e)=>{setPeriodo(e.target.value)}} fullWidth>
+                            <Select required label="Periodo académico" sx={{backgroundColor:"white"}} value={periodo} onChange={(e)=>{setPeriodo(e.target.value)}} fullWidth>
                                 {
                                         getPeriodos.status=="success" && Array.isArray(getPeriodos.data) && (
                                             getPeriodos.data.map((periodo,idx)=>(

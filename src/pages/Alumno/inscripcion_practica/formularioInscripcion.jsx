@@ -92,7 +92,7 @@ const FormularioInscripcion = ()=>{
                     })
                     setTimeout(()=>{
                         Swal.close();
-                        navigate("/dashboard")
+                        navigate("/alumno")
                     },2000)
                 }
             }
@@ -121,7 +121,7 @@ const FormularioInscripcion = ()=>{
                     })
                     setTimeout(()=>{
                         Swal.close();
-                        navigate("/dashboard")
+                        navigate("/alumno")
                     },2000)
             }
             //Hago una peticion solamente
@@ -155,7 +155,7 @@ const FormularioInscripcion = ()=>{
                     })
                     setTimeout(()=>{
                         Swal.close();
-                        navigate("/dashboard")
+                        navigate("/alumno")
                     },2000)
                 }
             }
@@ -183,7 +183,7 @@ const FormularioInscripcion = ()=>{
                 })
                 setTimeout(()=>{
                     Swal.close();
-                    navigate("/dashboard")
+                    navigate("/alumno")
                 },2000)
             }
         }

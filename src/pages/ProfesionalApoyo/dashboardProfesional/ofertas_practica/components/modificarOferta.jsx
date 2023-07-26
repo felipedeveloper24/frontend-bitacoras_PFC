@@ -98,7 +98,7 @@ const ModificarOferta = () => {
                     <Card sx={{ padding: "15px", marginBottom: "10px" }}>
                         <Grid container spacing={2}>
                             <Grid item xs={11} xl={11} lg={12} md={12} sm={11}>
-                                <TextField label="Descripcion" multiline rows={5} value={descripcion} required onChange={(e) => { setDescripcion(e.target.value) }} fullWidth InputLabelProps={{
+                                <TextField label="Descripcion"  multiline rows={5} value={descripcion} required onChange={(e) => { setDescripcion(e.target.value) }} fullWidth InputLabelProps={{
                                     shrink: true,
                                 }}
                                     inputProps={{
@@ -138,7 +138,7 @@ const ModificarOferta = () => {
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <FormControl margin="normal" fullWidth>
                                     <InputLabel>Empresa</InputLabel>
-                                    <Select required label="Empresa" value={empresa} onChange={(e) => { setEmpresa(e.target.value) }} fullWidth>
+                                    <Select  required label="Empresa" value={empresa} onChange={(e) => { setEmpresa(e.target.value) }} fullWidth>
                                         {
                                             getEmpresas.status == "success" && Array.isArray(getEmpresas.data) && (
                                                 getEmpresas.data.map((empresa, idx) => (
@@ -152,7 +152,7 @@ const ModificarOferta = () => {
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <FormControl margin="normal" fullWidth>
                                     <InputLabel>Periodo académico</InputLabel>
-                                    <Select label="Periodo académico" value={periodo} onChange={(e) => { setPeriodo(e.target.value) }} fullWidth>
+                                    <Select required label="Periodo académico" value={periodo} onChange={(e) => { setPeriodo(e.target.value) }} fullWidth>
                                         {
                                             getPeriodos.status == "success" && Array.isArray(getPeriodos.data) && (
                                                 getPeriodos.data.map((periodo, idx) => (

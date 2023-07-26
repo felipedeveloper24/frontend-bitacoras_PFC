@@ -75,7 +75,7 @@ const ModalAptitudes = ({id_alumno})=>{
                             
                                     rules={{ required: 'Este campo es obligatorio' }}
                                     render={({ field, fieldState }) => (
-                                    <Select {...field} displayEmpty fullWidth>
+                                    <Select {...field} displayEmpty fullWidth required>
                                          <MenuItem value="" disabled>
                                             Selecciona una opción
                                             </MenuItem>

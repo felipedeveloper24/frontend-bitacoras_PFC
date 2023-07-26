@@ -35,6 +35,7 @@ import ImagenesBitacorasJefe from "../pages/JefeDeCarrera/imagenes/imagenesbitac
 import AptitudesAlumno from "../pages/ProfesionalApoyo/dashboardProfesional/aptitudes_alumno/AptitudesAlumno";
 import BitacorasAlumno from "../pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/bitacorasAlumno";
 import DetalleBitacora from "../pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/detalleBitacora";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 
 const PrivateRoutes = ()=>{
@@ -42,29 +43,35 @@ const PrivateRoutes = ()=>{
     const {user} = useContext(AuthContext)
 
     const rol = localStorage.getItem("rol");
-    
+ 
     
     if(rol && rol == 1 ){
         return (
             <Routes>
-                <Route path="/dashboard" element={<DashboardAlumno/>} />  
-                <Route path="/perfil" element={<PerfilAlumno/>} />
-                <Route path="/detalleoferta/:id" element={<DetalleOfertaPractica/>} />
-                <Route path="/detalleinscripcion/:id" element={<DetalleInscripcion/>}/>
-                <Route path="/inscripcionpractica/:id" element={<InscripcionPractica/>} />
-                <Route path="/modificarinscripcion/:id" element={<ModificarDatos/>} />
-                <Route path="/documentosinscripcion/:id" element={<DocumentosInscripcion/>} />
-                <Route path="/archivosbitacora/:id" element ={<ArchivosBitacoras/>} />
-                <Route path="/imagenesbitacora/:id" element={<ImagenesBitacoras/>} />
-                <Route path="/aptitudes" element={<Aptitudes/>} />
-                <Route path="/bitacoralumno" element={<BitAlumnoRender />} />
-                <Route path="/showbitalumno" element={<RenderBitaAlumno/>} />
-                <Route path="/detailsbitacoralumno/:id" element={<RenderDetailsAlumno/>} />
-                <Route path="/modificarbitacoralumno/:id" element={<EditingBitAlumno/>} />
+
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route path="/dashboard" element={<DashboardAlumno/>} />  
+                    <Route path="/perfil" element={<PerfilAlumno/>} />
+                    <Route path="/detalleoferta/:id" element={<DetalleOfertaPractica/>} />
+                    <Route path="/detalleinscripcion/:id" element={<DetalleInscripcion/>}/>
+                    <Route path="/inscripcionpractica/:id" element={<InscripcionPractica/>} />
+                    <Route path="/modificarinscripcion/:id" element={<ModificarDatos/>} />
+                    <Route path="/documentosinscripcion/:id" element={<DocumentosInscripcion/>} />
+                    <Route path="/archivosbitacora/:id" element ={<ArchivosBitacoras/>} />
+                    <Route path="/imagenesbitacora/:id" element={<ImagenesBitacoras/>} />
+                    <Route path="/aptitudes" element={<Aptitudes/>} />
+                    <Route path="/bitacoralumno" element={<BitAlumnoRender />} />
+                    <Route path="/showbitalumno" element={<RenderBitaAlumno/>} />
+                    <Route path="/detailsbitacoralumno/:id" element={<RenderDetailsAlumno/>} />
+                    <Route path="/modificarbitacoralumno/:id" element={<EditingBitAlumno/>} />
+
+                </Route>
+
+          
             </Routes>
         )
     }
-    /*
+    
     if(rol && rol == 2){
         return (
             <Routes>
@@ -97,7 +104,7 @@ const PrivateRoutes = ()=>{
             </Routes>
         )
     }
-    */
+    
    
 
 };

@@ -39,7 +39,7 @@ const HeaderAlumno = ()=>{
                         <MenuIcon  style={{color:"white"}} />
                     </IconButton>
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/dashboard")} >
+                    <ListItem button onClick={()=>navigate("/alumno")} >
                         <ListItemText sx={{textAlign:"center"}} primary="Inicio" />
                     </ListItem>
                     <ListItem button onClick={()=>navigate("/perfil")}>

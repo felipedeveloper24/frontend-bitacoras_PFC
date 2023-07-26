@@ -5,6 +5,7 @@ import { setToken } from "../helpers/tokenUtilities";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) =>{
@@ -20,7 +21,7 @@ const AuthProvider = ({children}) =>{
                         const userData = response.data;
                        
                         setToken(response.data.token);
-                       
+                        localStorage.setItem("user",response.data);
                         localStorage.setItem("rol",response.data.rol);
                         localStorage.setItem("rut",response.data.alumno.rut);
                         localStorage.setItem("id_alumno",response.data.alumno.id_alumno)
@@ -36,12 +37,13 @@ const AuthProvider = ({children}) =>{
                           )
                         setTimeout(()=>{
                             Swal.close()
-                            navigate("/dashboard")
+                            navigate("/alumno")
                         },3000)
                         break;
                     }
                     case 2:{
                         const userData = response.data;
+                        localStorage.setItem("user",response.data);
                         setToken(response.data.token);
                         localStorage.setItem("rol",response.data.rol);
                         localStorage.setItem("id_usuario",response.data.id_usuario)
@@ -53,13 +55,14 @@ const AuthProvider = ({children}) =>{
                           )
                         setTimeout(()=>{
                             Swal.close()
-                            navigate("/dashboard")
+                            navigate("/jefedecarrera")
                         },3000)
                         break;
                     }
                     case 3:{
                         const userData = response.data;
                         setToken(response.data.token);
+                        localStorage.setItem("user",response.data);
                         localStorage.setItem("rol",response.data.rol);
                         localStorage.setItem("rut",response.data.rut);
                         setUser(userData);
