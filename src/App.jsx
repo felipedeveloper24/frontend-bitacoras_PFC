@@ -97,7 +97,8 @@ function App() {
                                 <Route path="/modificaroferta/:id" element={<ModificarOferta/>} />
                                 <Route path="/estadopracticas/:anio/:periodo/:asignatura/:carrera" element={<EstadoPracticas/>}/>
                                 <Route path="/informaciongeneral/:inscribe" element={<InformacionGeneral/>} />
-                                <Route path="/documentosinscripcion/:id" element={<VerDocumentosInscripcion/>} />
+                                <Route path="/documentosinscripcionpractica/:id" element={<VerDocumentosInscripcion/>} />
+                  
                                 <Route path="/evaluarinscripcion/:id" element={<EvaluarPractica/>} />
                                 <Route path="/aptitudes/:id" element={<AptitudesAlumno/>} />
                                 <Route path="/bitacoras/:id" element={<BitacorasAlumno/>} />

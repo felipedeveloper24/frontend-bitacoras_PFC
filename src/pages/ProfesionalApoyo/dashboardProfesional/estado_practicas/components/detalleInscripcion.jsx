@@ -118,7 +118,7 @@ const DetalleInscripcion = ({id})=>{
                                                  <ContentPasteSearchOutlined sx={{cursor:"pointer"}} onClick={()=>{navigate(`/evaluarinscripcion/${id}`)}} />
                                             </Tooltip>
                                             <Tooltip title="Documentos">
-                                                  <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.inscripcion.id_inscripcion_practica}`)}} />
+                                                  <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcionpractica/${data.inscripcion.id_inscripcion_practica}`)}} />
                                             </Tooltip>
                                             <Tooltip  title="Ver bitacoras alumno">
                                                 <Visibility sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/bitacoras/${data.inscripcion.id_inscripcion_practica}`)}} />
