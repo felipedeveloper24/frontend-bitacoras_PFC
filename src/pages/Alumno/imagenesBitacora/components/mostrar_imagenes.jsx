@@ -42,7 +42,7 @@ const MostrarImagenes = ({id}) =>{
     
     const eliminar_archivo = async(id)=>{
         Swal.fire({
-            title: '¿Estás seguro si quieres eliminar el archivo?',
+            title: '¿Estás seguro si quieres eliminar la imagen?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -54,8 +54,8 @@ const MostrarImagenes = ({id}) =>{
                 const response = await clienteAxios.delete(`/archivoalumno/delete/${id}`);
                 if(response.status==200){
                     Swal.fire({
-                        title:"Eliminado",
-                        text:"El archivo ha sido eliminado correctamente",
+                        title:"Eliminada",
+                        text:"La imágen ha sido eliminada correctamente",
                         icon:"success",
                         confirmButtonText:"Aceptar"
                     })

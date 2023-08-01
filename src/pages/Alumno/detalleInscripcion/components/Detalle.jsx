@@ -1,7 +1,7 @@
 import { Card, Grid, Typography ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, CircularProgress, Alert, Tooltip} from "@mui/material";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
-import { CheckCircleOutline, DoNotDisturb, Edit, FileCopy, Timer10Outlined, TimerOutlined } from "@mui/icons-material";
+import { CheckCircleOutline, DoNotDisturb, Edit, FileCopy, School, Timer10Outlined, TimerOutlined } from "@mui/icons-material";
 import RegistroEvaluador from "./registro_evaluador";
 import { useNavigate } from "react-router-dom";
 
@@ -25,8 +25,8 @@ const Detalle = ({id})=>{
         
        
         return (
-            <Grid>
-                <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle inscripción</Typography>
+            <Grid sx={{marginTop:"15px"}}>
+                <Typography sx={{textAlign:"center",marginTop:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle inscripción <School style={{marginLeft:"5px"}}/></Typography>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>

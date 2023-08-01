@@ -15,6 +15,7 @@ const AuthProvider = ({children}) =>{
     const login = async (rut,password)=>{
         try{
             const response = await clienteAxios.post("/auth/login",{rut,contrasena:password});
+    
             if(response.status==200){
                 switch(response.data.rol){
                     case 1:{
@@ -32,7 +33,7 @@ const AuthProvider = ({children}) =>{
                         
                         Swal.fire(
                             'Iniciando sesión',
-                            'Redireccionando .......',
+                            'Las credenciales son válidas.',
                             'success'
                           )
                         setTimeout(()=>{
@@ -50,7 +51,7 @@ const AuthProvider = ({children}) =>{
                         setUser(userData);
                         Swal.fire(
                             'Iniciando sesión',
-                            'Redireccionando ...',
+                            'Las credenciales son válidas.',
                             'success'
                           )
                         setTimeout(()=>{
@@ -68,12 +69,30 @@ const AuthProvider = ({children}) =>{
                         setUser(userData);
                         Swal.fire(
                             'Iniciando sesión',
-                            'Redireccionando .......',
+                            'Las credenciales son válidas.',
                             'success'
                           )
                         setTimeout(()=>{
                             Swal.close()
                             navigate("/dashboard")
+                        },3000)
+                        break;
+                    }
+                    case 4:{
+                        const userData = response.data;
+                        localStorage.setItem("user",response.data);
+                        setToken(response.data.token);
+                        localStorage.setItem("rol",response.data.rol);
+                        localStorage.setItem("id_usuario",response.data.id_usuario)
+                        setUser(userData);
+                        Swal.fire(
+                            'Iniciando sesión',
+                            'Las credenciales son válidas.',
+                            'success'
+                          )
+                        setTimeout(()=>{
+                            Swal.close()
+                            navigate("/jefedecarrera")
                         },3000)
                         break;
                     }

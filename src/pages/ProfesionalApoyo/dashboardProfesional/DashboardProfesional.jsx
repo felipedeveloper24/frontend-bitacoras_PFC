@@ -8,6 +8,7 @@ import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Checklist } from "@mui/icons-material";
 
 const DashboardProfesional = ()=>{
     const [anio,setanio] = useState(2023)
@@ -84,7 +85,7 @@ const DashboardProfesional = ()=>{
             flexDirection:"column"
         }}>
             <HeaderProfesional/>
-            <Typography variant="h6" sx={{textAlign:"center",marginTop:"20px", marginBottom:"16px"}}>Ingrese el semestre y período</Typography>
+            <Typography variant="h6" sx={{textAlign:"center",marginTop:"20px", marginBottom:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>Ingrese el semestre y período <Checklist style={{marginLeft:"5px"}}/> </Typography>
             <form onSubmit={onSubmit} style={{width:"70%",borderRadius:"5px",backgroundColor:"#f4f5f7",padding:"15px",margin:"0px auto",marginTop:"15px",marginBottom:"15px"}}>
                 <Grid container spacing={4} sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                     <Grid xs={11} xl={6} lg={5} md={4} sm={10} item>               

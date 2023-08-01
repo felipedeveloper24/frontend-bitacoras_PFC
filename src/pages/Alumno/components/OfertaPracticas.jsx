@@ -9,7 +9,6 @@ const OfertasPracticas = ()=>{
     const {data,status} = useQuery("ofertas",async()=>{
         const response = await clienteAxios.get("/oferta/getall");
         if(response.status==200){
-            console.log(response.data)
             return response.data;
         }
     });
@@ -22,7 +21,7 @@ const OfertasPracticas = ()=>{
                         <TableHead sx={{ width: "100%", textAlign: "center" }}>
                         <TableRow>
                             <TableCell colSpan={2}>
-                            <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado de ofertas de prácticas profesionales</Typography>
+                            <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado Ofertas de Prácticas Profesionales</Typography>
                             </TableCell>
                         </TableRow>
                         </TableHead>

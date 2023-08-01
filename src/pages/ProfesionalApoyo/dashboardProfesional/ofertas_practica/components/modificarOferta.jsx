@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Work } from "@mui/icons-material";
 
 
 
@@ -93,7 +94,7 @@ const ModificarOferta = () => {
         return (
             <Grid sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
                 <HeaderProfesional />
-                <Typography variant="h6" sx={{ textAlign: "center", marginTop: "10px", marginBottom: "10px" }}>Modificar oferta</Typography>
+                <Typography variant="h6" sx={{ textAlign: "center", marginTop: "10px", marginBottom: "10px",display:"flex",justifyContent:"center",alignItems:"center" }}>Modificar Oferta Práctica Profesional <Work style={{marginLeft:"5px"}}/> </Typography>
                 <form style={{ width: "85%", margin: "0px auto" }} onSubmit={onSubmit}>
                     <Card sx={{ padding: "15px", marginBottom: "10px" }}>
                         <Grid container spacing={2}>
@@ -165,14 +166,7 @@ const ModificarOferta = () => {
                             </Grid>
                             <Grid item xs={12} xl={12} lg={12} md={12} sm={12} sx={{ display: "flex",flexDirection:"column", justifyContent: "center" }}>
                                 <Button type="submit" sx={{maxWidth:"250px",margin:"0px auto"}} variant="contained" disabled={remainingChars === -1}>Enviar datos</Button>
-                                <Button
-                                    variant="contained"
-                                    sx={{ backgroundColor: '#9e9e9e', color: '#FFFFFF',maxWidth:"250px",margin:"0px auto",marginTop:"15px", '&:hover': { backgroundColor: '#757575' } }}
-                                    onClick={() => navigate("/ofertapracticas")}
-                                >
-                                    Cancelar
-
-                                </Button>
+                    
                             </Grid>
                         </Grid>
                     </Card>

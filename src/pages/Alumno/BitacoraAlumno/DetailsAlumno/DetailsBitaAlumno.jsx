@@ -70,7 +70,7 @@ const DetailsBitaAlumno = () => {
                 <TableCell style={{ wordWrap: 'break-word', maxWidth: '300px' }}>{data?.descripcion}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Fecha</TableCell>
+                <TableCell>Fecha creación</TableCell>
                 <TableCell>{formato(data.fecha_creacion.split('T')[0])}</TableCell>
               </TableRow>
               <TableRow>

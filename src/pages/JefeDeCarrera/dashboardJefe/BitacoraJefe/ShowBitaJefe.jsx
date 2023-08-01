@@ -13,8 +13,13 @@ import { DocumentScanner, Image } from "@mui/icons-material";
 
 const ShowBitaJefe = () => {
   const { id } = useParams();
+  const id_usuario  = localStorage.getItem("id_usuario");
+
   const { data, status, refetch } = useQuery("bitacorajefe", async () => {
-    const response = await clienteAxios.get(`/bitacorajefe/getAll`);
+    const response = await clienteAxios.post(`/bitacorajefe/getAll`,{
+        id_usuario:id_usuario
+    });
+    
     // console.log(response.data)
     return response.data;
   }, {
@@ -92,12 +97,12 @@ const ShowBitaJefe = () => {
   return (
     <Container maxWidth="lg" sx={{
 
-      maxHeight: '100vh',
+  
       marginBottom: '15px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center', // Centrado vertical
-      minHeight: '100vh', // Ocupar al menos toda la altura de la pantalla
+      // Ocupar al menos toda la altura de la pantalla
     }}>
       <Box
         sx={{
@@ -134,7 +139,7 @@ const ShowBitaJefe = () => {
        
         <TableContainer 
           // border: '1px solid black', // Agrega un borde
-          component={Paper} sx={{width:"90%",margin:"0px auto",marginBottom:"10px",maxHeight: 400}}// Para centrar horizontalmente
+          component={Paper} sx={{width:"90%",margin:"0px auto",marginBottom:"10px",maxHeight: 350}}// Para centrar horizontalmente
         >
           <Table>
             <TableHead>

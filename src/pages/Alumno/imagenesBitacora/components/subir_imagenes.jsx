@@ -36,7 +36,7 @@ const SubirImagenes = ({id})=>{
         
         if(response.status==200){
             Swal.fire({
-                title:"Registrado",
+                title:"Registrada",
                 text:"La imagen ha sido registrada correctamente",
                 icon:"success",
                 confirmButtonText:"Aceptar"
@@ -66,7 +66,7 @@ const SubirImagenes = ({id})=>{
                     setPdf(true);
                     Swal.fire({
                         title:"Error",
-                        text:"El tipo de archivo no es el formato señalado.",
+                        text:"El tipo de imagen no es el formato señalado.",
                         icon:"error",
                         confirmButtonText:"Aceptar"
                     })
@@ -116,11 +116,11 @@ const SubirImagenes = ({id})=>{
                         p: 4,
                         }}
                 >
-                    <form action="" onSubmit={onSubmit} style={{width:"100%",margin:"0px auto",display:"flex",flexDirection:"column"}}>
+                    <form action="" onSubmit={onSubmit} style={{width:"90%",margin:"0px auto",display:"flex",flexDirection:"column"}}>
               
-                        <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Subir Archivo</Typography>
+                        <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Subir Imágen</Typography>
                 
-                            <Grid container sx={{width:"90%",display:"flex",justifyContent:"center"}} >
+                            <Grid container sx={{width:"90%",display:"flex",margin:"0px auto",justifyContent:"center"}} >
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} >
                                     <TextField required type="file" onChange={handleArchivoSeleccionado}
                                     fullWidth />
@@ -128,7 +128,7 @@ const SubirImagenes = ({id})=>{
                                 </Grid>
                                 
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} sx={{marginTop:"10px"}}>
-                                    <Button disabled={isPdf} sx={{display:"block",margin:"0px auto"}} type="submit" variant="contained">Enviar archivo</Button>
+                                    <Button disabled={isPdf} sx={{display:"block",margin:"0px auto"}} type="submit" variant="contained">Enviar Imagen</Button>
                                 </Grid>
                             </Grid>
                        

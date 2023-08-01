@@ -21,7 +21,7 @@ const ComprobarInscripcion = ()=>{
     if(status=="success" && data.inscrito_sistema){
      
         return(
-            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
+            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"15px"}}>
                
                 <Grid item>
                     <Alert >Práctica inscrita en el sistema</Alert>
@@ -35,7 +35,7 @@ const ComprobarInscripcion = ()=>{
     if(status=="success" && data.inscrito_sistema==false){
      
         return(
-            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
+            <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"15px"}}>
                 <Grid item>
                      <Alert severity="warning" >No estas inscrito en el sistema</Alert>
                 </Grid>

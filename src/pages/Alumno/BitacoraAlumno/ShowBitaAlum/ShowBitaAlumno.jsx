@@ -105,12 +105,12 @@ const BitacoraDelete = async (id) => {
 
   return (
     <Container maxWidth="lg" sx={{
-      maxHeight: '100vh',
+     
       marginBottom: '15px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      minHeight: '100vh', // Ocupar al menos toda la altura de la pantalla
+       // Ocupar al menos toda la altura de la pantalla
 
     }}>
       <Box
@@ -142,19 +142,20 @@ const BitacoraDelete = async (id) => {
         <TableContainer sx={{
       // Agrega un borde
           borderRadius: '5px', // Redondea los bordes
-          maxHeight: '400px', // Altura máxima
+          maxHeight: '350px', // Altura máxima
           overflow: 'auto', // Muestra una barra de desplazamiento cuando el contenido sobrepasa la altura máxima
           boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)', // Añade sombra
-          maxWidth: '70%', // Para centrar horizontalmente
+          maxWidth: '75%', // Para centrar horizontalmente
           paddingBottom: '5px',
           // Para centrar horizontalmente
         }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 'bold', width: '33%', height: '50px' }}>Título</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', width: '33%', height: '50px' }}>Estado Bitacora</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', width: '33%', height: '50px' }}>Acciones</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>Título</TableCell>
+                <TableCell sx={{fontWeight:"bold"}}>Fecha creación</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>Estado Bitacora</TableCell>
+                <TableCell sx={{ fontWeight: 'bold'}}>Acciones</TableCell>
              
 
               </TableRow>
@@ -162,9 +163,10 @@ const BitacoraDelete = async (id) => {
             <TableBody>
               {data.bitacoras.map((bitacora, idx) => (
                 <TableRow key={idx}>
-                  <TableCell style={{ width: '33%', height: '50px' , wordWrap: 'break-word', maxWidth: '300px' }}>{bitacora.titulo}</TableCell>
-                  <TableCell style={{ width: '33%', height: '50px' }}>{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
-                  <TableCell style={{ width: '33%', height: '50px' }}>
+                  <TableCell style={{ wordWrap: 'break-word'}}>{bitacora.titulo}</TableCell>
+                  <TableCell>{formato(bitacora.fecha_creacion.split("T")[0])}</TableCell>
+                  <TableCell >{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
+                  <TableCell>
                     <IconButton onClick={() => handleNavigate(bitacora.id_bitacora)}>
                       <Tooltip title="Ver detalle bitácora">
                           <VisibilityIcon />

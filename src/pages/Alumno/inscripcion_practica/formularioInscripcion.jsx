@@ -92,6 +92,7 @@ const FormularioInscripcion = ()=>{
                     })
                     setTimeout(()=>{
                         Swal.close();
+                       
                         navigate("/alumno")
                     },2000)
                 }

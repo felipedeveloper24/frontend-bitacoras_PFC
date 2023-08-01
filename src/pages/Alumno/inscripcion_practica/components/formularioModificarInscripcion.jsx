@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { School } from "@mui/icons-material";
 
 
 const FormularioModificarInscripcion = ()=>{
@@ -235,7 +236,7 @@ const FormularioModificarInscripcion = ()=>{
 
     return (
         <form style={{width:"75%",margin:"0px auto",marginTop:"10px",marginBottom:"10px"}} onSubmit={onSubmit}>
-            <Typography variant="h5" sx={{textAlign:"center",marginBottom:"15px"}}>Modificar Inscripción</Typography>
+            <Typography variant="h5" sx={{textAlign:"center",marginBottom:"15px",justifyContent:"center",display:"flex",alignItems:"center"}}>Modificar Inscripción <School style={{marginLeft:"5px"}}/> </Typography>
         <Card sx={{padding:"20px",backgroundColor:"#f4f5f7"}}>
             <Grid container spacing={2}>
                 <Grid item  xs={11} xl={6} lg={6} md={6} sm={10}>

@@ -3,6 +3,7 @@ import HeaderAlumno from "../../../components/headers/headerAlumno";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useParams } from "react-router-dom";
+import { Checklist } from "@mui/icons-material";
 
 
 
@@ -19,9 +20,9 @@ const DetalleOfertaPractica = ()=>{
                 
                 {
                     getOferta.status=="success" && getOferta.data.oferta &&
-                    <Card sx={{width:"80%",padding:"40px"}}>
-                        <Typography sx={{textAlign:"center"}} variant="h5">Detalle oferta</Typography>
-                        <Card sx={{padding:"30px"}}>
+                        <>
+                        <Typography sx={{textAlign:"center", marginTop:"15px",marginBottom:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h5">Detalle oferta <Checklist style={{marginLeft:"5px"}}/> </Typography>
+                        <Card sx={{padding:"30px",width:"70%",backgroundColor:"#f4f5f7"}}>
                              <Typography sx={{marginBottom:"10px",fontFamily:"cursive"}}> Descripción: {getOferta.data.oferta.descripcion}</Typography>
                              <cite style={{fontFamily:"cursive"}}>Empresa: {getOferta.data.oferta.empresa.razon_social} </cite>
                              <br />
@@ -29,8 +30,8 @@ const DetalleOfertaPractica = ()=>{
                              <br/>
                              <cite style={{fontFamily:"cursive"}}>Teléfono: {getOferta.data.oferta.empresa.telefono} </cite>
                         </Card>
-                        <Card sx={{padding:"30px",marginTop:"10px"}}>
-                            <Typography sx={{fontFamily:"cursive"}} >Condiciones:</Typography>
+                        <Card sx={{padding:"30px",marginTop:"10px",width:"70%",marginBottom:"10px",backgroundColor:"#f4f5f7"}}>
+                            <Typography sx={{fontFamily:"cursive",marginLeft:"14px"}} >Condiciones:</Typography>
                             <List>
                                 <ListItem>
                                     <ListItemText>Modalidad: {getOferta.data.oferta.modalidad.nombre_modalidad} </ListItemText>
@@ -42,7 +43,7 @@ const DetalleOfertaPractica = ()=>{
                         </Card>
                         
     
-                    </Card>
+                    </>
                 }
                 
             </Grid>

@@ -1,15 +1,16 @@
+import { Person } from "@mui/icons-material";
 import { Grid, Typography,Box ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from "@mui/material"
 
 const DatosPersonales = ({data})=>{
     
     return (
         <Grid sx={{width:"100%"}}>
-            <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
+            <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"15px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                         <Table>
                         <TableHead sx={{ width: "100%", textAlign: "center" }}>
                         <TableRow>
                             <TableCell colSpan={2}>
-                            <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Datos personales</Typography>
+                            <Typography variant="subtitle1" sx={{textAlign:"center",display:"flex",alignItems:"center",justifyContent:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Datos personales <Person style={{marginLeft:"5px"}} /></Typography>
                             </TableCell>
                         </TableRow>
                         </TableHead>

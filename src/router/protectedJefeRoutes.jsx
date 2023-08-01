@@ -19,7 +19,7 @@ export const ProtectedRouteJefe = ({children,redirectTo="/"})=>{
     }
     //Cuando se cae el context
     rol = localStorage.getItem("rol");
-    if(!rol==2){
+    if(!rol==2 || !rol==4){
         return <Navigate to={redirectTo}/>
     }
     return <Outlet/>
