@@ -210,7 +210,7 @@ const FormularioModificarInscripcion = ()=>{
                     if(response_inscripcion.status==200){
                         
                         Swal.fire({
-                            title:"Registrada",
+                            title:"Actualizada",
                             text:"La inscripción ha sida actualizada correctamente",
                             icon:"success",
                             confirmButtonText:"Aceptar",
@@ -307,7 +307,7 @@ const FormularioModificarInscripcion = ()=>{
                                    <TextField sx={{backgroundColor:"white"}} value={apellido} label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                   <TextField sx={{backgroundColor:"white"}} value={telefono} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
+                                   <TextField sx={{backgroundColor:"white"}} placeholder="9xxxxxxxx"  value={telefono} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                    <TextField sx={{backgroundColor:"white"}} value={correo} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />

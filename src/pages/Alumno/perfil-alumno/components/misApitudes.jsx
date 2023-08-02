@@ -93,9 +93,25 @@ const MisAptitudes = ({id_alumno})=>{
     if(getAptitudes.status=="success" && !getAptitudes.data.aptitudes){
      
         return (
-            <Grid sx={{width:"40%",margin:"0px auto",marginTop:"20px"}}>
-        
-                <Alert severity="error">No tiene aptitudes asociadas</Alert>
+            <Grid sx={{width:"60%",margin:"0px auto",marginTop:"20px"}}>
+                 <Box sx={{ display: 'flex', flexDirection: 'column',alignItems:"center", minHeight: '100vh' }}>
+                       
+                   
+                       <TableContainer component={Paper} sx={{ maxWidth: '80%', boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
+                           <Table>
+                               <TableHead sx={{ width: "100%", textAlign: "center" }}>
+                                   <TableRow>
+                                       <TableCell colSpan={2}>
+                                       <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado de aptitudes</Typography>
+                                       </TableCell>
+                                   </TableRow>
+                               </TableHead>
+
+                           </Table>
+                           <Alert severity="error">No hay aptitudes registradas</Alert>
+                       </TableContainer>
+                   </Box>
+
             </Grid>
         )
     }

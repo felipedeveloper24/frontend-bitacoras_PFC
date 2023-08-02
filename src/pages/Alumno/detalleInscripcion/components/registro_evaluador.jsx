@@ -3,6 +3,7 @@ import { useState } from "react";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { QueryClient } from "react-query";
 
 
 
@@ -12,6 +13,7 @@ const RegistroEvaluador = () => {
     const [telefono, setTelefono] = useState("");
     const [correo, setCorreo] = useState("");
     const navigate = useNavigate();
+    const queryClient = new QueryClient();
     const id_inscribe = localStorage.getItem("id_inscribe");
     const onSubmit = async(e)=>{
         e.preventDefault();
@@ -36,6 +38,7 @@ const RegistroEvaluador = () => {
                 })
                 setTimeout(()=>{
                     Swal.close();
+                    window.location.reload();
                     navigate(`/detalleinscripcion/${id_inscribe}`)
                 },2000)
              }
@@ -55,7 +58,7 @@ const RegistroEvaluador = () => {
                         <TextField label="Apellido" onChange={(e) => { setApellido(e.target.value) }} required fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField label="Teléfono" onChange={(e) => { setTelefono(e.target.value) }} required fullWidth />
+                        <TextField label="Teléfono" placeholder="9xxxxxxxx" onChange={(e) => { setTelefono(e.target.value) }} required fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <TextField label="Correo" type="email" onChange={(e) => setCorreo(e.target.value)} required fullWidth />

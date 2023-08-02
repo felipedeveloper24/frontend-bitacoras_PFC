@@ -133,7 +133,7 @@ const FormularioRegistro = () => {
                     
                         <form method="POST" ref={formRef} onSubmit={handleSubmit(onSubmit)} >
                             <Grid sx={{marginBottom:"10px",marginTop:"10px"}}>
-                                <TextField label="Rut" fullWidth 
+                                <TextField label="Rut empresa" fullWidth 
                                 {...register("rut_empresa",{required:true})}
                                 />
                                 {errors.rut_empresa && <Alert sx={{marginTop:"5px"}} severity="error" >Este campo es requerido</Alert>}
@@ -159,6 +159,7 @@ const FormularioRegistro = () => {
                                         id="yes-no-select"
                                         value={selectedValue}
                                         label="Centro de práctica"
+                                        required
                                         onChange={handleChange} 
                                         fullWidth >
                                     <MenuItem value={1}>Si</MenuItem>

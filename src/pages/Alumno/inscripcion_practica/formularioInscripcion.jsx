@@ -271,7 +271,7 @@ const FormularioInscripcion = ()=>{
                                     <TextField sx={{backgroundColor:"white"}} label="Apellido" onChange={(e)=>{setApellido(e.target.value)}} required fullWidth />
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                    <TextField sx={{backgroundColor:"white"}} label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
+                                    <TextField sx={{backgroundColor:"white"}} placeholder="9xxxxxxxx"  label="Teléfono" onChange={(e)=>{setTelefono(e.target.value)}} required fullWidth />
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                     <TextField sx={{backgroundColor:"white"}} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />

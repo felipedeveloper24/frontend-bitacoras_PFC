@@ -37,8 +37,10 @@ const Detalle = ({id})=>{
                             <TableCell>Modalidad</TableCell>
                             <TableCell>Representante</TableCell>
                             <TableCell>Nota</TableCell>
-                            <TableCell>Estado</TableCell>
+                            <TableCell>Estado Solicitud</TableCell>
                             <TableCell>Acciones</TableCell>
+                                
+                            
                         </TableRow>
                             </TableHead>
                                 <TableBody>
@@ -80,13 +82,20 @@ const Detalle = ({id})=>{
                                             }
                                             {data.estado_inscripcion.nombre_estado_inscripcion}
                                         </TableCell>
+
                                         <TableCell>
-                                            <Tooltip title="Modificar inscripción" >
-                                                 <Edit sx={{cursor:"pointer"}} onClick={()=>{navigate(`/modificarinscripcion/${id}`)}} />
-                                            </Tooltip>
-                                            <Tooltip title="Documentos">
-                                                  <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.id_inscripcion_practica}`)}} />
-                                            </Tooltip>
+                                            
+                                                    <Tooltip title="Modificar inscripción" >
+                                                        <Edit sx={{cursor:"pointer"}}  onClick={()=>{navigate(`/modificarinscripcion/${id}`)}} />
+                                                    </Tooltip>
+                                                    <Tooltip title="Documentos">
+                                                        <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.id_inscripcion_practica}`)}} />
+                                                    </Tooltip>
+                                                  
+                                              
+                                            
+                                            
+                                            
                                             
                                         </TableCell>
                                     </TableRow>   
