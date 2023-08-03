@@ -1,22 +1,26 @@
+
+
 import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useQuery } from "react-query";
-import clienteAxios from "../../../../helpers/clienteaxios";
 
 import { useState } from "react";
 import { Delete, Download } from "@mui/icons-material";
 import FileSaver from "file-saver";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import clienteAxios from "../../../../../helpers/clienteaxios";
+
 
 
 const MostrarImagenes = ({id}) =>{
     const [archivos,setArchivos] = useState([]);
-   
-    const getimagenes = useQuery("imagenes_jefe",async()=>{
-      
-        const response = await clienteAxios.post(`/archivojefe/getimagenes`,{
-            id_bitacora: Number(id)
+    const id_bitacora = id;
+    const navigate = useNavigate();
+    const getimagenes = useQuery("imagenes_bitacora_alumno",async()=>{
+        const response = await clienteAxios.post(`/archivoalumno/getimagenes`,{
+            id_bitacora:Number(id_bitacora)
         }) 
-       
+        
         if(response.status==200){
             if(response.data.archivos){
                 const imagesData = response.data.archivos;
@@ -51,17 +55,18 @@ const MostrarImagenes = ({id}) =>{
             cancelButtonText:"Cancelar"
         }).then(async(result) =>{
             if(result.isConfirmed){
-                const response = await clienteAxios.delete(`/archivojefe/delete/${id}`);
+                const response = await clienteAxios.delete(`/archivoalumno/delete/${id}`);
                 if(response.status==200){
                     Swal.fire({
-                        title:"Eliminado",
-                        text:"El archivo ha sido eliminado correctamente",
+                        title:"Eliminada",
+                        text:"La imágen ha sido eliminada correctamente",
                         icon:"success",
                         confirmButtonText:"Aceptar"
                     })
                     setTimeout(()=>{
                         Swal.close();
-                        getimagenes.refetch();
+                        navigate(`/imagenesbitacora/${id_bitacora}`)
+                        getimagenes.refetch()
                     },2000)
                    
                 }
@@ -78,8 +83,7 @@ const MostrarImagenes = ({id}) =>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-    
-                        <TableCell>Nombre</TableCell>                 
+                        <TableCell>Nombre</TableCell>
                         <TableCell>Acciones</TableCell>
                     </TableRow>
                     </TableHead>
@@ -93,7 +97,7 @@ const MostrarImagenes = ({id}) =>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
            
-                <TableContainer component={Paper} sx={{width:"80%",margin:"0px auto",marginTop:"15px"}}>
+                <TableContainer component={Paper} sx={{width:"50%",margin:"0px auto",marginTop:"15px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
@@ -122,7 +126,7 @@ const MostrarImagenes = ({id}) =>{
                      }
                 </TableBody>
                 </Table>
-                {archivos.length==0 && <Alert severity="error" >No hay registro de imágenes</Alert>}
+                {archivos.length==0 && <Alert severity="error" >No hay registro de imagenes</Alert>}
                 </TableContainer>
             </Grid>
         )

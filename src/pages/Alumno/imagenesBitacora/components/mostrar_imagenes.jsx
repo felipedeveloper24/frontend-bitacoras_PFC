@@ -15,7 +15,9 @@ const MostrarImagenes = ({id}) =>{
     const id_bitacora = id;
     const navigate = useNavigate();
     const getimagenes = useQuery("imagenes_bitacora_alumno",async()=>{
-        const response = await clienteAxios.get(`/archivoalumno/getimagenes/${id}`) 
+        const response = await clienteAxios.post(`/archivoalumno/getimagenes`,{
+            id_bitacora:Number(id_bitacora)
+        }) 
         
         if(response.status==200){
             if(response.data.archivos){
@@ -79,9 +81,7 @@ const MostrarImagenes = ({id}) =>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Id archivo</TableCell>
                         <TableCell>Nombre</TableCell>
-                        <TableCell>Tipo</TableCell>
                         <TableCell>Acciones</TableCell>
                     </TableRow>
                     </TableHead>

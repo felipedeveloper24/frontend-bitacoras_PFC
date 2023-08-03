@@ -46,6 +46,8 @@ import EvaluarPractica from './pages/ProfesionalApoyo/dashboardProfesional/estad
 import AptitudesAlumno from './pages/ProfesionalApoyo/dashboardProfesional/aptitudes_alumno/AptitudesAlumno'
 import BitacorasAlumno from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/bitacorasAlumno'
 import DetalleBitacora from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/detalleBitacora'
+import VerArchivos from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/verArchivos'
+import VerImagenes from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/verImagenes'
 
 
 const queryClient = new QueryClient();
@@ -98,11 +100,13 @@ function App() {
                                 <Route path="/estadopracticas/:anio/:periodo/:asignatura/:carrera" element={<EstadoPracticas/>}/>
                                 <Route path="/informaciongeneral/:inscribe" element={<InformacionGeneral/>} />
                                 <Route path="/documentosinscripcionpractica/:id" element={<VerDocumentosInscripcion/>} />
-                  
+
                                 <Route path="/evaluarinscripcion/:id" element={<EvaluarPractica/>} />
                                 <Route path="/aptitudes/:id" element={<AptitudesAlumno/>} />
                                 <Route path="/bitacoras/:id" element={<BitacorasAlumno/>} />
                                 <Route path="/detallebitacora/:id" element={<DetalleBitacora/>} />
+                                <Route path='/verarchivobitacoras/:id' element={<VerArchivos/>} />
+                                <Route path='/verimagenesbitacoras/:id' element={<VerImagenes/>} />
                             </Route>
                         
                      </Routes>

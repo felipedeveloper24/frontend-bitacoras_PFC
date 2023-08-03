@@ -17,7 +17,9 @@ const MostrarArchivos = ()=>{
     const {id} = useParams();
     const id_bitacora = id;
     const getArchivos = useQuery("archivos_bitacora", async()=>{
-        const response = await clienteAxios.get(`/archivoalumno/getpdf/${id}`)
+        const response = await clienteAxios.post(`/archivoalumno/getpdf`,{
+            id_bitacora:Number(id_bitacora)
+        })
         if(response.status==200){
             if(response.data.archivos){
         
@@ -76,9 +78,7 @@ const MostrarArchivos = ()=>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Id archivo</TableCell>
                         <TableCell>Nombre</TableCell>
-                        <TableCell>Tipo</TableCell>
                         <TableCell>Acciones</TableCell>
                     </TableRow>
                     </TableHead>

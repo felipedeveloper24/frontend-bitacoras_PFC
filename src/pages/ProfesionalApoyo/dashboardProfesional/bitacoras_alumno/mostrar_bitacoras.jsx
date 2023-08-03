@@ -1,4 +1,4 @@
-import {ContentPasteGo, Visibility } from "@mui/icons-material";
+import {AssignmentReturn, ContentPasteGo, Image, Visibility } from "@mui/icons-material";
 import { Box, Button, CircularProgress, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -112,9 +112,19 @@ const MostrarBitacoras = ()=>{
                     <IconButton onClick={() => handleNavigate(bitacora.id_bitacora)}>
                       <Tooltip title="Ver detalle bitácora">
                           <Visibility />
-                          
                       </Tooltip>
                     </IconButton>
+                    <IconButton onClick={() => navigate(`/verarchivobitacoras/${bitacora.id_bitacora}`) }>
+                      <Tooltip title="Archivos bitácora">
+                        <AssignmentReturn/>
+                      </Tooltip>
+                    </IconButton>
+                    <IconButton onClick={() => navigate(`/verimagenesbitacoras/${bitacora.id_bitacora}`) }>
+                      <Tooltip title="Imagénes bitácora">
+                        <Image/>
+                      </Tooltip>
+                    </IconButton>
+                    
                     </TableCell>
                 </TableRow>
               ))}

@@ -9,6 +9,7 @@ import {useNavigate } from "react-router-dom";
 
 import logoubb from "../../assets/logoubb.png"
 import { Output } from "@mui/icons-material";
+import Swal from "sweetalert2";
 
 const HeaderAlumno = ()=>{
     
@@ -18,7 +19,19 @@ const HeaderAlumno = ()=>{
         setOpen(!open);
       };
     const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
-  
+    const logout = ()=>{
+        setOpen(false)
+        Swal.fire(
+            'Cerrando sesión',
+            'redireccionando...',
+            'success'
+          )
+        setTimeout(()=>{
+            Swal.close();
+         
+            navigate("/");
+        },2000)
+    }
     return(
         <Grid container sx={{width:"100%",display:"flex",backgroundColor:"#326FA6",height:"80px", alignItems:"center"}}>
              <Grid sx={{width:"10%",display:"flex",justifyContent:"center"}}>
@@ -58,7 +71,7 @@ const HeaderAlumno = ()=>{
                         <ListItemText sx={{textAlign:"center"}} primary="Aptitudes" />
                     </ListItem>
                    
-                    <ListItem button onClick={()=>navigate("/")} >
+                    <ListItem button onClick={logout} >
                          <ListItemText  sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>
                                <p> Cerrar Sesión</p> <Output/>
                          </ListItemText>

@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import logoubb from "../../assets/logoubb.png"
 import { Output } from "@mui/icons-material";
+import Swal from "sweetalert2";
 
 const HeaderProfesional = ()=>{
     const [open, setOpen] = useState(false);
@@ -16,6 +17,20 @@ const HeaderProfesional = ()=>{
     const handleToggleMenu = () => {
         setOpen(!open);
       };
+    
+    const logout = ()=>{
+        setOpen(false)
+        Swal.fire(
+            'Cerrando sesión',
+            'redireccionando...',
+            'success'
+          )
+        setTimeout(()=>{
+            Swal.close();
+         
+            navigate("/");
+        },2000)
+    }
       
     return(
         <Grid container sx={{width:"100%",display:"flex",backgroundColor:"#326FA6",height:"80px", alignItems:"center"}}>
@@ -49,7 +64,7 @@ const HeaderProfesional = ()=>{
                          </ListItemText>
                     
                     </ListItem>
-                    <ListItem button onClick={()=>navigate("/")} >
+                    <ListItem button onClick={logout} >
                          <ListItemText  sx={{textAlign:"center",display:"flex",flexWrap:"nowrap",justifyContent:"center",alignItems:"center"}}>
                                <p> Cerrar Sesión</p> <Output/>
                          </ListItemText>

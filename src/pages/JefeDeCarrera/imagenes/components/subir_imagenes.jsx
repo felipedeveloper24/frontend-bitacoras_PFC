@@ -94,7 +94,7 @@ const SubirImagenes = ({id})=>{
         <>
         <Grid sx={{display:"flex",margin:"0px auto",flexDirection:"column", marginTop:"15px"}}>
             <Typography variant="h5" sx={{display:"flex",alignItems:"center",marginTop:"10px",marginBottom:"10px"}}>Listado de imágenes <PhotoSizeSelectActual style={{fontSize:30,marginLeft:"5px"}}/></Typography>
-            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir archivo</Button>
+            <Button variant="contained" sx={{marginLeft:"10px"}} onClick={handleOpen}  >Subir Imagen</Button>
         </Grid>
        
             <Modal sx={{zIndex:2}} open={open}  onClose={handleClose}>

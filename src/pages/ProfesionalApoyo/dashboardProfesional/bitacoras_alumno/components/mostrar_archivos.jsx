@@ -1,23 +1,24 @@
 
 import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 import { Delete, Download } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
 import { useNavigate, useParams } from "react-router-dom";
-import clienteAxios from "../../../../helpers/clienteaxios";
+import clienteAxios from "../../../../../helpers/clienteaxios";
 
 
 const MostrarArchivos = ()=>{
 
     const [archivos,setArchivos] = useState([]);
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const {id} = useParams();
     const id_bitacora = id;
-    const navigate = useNavigate();
-    const getArchivos = useQuery("archivos_jefe", async()=>{
-        const response = await clienteAxios.post(`/archivojefe/getpdf`,{
+    const getArchivos = useQuery("archivos_bitacora", async()=>{
+        const response = await clienteAxios.post(`/archivoalumno/getpdf`,{
             id_bitacora:Number(id_bitacora)
         })
         if(response.status==200){
@@ -40,34 +41,7 @@ const MostrarArchivos = ()=>{
         FileSaver.saveAs(pdfBlob, pdfName);
     };
     
-    const eliminar_archivo = async(id)=>{
-        Swal.fire({
-            title: '¿Estás seguro si quieres eliminar el archivo?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí',
-            cancelButtonText:"Cancelar"
-        }).then(async(result) =>{
-            if(result.isConfirmed){
-                const response = await clienteAxios.delete(`/archivojefe/delete/${id}`);
-                if(response.status==200){
-                    Swal.fire({
-                        title:"Eliminado",
-                        text:"El archivo ha sido eliminado correctamente",
-                        icon:"success",
-                        confirmButtonText:"Aceptar"
-                    })
-                    setTimeout(()=>{
-                        Swal.close();
-                        getArchivos.refetch();
-                    },2000)
-                   
-                }
-            }
-        });
-    }
+
     if(getArchivos.status == "success" && !getArchivos.data.archivos){
         return (
             
@@ -77,9 +51,7 @@ const MostrarArchivos = ()=>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Id archivo</TableCell>
                         <TableCell>Nombre</TableCell>
-                        <TableCell>Tipo</TableCell>
                         <TableCell>Acciones</TableCell>
                     </TableRow>
                     </TableHead>
@@ -93,7 +65,7 @@ const MostrarArchivos = ()=>{
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
            
-                <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
+                <TableContainer component={Paper} sx={{width:"70%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
@@ -112,7 +84,7 @@ const MostrarArchivos = ()=>{
                               
                                 <TableCell>
                                     <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
-                                    <Delete sx={{cursor:"pointer"}} onClick={()=>{eliminar_archivo(archivo.id_archivo)}} />
+                                   
                                 </TableCell>
                             </TableRow>
                         ))

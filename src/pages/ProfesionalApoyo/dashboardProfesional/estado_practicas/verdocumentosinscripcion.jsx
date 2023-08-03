@@ -15,7 +15,9 @@ const VerDocumentosInscripcion = ()=>{
     
     const [archivos,setArchivos] = useState([]);
     const getArchivos = useQuery("archivos", async()=>{
-        const response = await clienteAxios.get(`/archivoinscripcion/getall/${id}`)
+        const response = await clienteAxios.post(`/archivoinscripcion/getall`,{
+            id_inscripcion:Number(id)
+        })
         if(response.status==200){
             if(response.data.archivos){
                 const pdfsData = response.data.archivos;

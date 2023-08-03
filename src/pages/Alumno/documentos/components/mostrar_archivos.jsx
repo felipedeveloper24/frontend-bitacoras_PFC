@@ -15,7 +15,9 @@ const MostrarArchivos = ({id})=>{
     const navigate = useNavigate();
     const queryClient = useQueryClient()
     const getArchivos = useQuery("archivosinscripcion", async()=>{
-        const response = await clienteAxios.get(`/archivoinscripcion/getall/${id}`)
+        const response = await clienteAxios.post(`/archivoinscripcion/getall`,{
+            id_inscripcion:Number(id_inscripcion)
+        })
         if(response.status==200){
             if(response.data.archivos){
                 const pdfsData = response.data.archivos;

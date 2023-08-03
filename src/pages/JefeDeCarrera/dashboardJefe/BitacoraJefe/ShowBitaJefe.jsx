@@ -144,10 +144,11 @@ const ShowBitaJefe = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Título:</TableCell>
-                <TableCell >Estado Bitácora:</TableCell>
-                <TableCell >Tipo Bitácora:</TableCell>
-                <TableCell>Acciones:</TableCell>
+                <TableCell>Título</TableCell>
+                <TableCell>Fecha Creación</TableCell>
+                <TableCell >Estado Bitácora</TableCell>
+                <TableCell >Tipo Bitácora</TableCell>
+                <TableCell>Acciones</TableCell>
 
               </TableRow>
             </TableHead>
@@ -155,6 +156,7 @@ const ShowBitaJefe = () => {
               {data.bitacojefe.map((bitacora, idx) => (
                 <TableRow key={idx} >
                   <TableCell style={{ wordWrap: 'break-word', maxWidth: '300px' }}>{bitacora.titulo}</TableCell>
+                  <TableCell>{formato(bitacora.fecha_creacion.split("T")[0])}</TableCell>
                   <TableCell >{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
                   <TableCell >{bitacora.tipo_bitacora.nombre_tipo_bitacora} </TableCell>
 
