@@ -62,13 +62,13 @@ const DetalleInscripcion = ({id})=>{
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
                             <TableRow>
-                            <TableCell>Fecha Inicio</TableCell>
-                            <TableCell>Fecha Término</TableCell>
-                            <TableCell>Observaciones</TableCell>
-                            <TableCell>Modalidad</TableCell>
-                            <TableCell>Nota</TableCell>
-                            <TableCell>Estado</TableCell>
-                            <TableCell>Acciones</TableCell>
+                            <TableCell><strong>Fecha Inicio</strong></TableCell>
+                            <TableCell><strong>Fecha Término</strong></TableCell>
+                            <TableCell><strong>Observaciones</strong></TableCell>
+                            <TableCell><strong>Modalidad</strong></TableCell>
+                            <TableCell><strong>Nota</strong></TableCell>
+                            <TableCell><strong>Estado</strong></TableCell>
+                            <TableCell><strong>Acciones</strong></TableCell>
                         </TableRow>
                             </TableHead>
                                 <TableBody>
@@ -114,9 +114,14 @@ const DetalleInscripcion = ({id})=>{
                                             <Tooltip title="Evaluar solicitud de inscripción" >
                                                  <Edit sx={{cursor:"pointer"}} onClick={handleOpen} />
                                             </Tooltip>
-                                            <Tooltip title="Evaluar práctica" >
-                                                 <ContentPasteSearchOutlined sx={{cursor:"pointer"}} onClick={()=>{navigate(`/evaluarinscripcion/${id}`)}} />
-                                            </Tooltip>
+                                            {
+                                                data.inscripcion.estado_inscripcion.id_estado_inscripcion != 2 && (
+                                                    <Tooltip title="Evaluar práctica" >
+                                                        <ContentPasteSearchOutlined sx={{cursor:"pointer"}} onClick={()=>{navigate(`/evaluarinscripcion/${id}`)}} />
+                                                    </Tooltip>
+                                                )
+                                            }
+                                           
                                             <Tooltip title="Documentos">
                                                   <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcionpractica/${data.inscripcion.id_inscripcion_practica}`)}} />
                                             </Tooltip>

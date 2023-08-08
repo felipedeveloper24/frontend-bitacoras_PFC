@@ -32,12 +32,12 @@ const ListadoAlumnos = ({anio,periodo,asignatura,carrera})=>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>RUT</TableCell>
-                        <TableCell >Nombre</TableCell>
-                        <TableCell>Apellido</TableCell>
-                        <TableCell>Correo</TableCell>
-                        <TableCell>Periodo académico</TableCell>
-                        <TableCell>Acciones</TableCell>
+                        <TableCell><strong>RUT</strong></TableCell>
+                        <TableCell><strong>Nombre</strong></TableCell>
+                        <TableCell><strong>Apellido</strong></TableCell>
+                        <TableCell><strong>Correo</strong></TableCell>
+                        <TableCell><strong>Periodo académico</strong></TableCell>
+                        <TableCell><strong>Acciones</strong></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>

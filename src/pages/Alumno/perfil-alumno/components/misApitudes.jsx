@@ -62,7 +62,7 @@ const MisAptitudes = ({id_alumno})=>{
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
                                 <TableRow>
                                     <TableCell colSpan={2}>
-                                    <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado de aptitudes</Typography>
+                                    <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}> <strong>Listado de aptitudes</strong></Typography>
                                     </TableCell>
                                 </TableRow>
                             </TableHead>
@@ -102,7 +102,7 @@ const MisAptitudes = ({id_alumno})=>{
                                <TableHead sx={{ width: "100%", textAlign: "center" }}>
                                    <TableRow>
                                        <TableCell colSpan={2}>
-                                       <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado de aptitudes</Typography>
+                                       <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}><strong>Listado de aptitudes</strong></Typography>
                                        </TableCell>
                                    </TableRow>
                                </TableHead>

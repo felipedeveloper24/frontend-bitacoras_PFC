@@ -31,7 +31,7 @@ const MostarAptitudes = ({id_alumno}) =>{
                         <Typography variant="h4" component="h1" gutterBottom sx={{ color: "black", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
                             <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
                                 <PsychologyAltRoundedIcon sx={{ fontSize: "3rem", mr: 2 }} />
-                                Aptitudes del alumno
+                                <strong>Listado de aptitudes</strong>
                                 <PsychologyAltRoundedIcon sx={{ fontSize: "3rem", ml: 2 }} />
                             </Box>
                         </Typography>
@@ -73,7 +73,7 @@ const MostarAptitudes = ({id_alumno}) =>{
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
                                 <TableRow>
                                     <TableCell colSpan={2}>
-                                    <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Listado de aptitudes</Typography>
+                                    <Typography variant="subtitle1" sx={{textAlign:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}><strong>Listado de aptitudes</strong></Typography>
                                     </TableCell>
                                 </TableRow>
                             </TableHead>

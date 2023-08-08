@@ -144,11 +144,11 @@ const ShowBitaJefe = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Título</TableCell>
-                <TableCell>Fecha Creación</TableCell>
-                <TableCell >Estado Bitácora</TableCell>
-                <TableCell >Tipo Bitácora</TableCell>
-                <TableCell>Acciones</TableCell>
+                <TableCell><strong>Título</strong></TableCell>
+                <TableCell><strong>Fecha Creación </strong> </TableCell>
+                <TableCell ><strong>Estado Bitácora</strong></TableCell>
+                <TableCell > <strong>Tipo Bitácora</strong></TableCell>
+                <TableCell> <strong>Acciones</strong></TableCell>
 
               </TableRow>
             </TableHead>

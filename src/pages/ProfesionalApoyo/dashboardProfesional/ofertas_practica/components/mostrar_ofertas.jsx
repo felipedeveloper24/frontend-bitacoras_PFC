@@ -65,13 +65,13 @@ const MostrarOfertas = ()=>{
                     <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Descripción</TableCell>
-                                <TableCell>Experiencia</TableCell>
-                                <TableCell>Cupos</TableCell>
-                                <TableCell>Modalidad</TableCell>
-                                <TableCell>Periódo académico</TableCell>
-                                <TableCell>Empresa</TableCell>
-                                <TableCell>Acciones</TableCell>
+                                <TableCell><strong>Descripción</strong></TableCell>
+                                <TableCell><strong>Experiencia</strong></TableCell>
+                                <TableCell><strong>Cupos</strong></TableCell>
+                                <TableCell><strong>Modalidad</strong></TableCell>
+                                <TableCell><strong>Período académico</strong></TableCell>
+                                <TableCell><strong>Empresa</strong></TableCell>
+                                <TableCell><strong>Acciones</strong></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

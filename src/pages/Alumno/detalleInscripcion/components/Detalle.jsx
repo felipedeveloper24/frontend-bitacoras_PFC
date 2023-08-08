@@ -31,14 +31,14 @@ const Detalle = ({id})=>{
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
                             <TableRow>
-                            <TableCell>Fecha Inicio</TableCell>
-                            <TableCell>Fecha Término</TableCell>
-                            <TableCell>Observaciones</TableCell>
-                            <TableCell>Modalidad</TableCell>
-                            <TableCell>Representante</TableCell>
-                            <TableCell>Nota</TableCell>
-                            <TableCell>Estado Solicitud</TableCell>
-                            <TableCell>Acciones</TableCell>
+                            <TableCell><strong>Fecha Inicio</strong></TableCell>
+                            <TableCell><strong>Fecha Término</strong></TableCell>
+                            <TableCell><strong>Observaciones</strong></TableCell>
+                            <TableCell><strong>Modalidad</strong></TableCell>
+                            <TableCell><strong>Representante</strong></TableCell>
+                            <TableCell><strong>Nota</strong></TableCell>
+                            <TableCell><strong>Estado Solicitud</strong></TableCell>
+                            <TableCell><strong>Acciones</strong></TableCell>
                                 
                             
                         </TableRow>

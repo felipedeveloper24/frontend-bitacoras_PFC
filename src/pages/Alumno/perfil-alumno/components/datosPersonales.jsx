@@ -18,48 +18,59 @@ const DatosPersonales = ({data})=>{
                             
                                     <TableRow>
                                         <TableCell >
-                                                Primer Nombre: {data.primer_nombre}
+                                                <strong>Primer Nombre:</strong> {data.primer_nombre}
                                         </TableCell>
                                         <TableCell >
-                                                Segundo Nombre: {data.segundo_nombre}
+                                                <strong>Segundo Nombre:</strong> {data.segundo_nombre}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell >
-                                                Apellido Paterno: {data.apellido_paterno}
+                                                <strong>Apellido Paterno: </strong>
+                                                {data.apellido_paterno}
                                         </TableCell>
                                         <TableCell >
-                                                    Apellido Materno: {data.apellido_materno}
+                                                   <strong>Apellido Materno: </strong>
+                                                   {data.apellido_materno}
                                             </TableCell>
                                     </TableRow>
                                     <TableRow>
                                             <TableCell >
-                                                Correo Institucional: {data.correo_institucional}
+                                                <strong>Correo Institucional: </strong>
+                                                {data.correo_institucional}
                                     
                                         </TableCell>
                                         <TableCell >
-                                                Correo Personal: {data.correo_personal}
+                                                <strong>Correo Personal: </strong>
+                                                {data.correo_personal}
+                                               
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell >
-                                                Dirección Académica: {data.direccion_academica}
+                                                <strong>Dirección Académica: </strong>
+                                                {data.direccion_academica}
+                                              
                                         </TableCell>
                                         <TableCell >
-                                                Dirección Particular: {data.direccion_particular}
+                                                <strong>Dirección Particular: </strong>
+                                                {data.direccion_particular}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>
-                                                Teléfono Personal: {data.telefono_personal}
+                                                <strong>Teléfono Personal: </strong>
+                                                {data.telefono_personal}
                                         </TableCell>
                                         <TableCell>
-                                                Teléfono familiar: {data.telefono_familiar}
+                                                <strong>Teléfono familiar: </strong>
+                                                 {data.telefono_familiar}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>
-                                                Carrera: {data.carrera.nombre_carrera}
+                                                <strong>Carrera: </strong>
+                                                {data.carrera.nombre_carrera}
                                         </TableCell>
                                     </TableRow>
                                     

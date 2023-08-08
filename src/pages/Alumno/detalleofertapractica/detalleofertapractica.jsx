@@ -23,21 +23,21 @@ const DetalleOfertaPractica = ()=>{
                         <>
                         <Typography sx={{textAlign:"center", marginTop:"15px",marginBottom:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h5">Detalle oferta <Checklist style={{marginLeft:"5px"}}/> </Typography>
                         <Card sx={{padding:"30px",width:"70%",backgroundColor:"#f4f5f7"}}>
-                             <Typography sx={{marginBottom:"10px",fontFamily:"cursive"}}> Descripción: {getOferta.data.oferta.descripcion}</Typography>
-                             <cite style={{fontFamily:"cursive"}}>Empresa: {getOferta.data.oferta.empresa.razon_social} </cite>
+                             <Typography sx={{marginBottom:"10px"}}> <strong>Descripción:</strong>  {getOferta.data.oferta.descripcion}</Typography>
+                             <Typography > <strong>Empresa:</strong>  {getOferta.data.oferta.empresa.razon_social} </Typography>
                              <br />
-                             <cite style={{fontFamily:"cursive"}}>Correo: {getOferta.data.oferta.empresa.correo} </cite>
+                             <Typography ><strong>Correo:</strong> {getOferta.data.oferta.empresa.correo} </Typography>
                              <br/>
-                             <cite style={{fontFamily:"cursive"}}>Teléfono: {getOferta.data.oferta.empresa.telefono} </cite>
+                             <Typography> <strong>Teléfono:</strong> {getOferta.data.oferta.empresa.telefono} </Typography>
                         </Card>
                         <Card sx={{padding:"30px",marginTop:"10px",width:"70%",marginBottom:"10px",backgroundColor:"#f4f5f7"}}>
-                            <Typography sx={{fontFamily:"cursive",marginLeft:"14px"}} >Condiciones:</Typography>
+                            <Typography sx={{marginLeft:"14px"}} ><strong>Condiciones:</strong> </Typography>
                             <List>
                                 <ListItem>
-                                    <ListItemText>Modalidad: {getOferta.data.oferta.modalidad.nombre_modalidad} </ListItemText>
+                                    <ListItemText sx={{}}> <strong>Modalidad:</strong> {getOferta.data.oferta.modalidad.nombre_modalidad} </ListItemText>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemText>Experiencia laboral: {getOferta.data.oferta.experiencia_laboral == true ? "Si" : "No"} </ListItemText>
+                                    <ListItemText> <strong>Experiencia laboral:</strong>  {getOferta.data.oferta.experiencia_laboral == true ? "Si" : "No"} </ListItemText>
                                 </ListItem>
                             </List>
                         </Card>

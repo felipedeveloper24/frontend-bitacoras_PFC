@@ -71,16 +71,16 @@ const TableEmpresa = ()=>{
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>ID_EMPRESA</TableCell>
-                        <TableCell >RUT</TableCell>
-                        <TableCell >Razón Social</TableCell>
-                        <TableCell>Dirección</TableCell>
-                        <TableCell>Centro Práctica</TableCell>
-                        <TableCell>Correo</TableCell>
-                        <TableCell>Teléfono</TableCell>
-                        <TableCell>Comuna</TableCell>
-                        <TableCell>Estado</TableCell>
-                        <TableCell>Acciones</TableCell>
+                    <TableCell><strong>ID Empresa</strong></TableCell>
+                    <TableCell><strong>Rut</strong></TableCell>
+                    <TableCell ><strong>Razón Social</strong></TableCell>
+                    <TableCell><strong>Dirección</strong></TableCell>
+                    <TableCell><strong>Centro Práctica</strong></TableCell>
+                    <TableCell><strong>Correo</strong></TableCell>
+                    <TableCell><strong>Teléfono</strong></TableCell>
+                    <TableCell><strong>Comuna</strong></TableCell>
+                    <TableCell><strong>Estado</strong></TableCell>
+                    <TableCell><strong>Acciones</strong></TableCell>
                     </TableRow>
                     </TableHead>
                 </Table>
@@ -97,16 +97,16 @@ const TableEmpresa = ()=>{
             <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell >RUT</TableCell>
-                    <TableCell >Razón Social</TableCell>
-                    <TableCell>Dirección</TableCell>
-                    <TableCell>Centro Práctica</TableCell>
-                    <TableCell>Correo</TableCell>
-                    <TableCell>Teléfono</TableCell>
-                    <TableCell>Comuna</TableCell>
-                    <TableCell>Estado</TableCell>
-                    <TableCell>Acciones</TableCell>
+                     <TableCell><strong>ID</strong></TableCell>
+                    <TableCell><strong>Rut</strong></TableCell>
+                    <TableCell ><strong>Razón Social</strong></TableCell>
+                    <TableCell><strong>Dirección</strong></TableCell>
+                    <TableCell><strong>Centro Práctica</strong></TableCell>
+                    <TableCell><strong>Correo</strong></TableCell>
+                    <TableCell><strong>Teléfono</strong></TableCell>
+                    <TableCell><strong>Comuna</strong></TableCell>
+                    <TableCell><strong>Estado</strong></TableCell>
+                    <TableCell><strong>Acciones</strong></TableCell>
                 </TableRow>
                 </TableHead>
            
@@ -137,16 +137,16 @@ const TableEmpresa = ()=>{
             <Table stickyHeader  aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell >RUT</TableCell>
-                    <TableCell >Razón Social</TableCell>
-                    <TableCell>Dirección</TableCell>
-                    <TableCell>Centro Práctica</TableCell>
-                    <TableCell>Correo</TableCell>
-                    <TableCell>Teléfono</TableCell>
-                    <TableCell>Comuna</TableCell>
-                    <TableCell>Estado</TableCell>
-                    <TableCell>Acciones</TableCell>
+                    <TableCell><strong>ID</strong></TableCell>
+                    <TableCell><strong>Rut</strong></TableCell>
+                    <TableCell ><strong>Razón Social</strong></TableCell>
+                    <TableCell><strong>Dirección</strong></TableCell>
+                    <TableCell><strong>Centro Práctica</strong></TableCell>
+                    <TableCell><strong>Correo</strong></TableCell>
+                    <TableCell><strong>Teléfono</strong></TableCell>
+                    <TableCell><strong>Comuna</strong></TableCell>
+                    <TableCell><strong>Estado</strong></TableCell>
+                    <TableCell><strong>Acciones</strong></TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
