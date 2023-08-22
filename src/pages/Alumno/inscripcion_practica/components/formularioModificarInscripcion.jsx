@@ -284,7 +284,7 @@ const FormularioModificarInscripcion = ()=>{
                                                     ofertas.status=="success" && Array.isArray(ofertas.data) == true  && (
                                                     
                                                         ofertas.data.map((oferta,idx)=>(
-                                                            <MenuItem value={oferta.id_oferta_practica} key={idx}>{oferta.descripcion}</MenuItem>
+                                                            <MenuItem value={oferta.id_oferta_practica} key={idx}> Empresa: {oferta.empresa.razon_social} - {oferta.descripcion}</MenuItem>
                                                         ))
                                                     )
                                                 }

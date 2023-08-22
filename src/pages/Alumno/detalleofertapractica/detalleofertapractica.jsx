@@ -21,7 +21,7 @@ const DetalleOfertaPractica = ()=>{
                 {
                     getOferta.status=="success" && getOferta.data.oferta &&
                         <>
-                        <Typography sx={{textAlign:"center", marginTop:"15px",marginBottom:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h5">Detalle oferta <Checklist style={{marginLeft:"5px"}}/> </Typography>
+                        <Typography sx={{textAlign:"center", marginTop:"15px",marginBottom:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h5">Detalle Oferta <Checklist style={{marginLeft:"5px"}}/> </Typography>
                         <Card sx={{padding:"30px",width:"70%",backgroundColor:"#f4f5f7"}}>
                              <Typography sx={{marginBottom:"10px"}}> <strong>Descripción:</strong>  {getOferta.data.oferta.descripcion}</Typography>
                              <Typography > <strong>Empresa:</strong>  {getOferta.data.oferta.empresa.razon_social} </Typography>

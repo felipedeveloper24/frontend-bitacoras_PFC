@@ -10,7 +10,7 @@ const DatosPersonales = ({data})=>{
                         <TableHead sx={{ width: "100%", textAlign: "center" }}>
                         <TableRow>
                             <TableCell colSpan={2}>
-                            <Typography variant="subtitle1" sx={{textAlign:"center",display:"flex",alignItems:"center",justifyContent:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Datos personales <Person style={{marginLeft:"5px"}} /></Typography>
+                            <Typography variant="subtitle1" sx={{textAlign:"center",display:"flex",alignItems:"center",justifyContent:"center", color: "black", transition: "all 1000ms", ':hover': { color: "black" } }}>Datos Personales <Person style={{marginLeft:"5px"}} /></Typography>
                             </TableCell>
                         </TableRow>
                         </TableHead>

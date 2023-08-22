@@ -67,7 +67,7 @@ const DetalleInscripcion = ({id})=>{
                             <TableCell><strong>Observaciones</strong></TableCell>
                             <TableCell><strong>Modalidad</strong></TableCell>
                             <TableCell><strong>Nota</strong></TableCell>
-                            <TableCell><strong>Estado</strong></TableCell>
+                            <TableCell><strong>Estado Solicitud</strong></TableCell>
                             <TableCell><strong>Acciones</strong></TableCell>
                         </TableRow>
                             </TableHead>
@@ -114,13 +114,12 @@ const DetalleInscripcion = ({id})=>{
                                             <Tooltip title="Evaluar solicitud de inscripción" >
                                                  <Edit sx={{cursor:"pointer"}} onClick={handleOpen} />
                                             </Tooltip>
-                                            {
-                                                data.inscripcion.estado_inscripcion.id_estado_inscripcion != 2 && (
+                                        
                                                     <Tooltip title="Evaluar práctica" >
                                                         <ContentPasteSearchOutlined sx={{cursor:"pointer"}} onClick={()=>{navigate(`/evaluarinscripcion/${id}`)}} />
                                                     </Tooltip>
-                                                )
-                                            }
+                                            
+                                            
                                            
                                             <Tooltip title="Documentos">
                                                   <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcionpractica/${data.inscripcion.id_inscripcion_practica}`)}} />
@@ -148,7 +147,7 @@ const DetalleInscripcion = ({id})=>{
                                 <Table>
                                 <TableHead sx={{ width: "100%", textAlign: "center" }}>
                                 <TableRow>
-                                <TableCell>Datos evaluador empresa</TableCell>
+                                <TableCell> <strong>Datos evaluador empresa</strong> </TableCell>
                               
                             </TableRow>
                                 </TableHead>
@@ -182,7 +181,7 @@ const DetalleInscripcion = ({id})=>{
         
             <Grid>
               
-                <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle inscripción</Typography>
+                <Typography sx={{textAlign:"center",marginTop:"10px"}} variant="h6">Detalle Inscripción</Typography>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
@@ -199,7 +198,7 @@ const DetalleInscripcion = ({id})=>{
                             </TableHead>
                                
                             </Table>
-                            <Alert severity="error" sx={{textAlign:"center"}}>El alumno tiene inscrita la práctica via intranet, pero no está registrado en el sistema de prácticas profesionales</Alert>
+                            <Alert severity="error" sx={{textAlign:"center"}}>El alumno tiene inscrita la práctica via intranet, pero no está registrado en el sistema de apoyo.</Alert>
                         </TableContainer>
             </Grid>
         )

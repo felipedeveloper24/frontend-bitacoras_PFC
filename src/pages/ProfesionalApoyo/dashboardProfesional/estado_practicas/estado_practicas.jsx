@@ -17,7 +17,7 @@ const EstadoPracticas = ()=>{
     return (
         <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
             <HeaderProfesional/>
-            <Typography sx={{textAlign:"center",marginTop:"15px"}} variant="h5">Listado de alumnos inscritos</Typography>
+            <Typography sx={{textAlign:"center",marginTop:"15px"}} variant="h5">Listado de Alumnos Inscritos</Typography>
             <ListadoAlumnos anio={anio} periodo={periodo} asignatura={asignatura} carrera={carrera} />
         </Grid>
     )

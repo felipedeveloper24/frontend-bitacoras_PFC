@@ -15,10 +15,10 @@ const Aptitudes = ()=>{
         return(
             <Grid sx={{width:"100%",display:"flex",flexDirection:"column"}}>
                 <HeaderAlumno/>
-                <Typography variant="h5" sx={{ color: "black",textAlign:"center", transition: "all 1000ms",marginTop:"30px", ':hover': { color: "orange" } }}>
+                <Typography variant="h5" sx={{ color: "black",textAlign:"center", transition: "all 1000ms",marginTop:"30px" }}>
                             <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
                                 <PsychologyAltRounded sx={{ fontSize: "3rem", mr: 2 }} />
-                                <strong>Aptitudes del alumno</strong>
+                                Aptitudes del Alumno
                                 <PsychologyAltRounded sx={{ fontSize: "3rem", ml: 2 }} />
                             </Box>
                 </Typography>

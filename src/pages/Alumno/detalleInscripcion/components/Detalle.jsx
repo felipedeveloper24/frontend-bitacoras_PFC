@@ -26,7 +26,7 @@ const Detalle = ({id})=>{
        
         return (
             <Grid sx={{marginTop:"15px"}}>
-                <Typography sx={{textAlign:"center",marginTop:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle inscripción <School style={{marginLeft:"5px"}}/></Typography>
+                <Typography sx={{textAlign:"center",marginTop:"10px",display:"flex",justifyContent:"center",alignItems:"center"}} variant="h6">Detalle Inscripción <School style={{marginLeft:"5px"}}/></Typography>
                  <TableContainer component={Paper} sx={{ maxWidth: '90%',margin:"0px auto",marginTop:"10px", boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' }}>
                             <Table>
                             <TableHead sx={{ width: "100%", textAlign: "center" }}>
@@ -84,13 +84,20 @@ const Detalle = ({id})=>{
                                         </TableCell>
 
                                         <TableCell>
-                                            
+                                            {
+                                                data.estado_inscripcion.id_estado_inscripcion != 2 && (
+                                                    <>  
                                                     <Tooltip title="Modificar inscripción" >
                                                         <Edit sx={{cursor:"pointer"}}  onClick={()=>{navigate(`/modificarinscripcion/${id}`)}} />
                                                     </Tooltip>
                                                     <Tooltip title="Documentos">
                                                         <FileCopy sx={{cursor:"pointer"}} onClick = {()=>{navigate(`/documentosinscripcion/${data.id_inscripcion_practica}`)}} />
                                                     </Tooltip>
+                                                    </>
+                                                )
+                                            }
+                                            
+                                                   
                                                   
                                               
                                             
