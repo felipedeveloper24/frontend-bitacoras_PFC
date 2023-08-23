@@ -154,7 +154,7 @@ const BitacoraDelete = async (id) => {
               <TableRow>
                 <TableCell sx={{ fontWeight: 'bold' }}>Título</TableCell>
                 <TableCell sx={{fontWeight:"bold"}}>Fecha creación</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Estado Bitacora</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>Estado Bitácora</TableCell>
                 <TableCell sx={{ fontWeight: 'bold'}}>Acciones</TableCell>
              
 

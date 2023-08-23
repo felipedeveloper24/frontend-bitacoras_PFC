@@ -1,7 +1,7 @@
-import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
-import { Delete, Download } from "@mui/icons-material";
+import { Delete, Download, Visibility } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
@@ -14,6 +14,12 @@ const MostrarArchivos = ({id})=>{
     const [archivos,setArchivos] = useState([]);
     const navigate = useNavigate();
     const queryClient = useQueryClient()
+    const openPdfInNewTab = (url) => {
+        if (url) {
+          window.open(url, '_blank');
+        }
+      };
+
     const getArchivos = useQuery("archivosinscripcion", async()=>{
         const response = await clienteAxios.post(`/archivoinscripcion/getall`,{
             id_inscripcion:Number(id_inscripcion)
@@ -105,13 +111,23 @@ const MostrarArchivos = ({id})=>{
                 <TableBody>
                      {
                         archivos.map((archivo,idx)=>(
+
                             <TableRow key={idx}>
                            
                                 <TableCell>{archivo.nombre}</TableCell>
                               
                                 <TableCell>
-                                    <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
-                                    <Delete sx={{cursor:"pointer"}} onClick={()=>{eliminar_archivo(archivo.id_archivo)}} />
+                                    <Tooltip title="Visualizar Documento">
+                                        <Visibility sx={{cursor:"pointer"}} onClick={()=>{openPdfInNewTab(archivo.blob)}} />
+                                    </Tooltip>
+                                   
+                                    <Tooltip title="Descargar Documento">
+                                        <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    </Tooltip>
+                                    <Tooltip title="Eliminar Documento">
+                                        <Delete sx={{cursor:"pointer"}} onClick={()=>{eliminar_archivo(archivo.id_archivo)}} />
+                                    </Tooltip>
+                                    
                                 </TableCell>
                             </TableRow>
                         ))

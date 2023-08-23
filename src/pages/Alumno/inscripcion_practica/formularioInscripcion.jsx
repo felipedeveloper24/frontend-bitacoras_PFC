@@ -18,6 +18,7 @@ const FormularioInscripcion = ()=>{
     const [apellido, setApellido] = useState("");
     const [telefono, setTelefono] = useState("");
     const [correo, setCorreo] = useState("");
+    const [cargo,setCargo] = useState ("");
     const navigate = useNavigate();
     
     const modalidades = useQuery("modalidades",async()=>{
@@ -62,7 +63,8 @@ const FormularioInscripcion = ()=>{
                 nombre:nombre,
                 apellido:apellido,
                 telefono:telefono,
-                correo:correo
+                correo:correo,
+                cargo:cargo
             }
             
             const response = await clienteAxios.post("/representante/create",data_evaluador);
@@ -77,6 +79,7 @@ const FormularioInscripcion = ()=>{
                     id_oferta:Number(oferta),
                     id_inscribe:Number(id_inscribe),
                     id_estado_inscripcion:1,
+                  
                     id_representante:Number(response.data.representante.id_representante)
                 }
            
@@ -132,7 +135,9 @@ const FormularioInscripcion = ()=>{
                 nombre:nombre,
                 apellido:apellido,
                 telefono:telefono,
-                correo:correo
+                correo:correo,
+                cargo:cargo
+                
             }
             const response = await clienteAxios.post("/representante/create",data_evaluador);
             if(response.status==200){
@@ -275,6 +280,9 @@ const FormularioInscripcion = ()=>{
                                 </Grid>
                                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                     <TextField sx={{backgroundColor:"white"}} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
+                                </Grid>
+                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
+                                    <TextField sx={{backgroundColor:"white"}} fullWidth required label="Cargo" type="text" onChange={(e)=>setCargo(e.target.value)} />
                                 </Grid>
 
                             </Grid>

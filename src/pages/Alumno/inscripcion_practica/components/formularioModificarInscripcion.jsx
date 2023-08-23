@@ -20,6 +20,7 @@ const FormularioModificarInscripcion = ()=>{
     const [telefono, setTelefono] = useState("");
     const [correo, setCorreo] = useState("");
     const [data,setData] = useState({});
+    const [cargo,setCargo] = useState("");
     const [loading,setLoading] = useState(true);
     const id_inscribe = localStorage.getItem("id_inscribe");
     const navigate = useNavigate();
@@ -62,6 +63,7 @@ const FormularioModificarInscripcion = ()=>{
                 setApellido(response.representante.apellido)
                 setCorreo(response.representante.correo)
                 setTelefono(response.representante.telefono)
+                setCargo(response.representante.cargo);
             }
         }    
    }
@@ -84,7 +86,8 @@ const FormularioModificarInscripcion = ()=>{
                 nombre:nombre,
                 apellido:apellido,
                 telefono:telefono,
-                correo:correo
+                correo:correo,
+                cargo:cargo
             }
 
             if(id_representante == ""){
@@ -121,6 +124,7 @@ const FormularioModificarInscripcion = ()=>{
             }
             else{
                 const response = await clienteAxios.put(`/representante/update/${id_representante}`,data_evaluador);
+                console.log(response.data)
                 if(response.status==200){
                    
                     const data_inscripcion = {
@@ -136,6 +140,7 @@ const FormularioModificarInscripcion = ()=>{
                     console.log(data_inscripcion)
                
                     const response_inscripcion = await clienteAxios.put(`/inscripcion/actualizaralumno/${id_inscribe}`,data_inscripcion);
+                    console.log(response_inscripcion.data)
                     if(response_inscripcion.status==200){
                         
                         Swal.fire({
@@ -155,12 +160,15 @@ const FormularioModificarInscripcion = ()=>{
            
             
         }else if (select_oferta == 0 && datos_evaluador == 1){
+            
             const data_evaluador = {
                 nombre:nombre,
                 apellido:apellido,
                 telefono:telefono,
-                correo:correo
+                correo:correo,
+                cargo:cargo
             }
+           
             if(id_representante==""){
                 const response = await clienteAxios.post(`/representante/create`,data_evaluador)
                 if(response.status==200){
@@ -177,6 +185,7 @@ const FormularioModificarInscripcion = ()=>{
                     }
                     
                     const response_inscripcion = await clienteAxios.put(`/inscripcion/actualizaralumno/${id_inscribe}`,data_actualizada);
+                    console.log(response_inscripcion.data)
                     if(response_inscripcion.status==200){
                         
                         Swal.fire({
@@ -192,9 +201,10 @@ const FormularioModificarInscripcion = ()=>{
                     }
                 }
             }else{
-                const response = await clienteAxios.put(`/representante/update/${id_inscribe}`,data_evaluador)
+                
+                const response = await clienteAxios.put(`/representante/update/${id_representante}`,data_evaluador)
+                
                 if(response.status==200){
-                  
                     const data_actualizada = {
                         fecha_inscripcion_practica:fechaActual,
                         fecha_inicio:fecha_inicio,
@@ -207,6 +217,7 @@ const FormularioModificarInscripcion = ()=>{
                     }
                     
                     const response_inscripcion = await clienteAxios.put(`/inscripcion/actualizaralumno/${id_inscribe}`,data_actualizada);
+                    console.log(response_inscripcion.data)
                     if(response_inscripcion.status==200){
                         
                         Swal.fire({
@@ -311,6 +322,9 @@ const FormularioModificarInscripcion = ()=>{
                                </Grid>
                                <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                    <TextField sx={{backgroundColor:"white"}} value={correo} label="Correo" type="email" onChange={(e)=>setCorreo(e.target.value)} required fullWidth />
+                               </Grid>
+                               <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
+                                    <TextField sx={{backgroundColor:"white"}} value={cargo} label="Cargo" fullWidth type="text" onChange={(e)=>setCargo(e.target.value)} />
                                </Grid>
 
                            </Grid>

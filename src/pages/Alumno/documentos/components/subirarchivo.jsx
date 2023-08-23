@@ -87,7 +87,7 @@ const SubirArchivo = ({id})=>{
     return (
         <>
         <Grid sx={{display:"flex",margin:"0px auto",flexDirection:"column", marginTop:"15px"}}>
-            <Typography variant="h5" sx={{display:"flex",alignItems:"center"}}>Listado de archivos <StickyNote2 style={{marginLeft:"5px"}}/> </Typography>
+            <Typography variant="h5" sx={{display:"flex",alignItems:"center"}}>Listado Archivos Inscripción <StickyNote2 style={{marginLeft:"5px"}}/> </Typography>
             <Button variant="contained" sx={{marginTop:"10px",marginBottom:"12px"}} onClick={handleOpen}  >Subir archivo</Button>
         </Grid>
        
