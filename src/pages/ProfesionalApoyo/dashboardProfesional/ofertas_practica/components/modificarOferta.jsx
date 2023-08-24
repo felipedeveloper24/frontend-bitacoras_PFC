@@ -6,7 +6,7 @@ import clienteAxios from "../../../../../helpers/clienteaxios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Work } from "@mui/icons-material";
-
+import Autocomplete from "@mui/material/Autocomplete";
 
 
 const ModificarOferta = () => {
@@ -14,7 +14,7 @@ const ModificarOferta = () => {
     const [cupos, setCupos] = useState("");
     const [experiencia, setExperiencia] = useState(0);
     const [modalidad, setModalidad] = useState('');
-    const [empresa, setEmpresa] = useState('');
+    const [empresa, setEmpresa] = useState({});
     const [periodo, setPeriodo] = useState('');
     const { id } = useParams();
     const navigate = useNavigate();
@@ -47,7 +47,7 @@ const ModificarOferta = () => {
             cupos: Number(cupos),
             id_modalidad: modalidad,
             id_periodo_academico: periodo,
-            id_empresa: empresa
+            id_empresa: empresa.id_empresa
         }
 
         const response = await clienteAxios.put(`/oferta/update/${id}`, data);
@@ -77,7 +77,7 @@ const ModificarOferta = () => {
             const experiencia = response.data.oferta.experiencia_laboral == true ? 1 : 0
             setExperiencia(experiencia)
             setModalidad(response.data.oferta.id_modalidad)
-            setEmpresa(response.data.oferta.id_empresa)
+            setEmpresa(response.data.oferta.empresa)
             setPeriodo(response.data.oferta.id_periodo_academico)
         }
     }
@@ -137,19 +137,17 @@ const ModificarOferta = () => {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                                <FormControl margin="normal" fullWidth>
-                                    <InputLabel>Empresa</InputLabel>
-                                    <Select  required label="Empresa" value={empresa} onChange={(e) => { setEmpresa(e.target.value) }} fullWidth>
-                                        {
-                                            getEmpresas.status == "success" && Array.isArray(getEmpresas.data) && (
-                                                getEmpresas.data.map((empresa, idx) => (
-                                                    <MenuItem key={idx} value={empresa.id_empresa} >{empresa.razon_social}</MenuItem>
-                                                ))
-                                            )
-                                        }
-                                    </Select>
-                                </FormControl>
-                            </Grid>
+                             <Autocomplete sx={{marginTop:"15px"}}
+                            options={getEmpresas.data || []}
+                            getOptionLabel={(option) => option.razon_social || ""}
+                            value={empresa}
+                            onChange={(event, newValue) => {
+                                setEmpresa(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} label="Empresa" fullWidth />}
+                            noOptionsText="Sin coincidencias" 
+                        />
+                    </Grid>
                             <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                                 <FormControl margin="normal" fullWidth>
                                     <InputLabel>Periodo académico</InputLabel>

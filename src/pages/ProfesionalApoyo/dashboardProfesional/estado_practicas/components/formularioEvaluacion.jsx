@@ -11,14 +11,16 @@ const FormularioEvaluacion = ({ id }) => {
 
     const [id_inscripcion, setInscripcion] = useState({});
     const [observaciones, setObservaciones] = useState("");
-    const [nota_final, setNotaFinal] = useState();
+    const [nota_empresa,setNotaEmpresa] = useState("")
+    const [nota_encargado, setNotaEncargado] = useState();
     const [loading, setLoading] = useState(true)
     const getInscripcion = async () => {
         const response = await clienteAxios.get(`/inscripcion/show/${id}`);
         if (response.status == 200) {
             setInscripcion(response.data.inscripcion.id_inscripcion_practica)
             setObservaciones(response.data.inscripcion.observaciones);
-            setNotaFinal(response.data.inscripcion.nota_final)
+            setNotaEmpresa(response.data.inscripcion.nota_empresa)
+            setNotaEncargado(response.data.inscripcion.nota_encargado)
             setLoading(false);
         }
     }
@@ -32,7 +34,8 @@ const FormularioEvaluacion = ({ id }) => {
 
         const response = await clienteAxios.post("/inscripcion/updatevaluacion", {
             id_inscripcion: id_inscripcion,
-            nota_final: nota_final,
+            nota_encargado: nota_encargado,
+            nota_empresa:nota_empresa,
             observaciones: observaciones
         })
 
@@ -84,10 +87,23 @@ const FormularioEvaluacion = ({ id }) => {
                             </p>
                         </Grid>
                         <Grid item lg={12}>
-                            <TextField label="Nota"
+                            <TextField label="Nota Empresa"
                                 type="number"
-                                value={nota_final}
-                                onChange={(e) => { setNotaFinal(e.target.value) }}
+                                value={nota_empresa}
+                                onChange={(e) => { setNotaEmpresa(e.target.value) }}
+                                inputMode="numeric"
+                                sx={{backgroundColor:"white"}}
+                                inputProps={{
+                                    min: 10,
+                                    max: 70
+                                }}
+                                fullWidth />
+                        </Grid>
+                        <Grid item lg={12}>
+                            <TextField label="Nota Encargado"
+                                type="number"
+                                value={nota_encargado}
+                                onChange={(e) => { setNotaEncargado(e.target.value) }}
                                 inputMode="numeric"
                                 sx={{backgroundColor:"white"}}
                                 inputProps={{

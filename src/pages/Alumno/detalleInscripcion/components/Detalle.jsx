@@ -35,8 +35,9 @@ const Detalle = ({id})=>{
                             <TableCell><strong>Fecha Término</strong></TableCell>
                             <TableCell><strong>Observaciones</strong></TableCell>
                             <TableCell><strong>Modalidad</strong></TableCell>
-                            <TableCell><strong>Representante</strong></TableCell>
-                            <TableCell><strong>Nota</strong></TableCell>
+                            <TableCell><strong>Supervisor práctica</strong></TableCell>
+                            <TableCell><strong>Nota Empresa</strong></TableCell>
+                            <TableCell><strong>Nota Encargado</strong></TableCell>
                             <TableCell><strong>Estado Solicitud</strong></TableCell>
                             <TableCell><strong>Acciones</strong></TableCell>
                                 
@@ -61,7 +62,10 @@ const Detalle = ({id})=>{
                                             {data.representante == null ? "No registrado" : `${data.representante.nombre} ${data.representante.apellido} `}
                                         </TableCell>
                                         <TableCell>
-                                            {data.nota_final == 0 ? "-----" : data.nota_final }
+                                            {data.nota_empresa == 0 ? "-----" : data.nota_empresa }
+                                        </TableCell>
+                                        <TableCell>
+                                            {data.nota_encargado == 0 ? "-----" : data.nota_encargado }
                                         </TableCell>
                                         <TableCell >
                                             {

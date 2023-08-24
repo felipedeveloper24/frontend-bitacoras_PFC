@@ -31,7 +31,7 @@ const MostrarArchivos = ({id})=>{
                     const pdfData = new Uint8Array(pdf.archivo.data);
                     const pdfBlob = new Blob([pdfData],{type:'application/pdf'});
                   
-                    return { blob: pdfBlob, nombre: `${pdf.nombre}`, id_archivo: pdf.id_archivo };
+                    return { blob: pdfBlob, nombre: `${pdf.nombre}`, id_archivo: pdf.id_archivo,tipo_documento:pdf.tipo_documento };
                 })
                 setArchivos(Urls)
             }
@@ -77,15 +77,14 @@ const MostrarArchivos = ({id})=>{
         return (
             
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
-
+                
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Id archivo</TableCell>
-                        <TableCell>Nombre</TableCell>
-                        <TableCell>Tipo</TableCell>
-                        <TableCell>Acciones</TableCell>
+                        <TableCell><strong>Nombre</strong></TableCell>
+                        <TableCell><strong>Tipo Documento</strong></TableCell>
+                        <TableCell><strong>Acciones</strong></TableCell>
                     </TableRow>
                     </TableHead>
                 </Table>
@@ -96,15 +95,15 @@ const MostrarArchivos = ({id})=>{
     }
     if(getArchivos.status == "success" && getArchivos.data.archivos){
         return (
-            <Grid sx={{width:"100%",display:"flex", flexDirection:"column"}}>
-           
+            <Grid sx={{width:"100%",display:"flex", flexDirection:"column",marginBottom:"10px"}}>
+                <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}}>Mis Documentos</Typography>
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Nombre</TableCell>
-
-                        <TableCell>Acciones</TableCell>
+                        <TableCell><strong>Nombre</strong></TableCell>
+                        <TableCell><strong>Tipo Documento</strong></TableCell>
+                        <TableCell><strong>Acciones</strong></TableCell>
                     </TableRow>
                     </TableHead>
              
@@ -115,7 +114,7 @@ const MostrarArchivos = ({id})=>{
                             <TableRow key={idx}>
                            
                                 <TableCell>{archivo.nombre}</TableCell>
-                              
+                                <TableCell>{archivo.tipo_documento}</TableCell>
                                 <TableCell>
                                     <Tooltip title="Visualizar Documento">
                                         <Visibility sx={{cursor:"pointer"}} onClick={()=>{openPdfInNewTab(archivo.blob)}} />

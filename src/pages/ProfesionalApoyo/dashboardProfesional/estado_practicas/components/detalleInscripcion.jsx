@@ -66,7 +66,8 @@ const DetalleInscripcion = ({id})=>{
                             <TableCell><strong>Fecha Término</strong></TableCell>
                             <TableCell><strong>Observaciones</strong></TableCell>
                             <TableCell><strong>Modalidad</strong></TableCell>
-                            <TableCell><strong>Nota</strong></TableCell>
+                            <TableCell><strong>Nota Empresa</strong></TableCell>
+                            <TableCell><strong>Nota Encargado</strong></TableCell>
                             <TableCell><strong>Estado Solicitud</strong></TableCell>
                             <TableCell><strong>Acciones</strong></TableCell>
                         </TableRow>
@@ -86,7 +87,10 @@ const DetalleInscripcion = ({id})=>{
                                             {data.inscripcion.modalidad.nombre_modalidad}
                                         </TableCell>
                                         <TableCell>
-                                            {data.inscripcion.nota_final == 0 ? "-----" : data.inscripcion.nota_final }
+                                            {data.inscripcion.nota_empresa == 0 ? "-----" : data.inscripcion.nota_empresa }
+                                        </TableCell>
+                                        <TableCell>
+                                            {data.inscripcion.nota_encargado == 0 ? "-----" : data.inscripcion.nota_encargado }
                                         </TableCell>
                                         <TableCell>
                                             {
@@ -153,20 +157,23 @@ const DetalleInscripcion = ({id})=>{
                                 </TableHead>
                                     <TableBody>
                                     <TableRow>
-                                        <TableCell>Nombre: {data.inscripcion.representante.nombre}</TableCell>
+                                        <TableCell> <strong>Nombre:</strong> {data.inscripcion.representante.nombre}</TableCell>
                                           
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell>Apellido: {data.inscripcion.representante.apellido}</TableCell>
+                                        <TableCell><strong>Apellido:</strong> {data.inscripcion.representante.apellido}</TableCell>
                                           
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell>Correo: {data.inscripcion.representante.correo}</TableCell>
+                                        <TableCell><strong>Correo:</strong> {data.inscripcion.representante.correo}</TableCell>
                                           
                                     </TableRow>   
                                     <TableRow>
-                                        <TableCell>Teléfono: {data.inscripcion.representante.telefono}</TableCell>
+                                        <TableCell><strong>Teléfono:</strong> {data.inscripcion.representante.telefono}</TableCell>
                                           
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell><strong>Cargo:</strong> {data.inscripcion.representante.cargo}</TableCell>
                                     </TableRow>
                                     </TableBody>
                                 </Table>
