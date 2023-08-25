@@ -77,7 +77,7 @@ const SubirConvenios = ({id})=>{
                     
                     <form onSubmit={onSubmit}  style={{width:"90%",margin:"0px auto",display:"flex",flexDirection:"column"}}>
               
-                        <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Inscripción</Typography>
+                        <Typography variant="h5" sx={{textAlign:"center",marginTop:"5px",marginBottom:"10px"}}>Inscripción </Typography>
                 
                             <Grid container sx={{width:"100%",display:"flex",justifyContent:"center"}} >
                                 <Grid item xs={11} xl={7} lg={10} md={6} sm={10} >

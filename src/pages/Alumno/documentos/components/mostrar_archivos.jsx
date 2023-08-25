@@ -1,7 +1,7 @@
 import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
-import { Delete, Download, Visibility } from "@mui/icons-material";
+import { Delete, Download, FileCopyOutlined, Visibility } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
@@ -14,11 +14,7 @@ const MostrarArchivos = ({id})=>{
     const [archivos,setArchivos] = useState([]);
     const navigate = useNavigate();
     const queryClient = useQueryClient()
-    const openPdfInNewTab = (url) => {
-        if (url) {
-          window.open(url, '_blank');
-        }
-      };
+
 
     const getArchivos = useQuery("archivosinscripcion", async()=>{
         const response = await clienteAxios.post(`/archivoinscripcion/getall`,{
@@ -43,6 +39,10 @@ const MostrarArchivos = ({id})=>{
     const downloadPdf = (pdfBlob, pdfName) => {
         FileSaver.saveAs(pdfBlob, pdfName);
     };
+    const handleLinkClick = (id) => {
+        const newTab = window.open(`/visualizador/${id}`, '_blank');
+        newTab.focus();
+      };
     
     const eliminar_archivo = async(id)=>{
         Swal.fire({
@@ -96,7 +96,7 @@ const MostrarArchivos = ({id})=>{
     if(getArchivos.status == "success" && getArchivos.data.archivos){
         return (
             <Grid sx={{width:"100%",display:"flex", flexDirection:"column",marginBottom:"10px"}}>
-                <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}}>Mis Documentos</Typography>
+                <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px",marginBottom:"10px"}}>Mis Documentos <FileCopyOutlined/></Typography>
                 <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"10px"}}>
                 <Table stickyHeader sx={{ minWidth: 500,maxHeight:300 }} aria-label="simple table">
                     <TableHead>
@@ -117,7 +117,7 @@ const MostrarArchivos = ({id})=>{
                                 <TableCell>{archivo.tipo_documento}</TableCell>
                                 <TableCell>
                                     <Tooltip title="Visualizar Documento">
-                                        <Visibility sx={{cursor:"pointer"}} onClick={()=>{openPdfInNewTab(archivo.blob)}} />
+                                        <Visibility sx={{cursor:"pointer"}} onClick={()=>{handleLinkClick(archivo.id_archivo)}} />
                                     </Tooltip>
                                    
                                     <Tooltip title="Descargar Documento">

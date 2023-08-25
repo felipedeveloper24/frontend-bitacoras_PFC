@@ -12,6 +12,7 @@ const RegistroEvaluador = () => {
     const [apellido, setApellido] = useState("");
     const [telefono, setTelefono] = useState("");
     const [correo, setCorreo] = useState("");
+    const [cargo,setCargo] = useState("");
     const navigate = useNavigate();
     const queryClient = new QueryClient();
     const id_inscribe = localStorage.getItem("id_inscribe");
@@ -21,7 +22,8 @@ const RegistroEvaluador = () => {
             nombre:nombre,
             apellido:apellido,
             telefono:telefono,
-            correo:correo
+            correo:correo,
+            cargo:cargo
         }
         const response = await clienteAxios.post(`/representante/create`,data_evaluador);
     
@@ -62,6 +64,9 @@ const RegistroEvaluador = () => {
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <TextField label="Correo" type="email" onChange={(e) => setCorreo(e.target.value)} required fullWidth />
+                    </Grid>
+                    <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
+                        <TextField label="Cargo" type="text" onChange={(e) => setCargo(e.target.value)} required fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={12} md={10} sm={10} sx={{display:"flex"}}>
                          <Button variant="contained" type="submit" sx={{margin:"0px auto"}}>Enviar datos</Button>

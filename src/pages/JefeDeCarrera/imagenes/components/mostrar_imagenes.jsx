@@ -1,4 +1,4 @@
-import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 
@@ -114,8 +114,13 @@ const MostrarImagenes = ({id}) =>{
                                 </TableCell>
                               
                                 <TableCell>
-                                    <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
-                                    <Delete sx={{cursor:"pointer"}} onClick={()=>{eliminar_archivo(archivo.id_archivo)}} />
+                                    <Tooltip title="Descargar Imágen">
+                                        <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    </Tooltip>
+                                    <Tooltip title="Eliminar Imágen">
+                                        <Delete sx={{cursor:"pointer"}} onClick={()=>{eliminar_archivo(archivo.id_archivo)}} />
+                                    </Tooltip>
+                                    
                                 </TableCell>
                             </TableRow>
                         ))

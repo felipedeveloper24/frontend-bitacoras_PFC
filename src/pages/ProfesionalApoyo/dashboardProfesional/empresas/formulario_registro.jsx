@@ -107,9 +107,7 @@ const FormularioRegistro = () => {
     return (
         <>
             <Grid container spacing={1} sx={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "15px" }}>
-                <Grid item>
-                    <Typography variant="h5" sx={{ textAlign: "center", display: "flex", alignItems: "center" }}>Listado de empresas <Apartment style={{ fontSize: 30, marginLeft: "5px" }} /> </Typography>
-                </Grid>
+               
                 <Grid item>
                     <Button variant="contained" onClick={handleOpen} sx={{ marginBottom: "10px" }} >Ingresar Empresa</Button>
                 </Grid>

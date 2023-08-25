@@ -1,11 +1,11 @@
-import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import HeaderProfesional from "../../../../components/headers/headerProfesional";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import FileSaver from "file-saver";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Delete, Download, FileCopyOutlined } from "@mui/icons-material";
+import { Delete, Download, FileCopyOutlined, Visibility } from "@mui/icons-material";
 
 
 
@@ -34,6 +34,11 @@ const VerDocumentosInscripcion = ()=>{
         }
         
     })
+    const handleLinkClick = (id) => {
+        const newTab = window.open(`/visualizador/${id}`, '_blank');
+        newTab.focus();
+      };
+    
     
     const downloadPdf = (pdfBlob, pdfName) => {
         FileSaver.saveAs(pdfBlob, pdfName);
@@ -84,9 +89,15 @@ const VerDocumentosInscripcion = ()=>{
                             <TableRow key={idx}>
                            
                                 <TableCell>{archivo.nombre}</TableCell>
-                              
+
                                 <TableCell>
-                                    <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    <Tooltip title="Visualizar Documento">
+                                         <Visibility sx={{cursor:"pointer"}}  onClick={()=>{handleLinkClick(archivo.id_archivo)}} />
+                                    </Tooltip>
+                                    <Tooltip title="Descargar Documento">
+                                        <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    </Tooltip>
+                                   
                                     
                                 </TableCell>
                             </TableRow>

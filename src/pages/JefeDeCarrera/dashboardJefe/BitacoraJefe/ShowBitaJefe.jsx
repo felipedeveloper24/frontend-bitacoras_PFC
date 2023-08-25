@@ -1,37 +1,36 @@
 import React from "react";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import { useQuery } from "react-query";
-import { Box, Button, CircularProgress, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
+import { Button, CircularProgress, Grid, IconButton, Tooltip, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useNavigate, useParams } from 'react-router-dom';
-import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
-import Swal from 'sweetalert2';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { DocumentScanner, Image } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import MUIDataTable from "mui-datatables";
+import Swal from 'sweetalert2';
 
 const ShowBitaJefe = () => {
-  const { id } = useParams();
-  const id_usuario  = localStorage.getItem("id_usuario");
+  
+  const id_usuario = localStorage.getItem("id_usuario");
 
   const { data, status, refetch } = useQuery("bitacorajefe", async () => {
-    const response = await clienteAxios.post(`/bitacorajefe/getAll`,{
-        id_usuario:id_usuario
+    const response = await clienteAxios.post(`/bitacorajefe/getAll`, {
+      id_usuario: id_usuario
     });
-    
-    // console.log(response.data)
     return response.data;
   }, {
     refetchOnWindowFocus: false
   });
-
+  const formato = (texto) => {
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+  }
+  
   const navigate = useNavigate();
 
   const handleNavigate = (id) => {
     navigate(`/detailsbitacorajefe/${id}`);
   }
-  //Implementación una función para manejar la eliminación de bitácoras
   const BitacoraDelete = async (id) => {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -72,137 +71,147 @@ const ShowBitaJefe = () => {
       }
     });
   }
-
   const BitacoraEdit = (id) => {
     navigate(`/modificarbitacorajefe/${id}`);
   }
 
-  const formato = (texto) => {
-    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-  }
 
-  if (status === 'loading') {
+  const columns = [
+    "Título",
+    "Fecha Creación",
+    "Estado Bitácora",
+    "Tipo Bitácora",
+    {
+      name: "Acciones",
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          const bitacora = data.bitacojefe[tableMeta.rowIndex];
+          return (
+            <>
+              <Tooltip title="Ver detalle bitácora">
+                <VisibilityIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleNavigate(bitacora.id_bitacora)}
+                />
+              </Tooltip>
+              <Tooltip title="Modificar bitácora">
+                <ModeEditOutlineIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => BitacoraEdit(bitacora.id_bitacora)}
+                />
+              </Tooltip>
+              <Tooltip title="Eliminar bitácora">
+                <DeleteIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => BitacoraDelete(bitacora.id_bitacora)}
+                />
+              </Tooltip>
+
+                      <Tooltip title="Documentos Bitacora">
+                         <DocumentScanner sx={{cursor:"pointer"}} onClick={() => navigate(`/archivosbitacorajefe/${bitacora.id_bitacora}`)}/>
+                      </Tooltip>
+                     
+                    
+                   
+                      <Tooltip title="Imágenes Bitácora">
+                         <Image sx={{cursor:"pointer"}} onClick={() => navigate(`/imagenesbitacorajefe/${bitacora.id_bitacora}`)}/>
+                      </Tooltip>
+                     
+                    
+             
+            </>
+          );
+        },
+      },
+    },
+  ];
+
+  const options = {
+    filter: true,
+    search: true,
+    selectableRows: "none",
+    responsive: "standard",
+    rowsPerPage: 10,
+    download: false,
+    print: false,
+    rowsPerPageOptions: [10, 25, 50],
+    textLabels: {
+      body: {
+        noMatch: "No se encontraron registros",
+        toolTip: "Ordenar",
+      },
+      pagination: {
+        next: "Siguiente",
+        previous: "Anterior",
+        rowsPerPage: "Filas por página:",
+        displayRows: "de",
+      },
+      toolbar: {
+        search: "Buscar",
+        downloadCsv: "Descargar CSV",
+        print: "Imprimir",
+        viewColumns: "Ver Columnas",
+        filterTable: "Filtrar Tabla",
+      },
+      filter: {
+        all: "Todos",
+        title: "Filtros",
+        reset: "Reiniciar",
+      },
+      viewColumns: {
+        title: "Mostrar Columnas",
+        titleAria: "Mostrar/Ocultar Columnas de Tabla",
+      },
+      selectedRows: {
+        text: "fila(s) seleccionada(s)",
+        delete: "Eliminar",
+        deleteAria: "Eliminar Filas Seleccionadas",
+      },
+    },
+  };
+  
+
+  if (status === "loading") {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', margin: '0px auto', marginTop: '300px' }}>
-        <Typography variant="h5">Por favor, espera. Cargando datos...</Typography>
+      <div>
+        Cargando datos.....
         <CircularProgress />
-      </Box>
+      </div>
     );
   }
 
-  if (status === 'error') {
-    return <Typography variant="h5">Error al obtener las bitácoras</Typography>;
-  }
-
-  return (
-    <Container maxWidth="lg" sx={{
-
-  
-      marginBottom: '15px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center', // Centrado vertical
-      // Ocupar al menos toda la altura de la pantalla
-    }}>
-      <Box
-        sx={{
-          
-          display: 'flex',
-          marginBottom: '10px',
-          justifyContent: 'center', // Centrado horizontal
-          alignItems: 'center', // Centrado vertical
-          color: 'inherit',
-          marginTop: '10px',
-          '&:hover': {
-            color: 'orange',
-            cursor: 'none',
-          },
-        }}
-      >
-        
-        <Typography variant="h3" style={{fontSize:35,marginTop:"20px", display:"flex",justifyContent:"center",alignItems:"center"}} >
-          Bitácoras
-          <ContentPasteGoIcon style={{ fontSize: 35}} color="inherit" />
-        </Typography>
-        
-        
-      </Box>
-      {!data.bitacojefe ? (
-        <>
+  if (status === "success" && !data.bitacojefe) {
+    return (
+      
+      <Grid sx={{width:"80%",margin:"0px auto",display:"flex", flexDirection:"column",justifyContent:"center",alignItems:"center",marginTop:"100px"}}>
         
         <Typography variant="h5">No hay bitácoras disponibles.</Typography>
         <Button  onClick={()=>{navigate("/bitacorajefe")}} variant="contained">Haz click Aquí para crear una bitácora</Button>
-        </>
-      ) : (
-        <>
-        <Button variant="contained" onClick={()=>{navigate("/bitacorajefe")}} sx={{marginBottom:"15px"}}>Crear Bitácoras</Button>
-       
-        <TableContainer 
-          // border: '1px solid black', // Agrega un borde
-          component={Paper} sx={{width:"90%",margin:"0px auto",marginBottom:"10px",maxHeight: 350}}// Para centrar horizontalmente
-        >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell><strong>Título</strong></TableCell>
-                <TableCell><strong>Fecha Creación </strong> </TableCell>
-                <TableCell ><strong>Estado Bitácora</strong></TableCell>
-                <TableCell > <strong>Tipo Bitácora</strong></TableCell>
-                <TableCell> <strong>Acciones</strong></TableCell>
+        
+        </Grid>
+    );
+  }
 
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.bitacojefe.map((bitacora, idx) => (
-                <TableRow key={idx} >
-                  <TableCell style={{ wordWrap: 'break-word', maxWidth: '300px' }}>{bitacora.titulo}</TableCell>
-                  <TableCell>{formato(bitacora.fecha_creacion.split("T")[0])}</TableCell>
-                  <TableCell >{bitacora.estado_bitacora.nombre_estado_bitacora}</TableCell>
-                  <TableCell >{bitacora.tipo_bitacora.nombre_tipo_bitacora} </TableCell>
+  if (status === "success" && data.bitacojefe.length > 0) {
+    return (
+      <div style={{ width: "90%", margin: "0px auto", marginTop:"15px",display:"flex",flexDirection:"column"}}>
+         <Button variant="contained" onClick={()=>{navigate("/bitacorajefe")}} sx={{margin:"0px auto",marginBottom:"15px"}}>Crear Bitácoras</Button>
+        <MUIDataTable
+          title="Listado de Bitácoras"
+          data={data.bitacojefe.map((bitacora) => [
+            bitacora.titulo,
+            formato(bitacora.fecha_creacion.split("T")[0]),
+            bitacora.estado_bitacora.nombre_estado_bitacora,
+            bitacora.tipo_bitacora.nombre_tipo_bitacora,
+          ])}
+          columns={columns}
+          options={options}
+        />
+      </div>
+    );
+  }
 
-                  <TableCell >
-                  <IconButton onClick={() => handleNavigate(bitacora.id_bitacora)}>
-                     
-                      <Tooltip title="Ver detalle bitácora">
-                        <VisibilityIcon />
-                      </Tooltip>
-                    </IconButton>
-                    <IconButton onClick={() => BitacoraEdit(bitacora.id_bitacora)}>
-                      <Tooltip title="Modificar bitácora">
-                        <ModeEditOutlineIcon />
-                      </Tooltip>
-                    </IconButton>
-                    <IconButton onClick={() => BitacoraDelete(bitacora.id_bitacora)}>
-                      <Tooltip title="Eliminar bitácora">
-                         <DeleteIcon />
-                      </Tooltip>
-                     
-                    </IconButton>
-                    <IconButton onClick={() => navigate(`/archivosbitacorajefe/${bitacora.id_bitacora}`)}>
-                      <Tooltip title="Documentos Bitacora">
-                         <DocumentScanner/>
-                      </Tooltip>
-                     
-                    </IconButton>
-                    <IconButton onClick={() => navigate(`/imagenesbitacorajefe/${bitacora.id_bitacora}`)}>
-                      <Tooltip title="Imágenes Bitácora">
-                         <Image/>
-                      </Tooltip>
-                     
-                    </IconButton>
-
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        </>
-      )}
-      
-    </Container>
-  );
-
+  return null;
 };
 
 export default ShowBitaJefe;

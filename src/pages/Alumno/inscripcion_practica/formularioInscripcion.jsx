@@ -1,4 +1,4 @@
-import { Button, Card, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material"
+import { Autocomplete, Button, Card, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material"
 import { useQuery } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useState } from "react";
@@ -76,7 +76,7 @@ const FormularioInscripcion = ()=>{
                     fecha_inicio:fecha_inicio,
                     fecha_fin:fecha_fin,
                     id_modalidad:select_modalidad,
-                    id_oferta:Number(oferta),
+                    id_oferta:Number(oferta.id_oferta),
                     id_inscribe:Number(id_inscribe),
                     id_estado_inscripcion:1,
                   
@@ -110,11 +110,13 @@ const FormularioInscripcion = ()=>{
                 fecha_inicio:fecha_inicio,
                 fecha_fin:fecha_fin,
                 id_modalidad:select_modalidad,
-                id_oferta:Number(oferta),
+                id_oferta:Number(oferta.id_oferta_practica),
                 id_representante: null,
                 id_inscribe:Number(id_inscribe),
                 id_estado_inscripcion:1,
             }
+           
+            
             const response = await clienteAxios.post("/inscripcion/create",data_inscripcion);
             if(response.status==200){
                  Swal.fire({
@@ -238,16 +240,19 @@ const FormularioInscripcion = ()=>{
                                 select_oferta == 1 && (
                                     <Grid  item xs={11} xl={6} lg={6} md={6} sm={10}>
                                         <FormControl variant="outlined" margin="normal" fullWidth>
-                                            <InputLabel htmlFor="select_practica">Oferta de práctica</InputLabel>
-                                            <Select required value={oferta} onChange={(e)=>{setOferta(e.target.value)}} id="select_practica" label="Oferta de práctica" sx={{marginTop:"10px",backgroundColor:"white"}}  fullWidth>
-                                                {
-                                                    ofertas.status=="success" && (
-                                                        ofertas.data.map((oferta,idx)=>(
-                                                            <MenuItem value={oferta.id_oferta_practica} key={idx}>Empresa: {oferta.empresa.razon_social} - {oferta.descripcion}</MenuItem>
-                                                        ))
-                                                    )
-                                                }
-                                            </Select>
+                                        
+                                            
+                                            <Autocomplete
+                                                sx={{backgroundColor:"white"}}
+                                                options={ofertas.data || []} 
+                                                getOptionLabel={(option) => option.descripcion || ""} 
+                                                value={oferta}
+                                                onChange={(event, newValue) => {
+                                                    setOferta(newValue);
+                                                }}
+                                                renderInput={(params) => <TextField {...params} label="Oferta de práctica" fullWidth />}
+                                                noOptionsText="Sin coincidencias" 
+                                            />
                                         </FormControl>
                                     </Grid>
                                    

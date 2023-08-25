@@ -10,7 +10,7 @@ const Detalle = ({id})=>{
     const navigate = useNavigate();
     const {data,status} = useQuery("detalleinscripcion", async()=>{
         const response = await clienteAxios.get(`/inscripcion/show/${id}`)
-        return response.data.inscripcion
+        return response.data.inscripcion;
     })
     const formato = (texto)=>{
         return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');

@@ -48,6 +48,9 @@ import BitacorasAlumno from './pages/ProfesionalApoyo/dashboardProfesional/bitac
 import DetalleBitacora from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/detalleBitacora'
 import VerArchivos from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/verArchivos'
 import VerImagenes from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras_alumno/verImagenes'
+import VisualizadorDocumento from './pages/Alumno/documentos/visualizadorDocumento'
+import VisualizadorDocumentosInscripcion from './pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/visualizadorDocumentos'
+import VisualizadorDocumentoJefe from './pages/JefeDeCarrera/archivosbitacoras/VerDocumentoJefe'
 
 
 const queryClient = new QueryClient();
@@ -62,7 +65,7 @@ function App() {
               <AuthProvider>
                      <Routes>
                         <Route path='/' index element={<Login/>} />
-                        
+                             <Route path='/visualizador/:id' element={<VisualizadorDocumento/>}/>
                              <Route element={<ProtectedRoute />}>
                                 <Route path="/alumno" element={<DashboardAlumno/>} /> 
                                 <Route path="/perfil" element={<PerfilAlumno/>} />
@@ -79,6 +82,7 @@ function App() {
                                 <Route path="/showbitalumno" element={<RenderBitaAlumno/>} />
                                 <Route path="/detailsbitacoralumno/:id" element={<RenderDetailsAlumno/>} />
                                 <Route path="/modificarbitacoralumno/:id" element={<EditingBitAlumno/>} />
+                                
                             </Route>  
                             <Route element={<ProtectedRouteJefe />} >
                                 <Route path="/jefedecarrera" element={<DashboardJefeCarrera/>} />
@@ -88,6 +92,7 @@ function App() {
                                 <Route path="/modificarbitacorajefe/:id" element={<EditingBit/>}/>
                                 <Route path="/archivosbitacorajefe/:id" element ={<ArchivosBitacorasJefe/>} />
                                 <Route path="/imagenesbitacorajefe/:id" element ={<ImagenesBitacorasJefe/>} />
+                                <Route path='/visualizadordocumentojefe/:id' element={<VisualizadorDocumentoJefe/>}/>
                             </Route>
                             <Route element={<ProtectedRouteProfesional/>}>
                           
@@ -107,6 +112,7 @@ function App() {
                                 <Route path="/detallebitacora/:id" element={<DetalleBitacora/>} />
                                 <Route path='/verarchivobitacoras/:id' element={<VerArchivos/>} />
                                 <Route path='/verimagenesbitacoras/:id' element={<VerImagenes/>} />
+                                <Route path='/visualizadordocumento/:id' element={<VisualizadorDocumentosInscripcion/>} />
                             </Route>
                         
                      </Routes>

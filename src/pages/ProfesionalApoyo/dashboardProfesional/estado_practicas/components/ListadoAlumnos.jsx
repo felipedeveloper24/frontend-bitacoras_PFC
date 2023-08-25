@@ -1,101 +1,149 @@
-import { Grid, Table, TableContainer, TableRow,TableHead ,Typography, TableCell, Alert, Paper, TableBody, Tooltip, CircularProgress } from "@mui/material";
+import { Grid, Paper, CircularProgress, Tooltip } from "@mui/material";
 import { useQuery } from "react-query";
 import clienteAxios from "../../../../../helpers/clienteaxios";
 import { Psychology, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import MUIDataTable from "mui-datatables";
 
+const ListadoAlumnos = ({ anio, periodo, asignatura, carrera }) => {
+  const navigate = useNavigate();
 
+  const getListadoAlumnos = useQuery("listadoalumnos", async () => {
+    const response = await clienteAxios.post("/inscripcion/listadogeneral", {
+      anio: Number(anio),
+      periodo_academico: Number(periodo),
+      asignatura: Number(asignatura),
+      carrera: Number(carrera),
+    });
 
-
-const ListadoAlumnos = ({anio,periodo,asignatura,carrera})=>{
-    const navigate = useNavigate();
-
-    const getListadoAlumnos = useQuery("listadoalumnos",async()=>{
-        
-        const response = await clienteAxios.post("/inscripcion/listadogeneral",{
-            anio:Number(anio),
-            periodo_academico:Number(periodo),
-            asignatura:Number(asignatura),
-            carrera:Number(carrera)
-        }) 
-
-        if(response.status==200){
-            
-            return response.data;
-        }   
-    })
-
-    if(getListadoAlumnos.status == "success" && getListadoAlumnos.data.alumnos.length > 0){
-        return (
-            
-            <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"20px"}}>
-                <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell><strong>RUT</strong></TableCell>
-                        <TableCell><strong>Nombre</strong></TableCell>
-                        <TableCell><strong>Apellido</strong></TableCell>
-                        <TableCell><strong>Correo</strong></TableCell>
-                        <TableCell><strong>Periodo académico</strong></TableCell>
-                        <TableCell><strong>Acciones</strong></TableCell>
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            Array.isArray(getListadoAlumnos.data.alumnos) && getListadoAlumnos.data.alumnos.map((alumno,idx)=>(
-                                <TableRow key={idx}>
-                                    <TableCell>{alumno.alumno.rut}</TableCell>
-                                    <TableCell>{alumno.alumno.primer_nombre}</TableCell>
-                                    <TableCell>{alumno.alumno.apellido_paterno}</TableCell>
-                                    <TableCell>{alumno.alumno.correo_institucional}</TableCell>
-                                    <TableCell>{alumno.periodo_academico.anio} - {alumno.periodo_academico.id_periodo_academico}</TableCell>
-                                    <TableCell>
-                                        <Tooltip title="Ver inscripción practica profesional">
-                                            <Visibility sx={{cursor:"pointer"}} onClick={()=>{navigate(`/informaciongeneral/${alumno.id_inscripcion}`)}}/>
-                                        </Tooltip>
-                                        <Tooltip title="Conocimentos">
-                                             <Psychology sx={{cursor:"pointer"}} onClick={()=>{navigate(`/aptitudes/${alumno.id_alumno}`)}} /> 
-                                        </Tooltip>
-                                        
-                                    </TableCell>
-                                    
-                                </TableRow>
-                            ))
-                        }
-                    </TableBody>
-                </Table>
-                </TableContainer>
-        )
+    if (response.status === 200) {
+      return response.data;
     }
+  });
 
-    if(getListadoAlumnos.status == "success" && getListadoAlumnos.data.alumnos.length == 0){
-        return (
-            <TableContainer component={Paper} sx={{width:"90%",margin:"0px auto",marginTop:"20px"}}>
-            <Table stickyHeader sx={{ minWidth: 650,maxHeight:300 }} aria-label="simple table">
-                <TableHead>
-                <TableRow>
-                    <TableCell>RUT</TableCell>
-                    <TableCell >Nombre</TableCell>
-                    <TableCell>Apellido</TableCell>
-                    <TableCell>Correo</TableCell>
-                    <TableCell>Periodo académico</TableCell>
-                    <TableCell>Acciones</TableCell>
-                </TableRow>
-                </TableHead>
-               
-            </Table>
-            <Alert severity="error">No hay alumnos inscritos desde intranet.</Alert>
-            </TableContainer>
-        )
-    }
-    if(getListadoAlumnos.status == "loading"){
-        <Grid sx={{width:"35%",margin:"0px auto",marginTop:"20px",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+  const columns = [
+    "RUT",
+    "Nombre",
+    "Apellido",
+    "Correo",
+    "Periodo académico",
+    {
+      name: "Acciones",
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          const alumno = getListadoAlumnos.data.alumnos[tableMeta.rowIndex];
+          return (
+            <>
+              <Tooltip title="Ver inscripción practica profesional">
+                <Visibility
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigate(`/informaciongeneral/${alumno.id_inscripcion}`);
+                  }}
+                />
+              </Tooltip>
+              <Tooltip title="Conocimentos">
+                <Psychology
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigate(`/aptitudes/${alumno.id_alumno}`);
+                  }}
+                />
+              </Tooltip>
+            </>
+          );
+        },
+      },
+    },
+  ];
+  
+
+  const data =
+    getListadoAlumnos.status === "success"
+      ? getListadoAlumnos.data.alumnos.map((alumno) => [
+          alumno.alumno.rut,
+          alumno.alumno.primer_nombre,
+          alumno.alumno.apellido_paterno,
+          alumno.alumno.correo_institucional,
+          `${alumno.periodo_academico.anio} - ${alumno.periodo_academico.id_periodo_academico}`,
+          "",
+        ])
+      : [];
+
+      const options = {
+        filter: true,
+        search: true,
+        selectableRows: "none",
+        responsive: "standard",
+        rowsPerPage: 10,
+        download: false,
+        print: false,
+        rowsPerPageOptions: [10, 25, 50],
+        textLabels: {
+          body: {
+            noMatch: "No se encontraron registros",
+            toolTip: "Ordenar",
+          },
+          pagination: {
+            next: "Siguiente",
+            previous: "Anterior",
+            rowsPerPage: "Filas por página:",
+            displayRows: "de",
+          },
+          toolbar: {
+            search: "Buscar",
+            downloadCsv: "Descargar CSV",
+            print: "Imprimir",
+            viewColumns: "Ver Columnas",
+            filterTable: "Filtrar Tabla",
+          },
+          filter: {
+            all: "Todos",
+            title: "Filtros",
+            reset: "Reiniciar",
+          },
+          viewColumns: {
+            title: "Mostrar Columnas",
+            titleAria: "Mostrar/Ocultar Columnas de Tabla",
+          },
+          selectedRows: {
+            text: "fila(s) seleccionada(s)",
+            delete: "Eliminar",
+            deleteAria: "Eliminar Filas Seleccionadas",
+          },
+        },
+      };
+      
+  if (getListadoAlumnos.status === "loading") {
+    return (
+      <Grid
+        sx={{
+          width: "35%",
+          margin: "0px auto",
+          marginTop: "20px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         Cargando datos.........
-        <CircularProgress/>
-    
-        </Grid>
-    }
-    
-}
+        <CircularProgress />
+      </Grid>
+    );
+  }
+
+  return (
+    <Grid sx={{width:"90%",margin:"0px auto",marginTop:"30px"}}>
+         <MUIDataTable
+            title="Listado de alumnos"
+            data={data}
+            columns={columns}
+            options={options}
+            />
+    </Grid>
+   
+  );
+};
 
 export default ListadoAlumnos;
