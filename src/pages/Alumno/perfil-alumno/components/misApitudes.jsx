@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Typography,Box ,Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Tooltip, Alert} from "@mui/material"
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import PsychologyAltRoundedIcon from '@mui/icons-material/PsychologyAltRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 
 const MisAptitudes = ({id_alumno})=>{
     const [data,setData] = useState([]);
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(true);
+    const queryclient = useQueryClient();
     const getAptitudes = useQuery("misapitudes",async ()=>{
         const response = await clienteAxios.post("/alumno/showAptitudes",{
             id_alumno:id_alumno
@@ -44,6 +45,7 @@ const MisAptitudes = ({id_alumno})=>{
             })
             setTimeout(()=>{
                 Swal.close();   
+                queryclient.refetchQueries("aptitudes");
                 getAptitudes.refetch();
             },2000)
          

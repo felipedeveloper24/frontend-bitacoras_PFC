@@ -10,6 +10,7 @@ const Detalle = ({id})=>{
     const navigate = useNavigate();
     const {data,status} = useQuery("detalleinscripcion", async()=>{
         const response = await clienteAxios.get(`/inscripcion/show/${id}`)
+        console.log(response.data);
         return response.data.inscripcion;
     })
     const formato = (texto)=>{
@@ -17,7 +18,6 @@ const Detalle = ({id})=>{
     }
     if(status=="success" && data){
 
-            
             let fecha_inicio = data.fecha_inicio.split("T")[0];
             fecha_inicio = (formato(fecha_inicio))
             let fecha_fin = data.fecha_fin.split("T")[0];

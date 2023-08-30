@@ -12,11 +12,23 @@ const ModalAptitudes = ({id_alumno})=>{
   
     const {handleSubmit,register,control} = useForm();
 
-    const {data,status,refetch} = useQuery("aptitudes",async()=>{
-        const response = await clienteAxios.get("/aptitud/getall");
-
-        return response.data.aptitudes;
-    })
+    const { data, status, refetch } = useQuery(
+        "aptitudes",
+        async () => {
+          const response = await clienteAxios.get("/aptitud/getall");
+          const response2 = await clienteAxios.post("/alumno/showAptitudes", {
+            id_alumno: id_alumno,
+          });
+          
+          const array_aptitudes = response.data.aptitudes;
+          const array_conocimientos = response2.data.aptitudes;
+          const optionsNotRegistered = array_aptitudes.filter(
+            (option) => !array_conocimientos.some((item) => item.id_aptitud === option.id_aptitud)
+          );
+    
+          return optionsNotRegistered;
+        }
+      );
     const [open, setOpen] = useState(false);
     const handleClose = () => {
         setOpen(false);
@@ -41,6 +53,7 @@ const ModalAptitudes = ({id_alumno})=>{
             setTimeout(()=>{
                 Swal.close();
                 setOpen(false)
+                refetch();
                 queryClient.refetchQueries("misapitudes")
             },2000)
         }

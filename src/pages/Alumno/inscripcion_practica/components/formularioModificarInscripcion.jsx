@@ -24,6 +24,24 @@ const FormularioModificarInscripcion = ()=>{
     const [loading,setLoading] = useState(true);
     const id_inscribe = localStorage.getItem("id_inscribe");
     const navigate = useNavigate();
+    const validateCargo = (input) => {
+        const regex = /^[A-Za-z ]+$/;
+        return regex.test(input);
+    }
+    const validateNombreApellido = (input) => {
+        const regex = /^[A-Za-z ]+$/;
+        return regex.test(input);
+    };
+
+    const validateTelefono = (input) => {
+        const regex = /^[0-9]{9}$/; // 9 dígitos
+        return regex.test(input);
+    };
+
+    const validateCorreo = (input) => {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(input);
+    };
     const modalidades = useQuery("modalidades",async()=>{
         const response = await clienteAxios.get("/inscripcion/modalidades");
         if(response.status == 200){
@@ -70,7 +88,39 @@ const FormularioModificarInscripcion = ()=>{
    }
    const onSubmit = async(e)=>{
         e.preventDefault();
+        if (!validateCargo(cargo)) {
+            Swal.fire({
+                title: "Error",
+                text: "El campo 'Cargo' solo debe contener caracteres alfabéticos",
+                icon: "error",
+            });
+            return;
+        }
+        if (!validateNombreApellido(nombre) || !validateNombreApellido(apellido)) {
+            Swal.fire({
+                title: "Error",
+                text: "Nombre y apellido solo deben contener caracteres alfabéticos",
+                icon: "error",
+            });
+            return;
+        }
 
+        if (!validateTelefono(telefono)) {
+            Swal.fire({
+                title: "Error",
+                text: "El teléfono debe contener 9 dígitos numéricos",
+                icon: "error",
+            });
+            return;
+        }
+
+        if (!validateCorreo(correo)) {
+            Swal.fire({
+                title: "Error",
+                text: "Por favor, ingresa un correo válido",
+                icon: "error",
+            });
+            return;}
 
         var fechaHoy = new Date();
         var año = fechaHoy.getFullYear().toString()
