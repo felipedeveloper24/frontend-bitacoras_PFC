@@ -51,6 +51,7 @@ import VerImagenes from './pages/ProfesionalApoyo/dashboardProfesional/bitacoras
 import VisualizadorDocumento from './pages/Alumno/documentos/visualizadorDocumento'
 import VisualizadorDocumentosInscripcion from './pages/ProfesionalApoyo/dashboardProfesional/estado_practicas/visualizadorDocumentos'
 import VisualizadorDocumentoJefe from './pages/JefeDeCarrera/archivosbitacoras/VerDocumentoJefe'
+import VisualizadorDocumentoBitacora from './pages/Alumno/archivos_bitacora/visualizador_archivo_bitacora'
 
 
 const queryClient = new QueryClient();
@@ -64,7 +65,8 @@ function App() {
           
               <AuthProvider>
                      <Routes>
-                        <Route path='/' index element={<Login/>} />
+                            <Route path='/' index element={<Login/>} />
+                             <Route path='/visualizadorbitacora/:id' element={<VisualizadorDocumentoBitacora/>} />
                              <Route path='/visualizador/:id' element={<VisualizadorDocumento/>}/>
                              <Route element={<ProtectedRoute />}>
                                 <Route path="/alumno" element={<DashboardAlumno/>} /> 

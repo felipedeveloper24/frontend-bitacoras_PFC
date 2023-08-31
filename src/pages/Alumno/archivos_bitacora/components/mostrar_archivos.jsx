@@ -40,7 +40,7 @@ const MostrarArchivos = ()=>{
         FileSaver.saveAs(pdfBlob, pdfName);
     };
     const handleLinkClick = (id) => {
-        const newTab = window.open(`/visualizador/${id}`, '_blank');
+        const newTab = window.open(`/visualizadorbitacora/${id}`, '_blank');
         newTab.focus();
       };
     

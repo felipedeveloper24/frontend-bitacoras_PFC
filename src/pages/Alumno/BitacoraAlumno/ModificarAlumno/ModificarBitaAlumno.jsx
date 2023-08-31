@@ -21,8 +21,8 @@ const ModificarBitaAlumno = () => {
 
     const id_usuario = localStorage.getItem("id_usuario");
     const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
-    
-    const [estado,setEstado] = useState('');
+
+    const [estado, setEstado] = useState('');
 
     const getBitacoraAlumno = async () => {
         const response = await clienteAxios.get(`/bitacoralumno/show/${id}`)
@@ -38,7 +38,7 @@ const ModificarBitaAlumno = () => {
             const horainicioupdate = horainicio.substring(0, 5)
             setHoraInicio(horainicioupdate)
             // console.log(horainicioupdate)
-         
+
             setEstado(response.data.bitacora.id_estado_bitacora)
             const horafin = response.data.bitacora.hora_fin;
             const horafinupdate = horafin.includes('T') ? horafin.split('T')[1].substring(0, 5) : '';
@@ -76,9 +76,9 @@ const ModificarBitaAlumno = () => {
             setTitulo(inputValue);
         }
     };
-    const getEstados = useQuery("estados_bitacora",async()=>{
+    const getEstados = useQuery("estados_bitacora", async () => {
         const response = await clienteAxios.get(`/bitacorajefe/estados`);
-        if(response.status==200){
+        if (response.status == 200) {
             return response.data.estados_bitacora
         }
     })
@@ -99,6 +99,54 @@ const ModificarBitaAlumno = () => {
             setShowError(true);
             return;
         }
+        // La fecha "1970-01-01" se utiliza como un marcador de tiempo estándar para facilitar la comparación de las horas. 
+        // En la mayoría de los sistemas, las fechas se calculan en milisegundos desde la "época de Unix", 
+        // que comenzó a las 00:00:00 del 1 de enero de 1970 (UTC). 
+        // Por eso, muchas veces se utiliza esta fecha como base cuando solo nos interesa la comparación de horas o minutos.
+        const horaInicio = new Date(`1970-01-01T${hora_inicio}:00`);
+        const horaFin = new Date(`1970-01-01T${hora_fin}:00`);
+        const minTime = new Date("1970-01-01T08:00:00");
+        const maxTime = new Date("1970-01-01T22:00:00");
+
+        if (horaInicio < minTime || horaInicio > maxTime) {
+            Swal.fire({
+                title: "Error",
+                text: "La hora de inicio debe estar entre las 08:00 y las 22:00",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+
+        if (horaFin < minTime || horaFin > maxTime) {
+            Swal.fire({
+                title: "Error",
+                text: "La hora de finalización debe estar entre las 08:00 y las 22:00",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+
+        if (horaInicio.getTime() === horaFin.getTime()) {
+            Swal.fire({
+                title: "Error",
+                text: "La hora de inicio no puede ser igual a la hora de finalización",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+
+        if (horaInicio >= horaFin) {
+            Swal.fire({
+                title: "Error",
+                text: "La hora de inicio debe ser menor que la hora de finalización",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
 
         try {
 
@@ -109,10 +157,10 @@ const ModificarBitaAlumno = () => {
                 hora_inicio: hora_inicio,
                 hora_fin: hora_fin,
                 id_estado_bitacora: estado, // Reemplaza con el valor correcto
-                id_usuario:Number( id_usuario), // Reemplaza con el valor correcto
-                id_inscripcion_practica: Number (id_inscripcion_practica), // Reemplaza con el valor correcto
+                id_usuario: Number(id_usuario), // Reemplaza con el valor correcto
+                id_inscripcion_practica: Number(id_inscripcion_practica), // Reemplaza con el valor correcto
             });
-            
+
             // Realiza las acciones necesarias con la respuesta del servidor
             if (response.status === 200) {
                 Swal.fire({
@@ -138,7 +186,7 @@ const ModificarBitaAlumno = () => {
 
     return (
         <Container maxWidth="sm" sx={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '50px' }}>
-            <Card sx={{ padding: '20px',backgroundColor:"#f4f5f7" }}>
+            <Card sx={{ padding: '20px', backgroundColor: "#f4f5f7" }}>
                 <Typography
                     component="h2"
                     sx={{
@@ -166,7 +214,7 @@ const ModificarBitaAlumno = () => {
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
                     fullWidth
-                    sx={{backgroundColor:"white"}}
+                    sx={{ backgroundColor: "white" }}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
@@ -183,7 +231,7 @@ const ModificarBitaAlumno = () => {
                 <TextField
                     label="Fecha de Creación"
                     type="date"
-                    sx={{backgroundColor:"white"}}
+                    sx={{ backgroundColor: "white" }}
                     value={fecha_creacion}
                     onChange={(e) => setFechaCreacion(e.target.value)}
                     fullWidth
@@ -198,37 +246,44 @@ const ModificarBitaAlumno = () => {
                     label="Hora de Inicio"
                     type="time"
                     value={hora_inicio}
+                    sx={{ backgroundColor: "white" }}
                     onChange={(e) => setHoraInicio(e.target.value)}
                     fullWidth
-                    sx={{backgroundColor:"white"}}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    inputProps={{
+                        min: "08:00",
+                        max: "22:00"
+                    }}
                 />
-
 
                 <TextField
                     label="Hora de Fin"
                     type="time"
                     value={hora_fin}
-                    sx={{backgroundColor:"white"}}
                     onChange={(e) => setHoraFin(e.target.value)}
                     fullWidth
+                    sx={{ backgroundColor: "white" }}
                     margin="normal"
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    inputProps={{
+                        min: "08:00",
+                        max: "22:00"
+                    }}
                 />
-                  <FormControl margin="normal" fullWidth>
+                <FormControl margin="normal" fullWidth>
                     <InputLabel>Estado Bitácora</InputLabel>
                     <Select label="Estado Bitácora"
-                    sx={{backgroundColor:"white"}}
-                    value={estado}
-                    onChange={(e)=>{setEstado(e.target.value)}}
-                    fullWidth>
+                        sx={{ backgroundColor: "white" }}
+                        value={estado}
+                        onChange={(e) => { setEstado(e.target.value) }}
+                        fullWidth>
                         {
-                            getEstados.status=="success" && getEstados.data.map((estado,idx)=>(
+                            getEstados.status == "success" && getEstados.data.map((estado, idx) => (
                                 <MenuItem key={idx} value={estado.id_estado_bitacora}>{estado.nombre_estado_bitacora}</MenuItem>
                             ))
                         }
@@ -236,7 +291,7 @@ const ModificarBitaAlumno = () => {
                 </FormControl>
 
                 <TextField
-                sx={{backgroundColor:"white"}}
+                    sx={{ backgroundColor: "white" }}
                     label="Descripción"
                     value={descripcion}
                     onChange={(e) => setDescripcion(e.target.value)}
@@ -258,14 +313,14 @@ const ModificarBitaAlumno = () => {
                     {remainingChars >= 0 ? `Carácteres restantes: ${remainingChars}` : 'Has superado el límite de carácteres. Por favor, reduce tu descripción.'}
                 </p>
 
-              
+
                 <Box
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
                     p={1}
                     m={1}
-                   
+
                     sx={{ margin: '20px auto' }}
                 >
                     <Button

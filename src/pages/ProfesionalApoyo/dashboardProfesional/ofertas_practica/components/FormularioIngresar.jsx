@@ -86,7 +86,7 @@ const FormularioIngresar = () => {
                         </p>
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField sx={{ backgroundColor: "white" }} label="Cupos" value={cupos} type="number" required onChange={(e) => { setCupos(e.target.value) }} fullWidth />
+                        <TextField sx={{ backgroundColor: "white" }} label="Cupos" value={cupos} type="number" inputProps={{min:0}} required onChange={(e) => { setCupos(e.target.value) }} fullWidth />
                     </Grid>
                     <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl fullWidth>

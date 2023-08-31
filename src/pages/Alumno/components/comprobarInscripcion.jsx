@@ -19,7 +19,7 @@ const ComprobarInscripcion = ()=>{
     });
 
     if(status=="success" && data.inscrito_sistema){
-     
+        localStorage.setItem("id_inscripcion_practica",data.id_inscripcion_practica)
         return(
             <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"15px"}}>
                
@@ -33,7 +33,7 @@ const ComprobarInscripcion = ()=>{
         )
     }
     if(status=="success" && data.inscrito_sistema==false){
-     
+        localStorage.setItem("id_inscripcion_practica","undefined")
         return(
             <Grid container spacing={1} sx={{width:"90%",margin:"0px auto",display:"flex",justifyContent:"center",marginTop:"15px"}}>
                 <Grid item>

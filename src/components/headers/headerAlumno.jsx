@@ -10,6 +10,8 @@ import {useNavigate } from "react-router-dom";
 import logoubb from "../../assets/logoubb.png"
 import { Output } from "@mui/icons-material";
 import Swal from "sweetalert2";
+import { useQuery } from "react-query";
+import clienteAxios from "../../helpers/clienteaxios";
 
 const HeaderAlumno = ()=>{
     
@@ -19,6 +21,20 @@ const HeaderAlumno = ()=>{
         setOpen(!open);
       };
     const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
+    const id_alumno = localStorage.getItem("id_alumno")
+    const comprobar = useQuery("update_inscripcion",async()=>{
+        const response = await clienteAxios.post("/inscripcion/comprobar",{
+            id_alumno:id_alumno
+        })
+        if(response.status == 200){
+            localStorage.setItem("id_inscripcion_practica",response.data.id_inscripcion)
+            return  response.data.inscrito_sistema
+        }
+      
+    });
+
+
+
     const logout = ()=>{
         setOpen(false)
         Swal.fire(
@@ -60,7 +76,8 @@ const HeaderAlumno = ()=>{
                     </ListItem>
                     
                     {
-                        id_inscripcion_practica != "undefined" && (
+                        comprobar.status == "success" && comprobar.data == true &&
+                         (
                             <ListItem button onClick={()=>navigate("/showbitalumno")} >
                                  <ListItemText sx={{textAlign:"center"}} primary="Bitácoras" />
                             </ListItem>

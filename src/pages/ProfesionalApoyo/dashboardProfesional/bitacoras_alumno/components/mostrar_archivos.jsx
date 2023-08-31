@@ -1,8 +1,8 @@
 
-import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Alert, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import { useQuery, useQueryClient } from "react-query";
 
-import { Delete, Download } from "@mui/icons-material";
+import { Delete, Download, Visibility } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import FileSaver from "file-saver";
@@ -40,7 +40,10 @@ const MostrarArchivos = ()=>{
     const downloadPdf = (pdfBlob, pdfName) => {
         FileSaver.saveAs(pdfBlob, pdfName);
     };
-    
+    const handleLinkClick = (id) => {
+        const newTab = window.open(`/visualizadorbitacora/${id}`, '_blank');
+        newTab.focus();
+      };
 
     if(getArchivos.status == "success" && !getArchivos.data.archivos){
         return (
@@ -83,7 +86,13 @@ const MostrarArchivos = ()=>{
                                 <TableCell>{archivo.nombre}</TableCell>
                               
                                 <TableCell>
-                                    <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    <Tooltip title="Ver Documento">
+                                        <Visibility sx={{cursor:"pointer"}} onClick={()=>{handleLinkClick(archivo.id_archivo)}} />
+                                    </Tooltip>
+                                    <Tooltip title="Descargar Documento">
+                                         <Download sx={{cursor:"pointer"}} onClick={()=>downloadPdf(archivo.blob,archivo.nombre)} />
+                                    </Tooltip>
+                                   
                                    
                                 </TableCell>
                             </TableRow>

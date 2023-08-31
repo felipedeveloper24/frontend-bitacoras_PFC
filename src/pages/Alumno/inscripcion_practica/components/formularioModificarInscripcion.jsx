@@ -1,6 +1,6 @@
 import { Autocomplete, Button, Card, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material"
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import clienteAxios from "../../../../helpers/clienteaxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const FormularioModificarInscripcion = ()=>{
     const [data,setData] = useState({});
     const [cargo,setCargo] = useState("");
     const [loading,setLoading] = useState(true);
+    const [fechaMaxFin, setFechaMaxFin] = useState("");
     const id_inscribe = localStorage.getItem("id_inscribe");
     const navigate = useNavigate();
     const validateCargo = (input) => {
@@ -55,7 +56,34 @@ const FormularioModificarInscripcion = ()=>{
         const response = await clienteAxios.get("/oferta/getall");
         return response.data.ofertas;
     })
-   
+    const handleFechaInicio = (event) => {
+        setFechaInicio(event.target.value);
+        //calcula la fecha máxima permitida para 'fecha_fin'
+        let fechaInicio = new Date(event.target.value);
+        fechaInicio.setMonth(fechaInicio.getMonth() + 6);
+        const año = fechaInicio.getFullYear();
+        let mes = fechaInicio.getMonth() + 1; //los meses en JavaScript van de 0 a 11
+        let dia = fechaInicio.getDate();
+
+        //asegúrate de que los valores de día y mes tengan dos dígitos
+        if (mes < 10) mes = "0" + mes;
+        if (dia < 10) dia = "0" + dia;
+
+        setFechaMaxFin(`${año}-${mes}-${dia}`);
+    };
+    const handleFechaFin = (event) => {
+        setFechaFin(event.target.value);
+    };
+    const handleModalidad = (event) => {
+        setSelectModalidad(event.target.value);
+    };
+
+    
+
+
+
+
+
     
    const getinscripcion = async()=>{
         const response_peticion = await clienteAxios.get(`/inscripcion/show/${id_inscribe}`)
@@ -86,8 +114,33 @@ const FormularioModificarInscripcion = ()=>{
             }
         }    
    }
+   const queryClient = useQueryClient();
    const onSubmit = async(e)=>{
         e.preventDefault();
+
+        //validación para comprobar si las fechas de inicio y fin son iguales
+        if (fecha_inicio === fecha_fin) {
+            Swal.fire({
+                title: "Error",
+                text: "La fecha de inicio y la fecha de fin deben ser distintas",
+                icon: "error",
+            });
+            return; //salir de la función si las fechas son iguales
+        }
+        const fechaInicioValidacion = new Date(fecha_inicio);
+    const fechaFinValidacion = new Date(fecha_fin);
+    let monthsDif;
+    monthsDif = (fechaFinValidacion.getFullYear() - fechaInicioValidacion.getFullYear()) * 12;
+    monthsDif -= fechaInicioValidacion.getMonth();
+    monthsDif += fechaFinValidacion.getMonth();
+    if (monthsDif < 1) {
+        Swal.fire({
+            title: "Error",
+            text: "El rango entre la fecha de inicio y la fecha de fin debe ser de al menos 1 mes",
+            icon: "error",
+        });
+        return;
+    }
         if (!validateCargo(cargo)) {
             Swal.fire({
                 title: "Error",
@@ -122,16 +175,35 @@ const FormularioModificarInscripcion = ()=>{
             });
             return;}
 
+            const fechaInicio = new Date(fecha_inicio);
+            const fechaFin = new Date(fecha_fin);
+            let months;
+            months = (fechaFin.getFullYear() - fechaInicio.getFullYear()) * 12;
+            months -= fechaInicio.getMonth();
+            months += fechaFin.getMonth();
+            //aquí puedes agregar el cálculo para los días adicionales
+            const diffDays = fechaFin.getDate() - fechaInicio.getDate();
+            if (diffDays > 0) {
+                months += 1;
+            }
+            if (months > 6) {
+                Swal.fire({
+                    title: "Error",
+                    text: "El rango entre la fecha de inicio y la fecha de fin no debe exceder los 6 meses",
+                    icon: "error",
+                });
+                return;
+            }
         var fechaHoy = new Date();
         var año = fechaHoy.getFullYear().toString()
         var mes = ('0' + (fechaHoy.getMonth() + 1)).slice(-2); // Los meses en JavaScript van de 0 a 11, por lo tanto, se suma 1
         var dia = ('0' + fechaHoy.getDate()).slice(-2);
 
-        // Formato de fecha yy/mm/dd
+        // formato de fecha yy/mm/dd
         var fechaActual = año + '-' + mes + '-' + dia;
    
          if(select_oferta == 1 && datos_evaluador == 1){
-            //Caso con todo los campos
+            //caso con todo los campos
         
             const data_evaluador = {
                 nombre:nombre,
@@ -168,6 +240,7 @@ const FormularioModificarInscripcion = ()=>{
                         })
                         setTimeout(()=>{
                             Swal.close();
+                            queryClient.refetchQueries("estado_inscripcion")
                             navigate(`/detalleinscripcion/${id_inscribe}`)
                         },2000)
                     }
@@ -202,6 +275,7 @@ const FormularioModificarInscripcion = ()=>{
                         })
                         setTimeout(()=>{
                             Swal.close();
+                            queryClient.refetchQueries("estado_inscripcion")
                             navigate(`/detalleinscripcion/${id_inscribe}`)
                         },2000)
                     }
@@ -247,6 +321,7 @@ const FormularioModificarInscripcion = ()=>{
                         })
                         setTimeout(()=>{
                             Swal.close();
+                            queryClient.refetchQueries("estado_inscripcion")
                             navigate(`/detalleinscripcion/${id_inscribe}`)
                         },2000)
                     }
@@ -279,6 +354,7 @@ const FormularioModificarInscripcion = ()=>{
                         })
                         setTimeout(()=>{
                             Swal.close();
+                            queryClient.refetchQueries("estado_inscripcion")
                             navigate(`/detalleinscripcion/${id_inscribe}`)
                         },2000)
                     }
@@ -302,10 +378,30 @@ const FormularioModificarInscripcion = ()=>{
         <Card sx={{padding:"20px",backgroundColor:"#f4f5f7"}}>
             <Grid container spacing={2}>
                 <Grid item  xs={11} xl={6} lg={6} md={6} sm={10}>
-                    <TextField sx={{backgroundColor:"white"}} required label="Fecha Inicio" value={fecha_inicio} onChange={(e)=>{setFechaInicio(e.target.value)}} InputLabelProps={{shrink:true}} type="date" fullWidth />
+                <TextField
+                            sx={{ backgroundColor: "white" }}
+                            value={fecha_inicio}
+                            required
+                            label="Fecha Inicio"
+                            onChange={handleFechaInicio}
+                            InputLabelProps={{ shrink: true }}
+                            type="date"
+                            fullWidth
+                        />
                 </Grid>
                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
-                        <TextField sx={{backgroundColor:"white"}} label="Fecha Fin" value={fecha_fin} required onChange={(e)=>{setFechaFin(e.target.value)}} type="date" InputLabelProps={{shrink:true}}  fullWidth />
+                <TextField
+                            sx={{ backgroundColor: "white" }}
+                            value={fecha_fin}
+                            label="Fecha Fin"
+                            required
+                            onChange={handleFechaFin}
+                            type="date"
+                            InputLabelProps={{ shrink: true }}
+                            min={fecha_inicio} //fecha mínima basada en fecha_inicio
+                            max={fechaMaxFin} //fecha máxima basada en fecha_inicio
+                            fullWidth
+                        />
                 </Grid>
                 <Grid item xs={11} xl={6} lg={6} md={6} sm={10}>
                         <FormControl margin="normal" fullWidth>
