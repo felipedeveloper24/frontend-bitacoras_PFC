@@ -16,8 +16,40 @@ const RegistroEvaluador = () => {
     const navigate = useNavigate();
     const queryClient = new QueryClient();
     const id_inscribe = localStorage.getItem("id_inscribe");
+
+    
+    const validateCargo = (input) => {
+        const regex = /^[A-Za-z ]+$/;
+        return regex.test(input);
+    };
+    const validateNombreApellido = (input) => {
+        const regex = /^[A-Za-z ]+$/;
+        return regex.test(input);
+    };
+    const validateTelefono = (input) => {
+        const regex = /^[0-9]{9}$/; //9 dígitos
+        return regex.test(input);
+    };
+
     const onSubmit = async(e)=>{
         e.preventDefault();
+
+        if (!validateNombreApellido(nombre)) {
+            Swal.fire("Error", "El nombre solo debe contener carácteres alfabéticos", "error");
+            return;
+        }
+        if (!validateNombreApellido(apellido)) {
+            Swal.fire("Error", "El apellido solo debe contener carácteres alfabéticos", "error");
+            return;
+        }
+        if (!validateTelefono(telefono)) {
+            Swal.fire("Error", "El teléfono debe contener exactamente 9 dígitos y ser solamente numérico", "error");
+            return;
+        }
+        if (!validateCargo(cargo)) {
+            Swal.fire("Error", "El cargo solo debe contener carácteres alfabéticos", "error");
+            return;
+        }
         const data_evaluador = {
             nombre:nombre,
             apellido:apellido,
