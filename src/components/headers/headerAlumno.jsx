@@ -28,7 +28,7 @@ const HeaderAlumno = ()=>{
         })
         if(response.status == 200){
             localStorage.setItem("id_inscripcion_practica",response.data.id_inscripcion)
-            return  response.data.inscrito_sistema
+            return  response.data;
         }
       
     });
@@ -76,9 +76,9 @@ const HeaderAlumno = ()=>{
                     </ListItem>
                     
                     {
-                        comprobar.status == "success" && comprobar.data == true &&
+                        comprobar.status == "success" && comprobar.data.inscrito_sistema == true &&
                          (
-                            <ListItem button onClick={()=>navigate("/showbitalumno")} >
+                            <ListItem button onClick={()=>navigate(`/showbitalumno/${comprobar.data.id_inscripcion}`)} >
                                  <ListItemText sx={{textAlign:"center"}} primary="Bitácoras" />
                             </ListItem>
                         )

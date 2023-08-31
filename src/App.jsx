@@ -81,7 +81,7 @@ function App() {
                                 <Route path="/imagenesbitacora/:id" element={<ImagenesBitacoras/>} />
                                 <Route path="/aptitudes" element={<Aptitudes/>} />
                                 <Route path="/bitacoralumno" element={<BitAlumnoRender />} />
-                                <Route path="/showbitalumno" element={<RenderBitaAlumno/>} />
+                                <Route path="/showbitalumno/:id" element={<RenderBitaAlumno/>} />
                                 <Route path="/detailsbitacoralumno/:id" element={<RenderDetailsAlumno/>} />
                                 <Route path="/modificarbitacoralumno/:id" element={<EditingBitAlumno/>} />
                                 

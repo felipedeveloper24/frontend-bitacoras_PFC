@@ -24,7 +24,7 @@ const ShowBitaAlumno = () => {
     const id_inscripcion_practica = localStorage.getItem("id_inscripcion_practica")
   
     const {data, status, refetch} = useQuery("bitacoralumno", async () => {
-        const response = await clienteAxios.get(`/bitacoralumno/getall/${id_inscripcion_practica}`);
+        const response = await clienteAxios.get(`/bitacoralumno/getall/${id}`);
         
         return response.data;
     }, {
