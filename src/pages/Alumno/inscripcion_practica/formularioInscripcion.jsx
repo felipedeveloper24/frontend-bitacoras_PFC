@@ -1,5 +1,5 @@
-import {Autocomplete,Button,Card,FormControl,Grid,InputLabel,MenuItem,Select,TextField,Typography} from "@mui/material";
-import { useQuery, useQueryClient } from "react-query";
+import { Autocomplete, Button, Card, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { useQuery } from "react-query";
 import clienteAxios from "../../../helpers/clienteaxios";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -45,7 +45,7 @@ const FormularioInscripcion = () => {
             return response.data.modalidades;
         }
     });
-    
+
     const ofertas = useQuery("ofertas", async () => {
         const response = await clienteAxios.get("/oferta/getall");
         return response.data.ofertas;
@@ -77,34 +77,34 @@ const FormularioInscripcion = () => {
     const handleOferta = (event) => {
         setSelectOferta(event.target.value);
     };
-    const queryClient = useQueryClient();
 
     const onSubmit = async (e) => {
         e.preventDefault();
-         //validación para comprobar si las fechas de inicio y fin son iguales
-    if (fecha_inicio === fecha_fin) {
-        Swal.fire({
-            title: "Error",
-            text: "La fecha de inicio y la fecha de fin deben ser distintas",
-            icon: "error",
-        });
-        return; //salir de la función si las fechas son iguales
-    }
+        //validación para comprobar si las fechas de inicio y fin son iguales
+        if (fecha_inicio === fecha_fin) {
+            Swal.fire({
+                title: "Error",
+                text: "La fecha de inicio y la fecha de fin deben ser distintas",
+                icon: "error",
+            });
+            return; //salir de la función si las fechas son iguales
+        }
 
-    const fechaInicioValidacion = new Date(fecha_inicio);
-    const fechaFinValidacion = new Date(fecha_fin);
-    let monthsDif;
-    monthsDif = (fechaFinValidacion.getFullYear() - fechaInicioValidacion.getFullYear()) * 12;
-    monthsDif -= fechaInicioValidacion.getMonth();
-    monthsDif += fechaFinValidacion.getMonth();
-    if (monthsDif < 1) {
-        Swal.fire({
-            title: "Error",
-            text: "El rango entre la fecha de inicio y la fecha de fin debe ser de al menos 1 mes",
-            icon: "error",
-        });
-        return;
-    }
+        const fechaInicioValidacion = new Date(fecha_inicio);
+        const fechaFinValidacion = new Date(fecha_fin);
+        //crea una nueva fecha sumando un mes a la fecha de inicio
+        const unMesDespues = new Date(fechaInicioValidacion);
+        unMesDespues.setMonth(fechaInicioValidacion.getMonth() + 1);
+
+        //comparaa si la nueva fecha es todavía mayor o igual que la fecha de fin
+        if (unMesDespues > fechaFinValidacion) {
+            Swal.fire({
+                title: "Error",
+                text: "El rango entre la fecha de inicio y la fecha de fin debe ser de al menos 1 mes",
+                icon: "error",
+            });
+            return;
+        }
 
         if (datos_evaluador === 1) {
             if (
@@ -113,7 +113,7 @@ const FormularioInscripcion = () => {
             ) {
                 Swal.fire({
                     title: "Error",
-                    text: "Nombre y apellido solo deben contener caracteres alfabéticos",
+                    text: "Nombre y apellido solo deben contener carácteres alfabéticos",
                     icon: "error",
                 });
                 return;
@@ -140,14 +140,12 @@ const FormularioInscripcion = () => {
             if (!validateCargo(cargo)) {
                 Swal.fire({
                     title: "Error",
-                    text: "El campo 'Cargo' solo debe contener caracteres alfabéticos",
+                    text: "El campo 'Cargo' solo debe contener carácteres alfabéticos",
                     icon: "error",
                 });
                 return;
             }
         }
-
-        
 
         const fechaInicio = new Date(fecha_inicio);
         const fechaFin = new Date(fecha_fin);
@@ -221,11 +219,9 @@ const FormularioInscripcion = () => {
                         icon: "success",
                         confirmButtonText: "Aceptar",
                     });
-                    console.log(response_inscripcion)
                     setTimeout(() => {
                         Swal.close();
-                        queryClient.refetchQueries("estado_inscripcion")
-                        queryClient.refetchQueries("update_inscripcion")
+
                         navigate("/alumno");
                     }, 2000);
                 }
@@ -255,8 +251,6 @@ const FormularioInscripcion = () => {
                 });
                 setTimeout(() => {
                     Swal.close();
-                    queryClient.refetchQueries("estado_inscripcion")
-                    queryClient.refetchQueries("update_inscripcion")
                     navigate("/alumno");
                 }, 2000);
             }
@@ -300,8 +294,6 @@ const FormularioInscripcion = () => {
                     });
                     setTimeout(() => {
                         Swal.close();
-                        queryClient.refetchQueries("estado_inscripcion")
-                        queryClient.refetchQueries("update_inscripcion")
                         navigate("/alumno");
                     }, 2000);
                 }
@@ -329,12 +321,8 @@ const FormularioInscripcion = () => {
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 });
-              
-               localStorage.setItem("id_inscripcion_practica",response.data.inscripcion.id_inscripcion_practica)
                 setTimeout(() => {
                     Swal.close();
-                    queryClient.refetchQueries("estado_inscripcion")
-                    queryClient.refetchQueries("update_inscripcion")
                     navigate("/alumno");
                 }, 2000);
             }
