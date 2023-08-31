@@ -6,13 +6,15 @@ import { TextField, Button, Container, Snackbar, MenuItem, Select, FormControl, 
 import Swal from 'sweetalert2';
 
 import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import clienteAxios from '../../../../helpers/clienteaxios';
 //mutation para enviar los datos del formulario
 
 const CreateBitaAlumno = () => {
 
+  
+  console.log()
   const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [fecha_creacion, setFechaCreacion] = useState('');
@@ -113,7 +115,7 @@ const CreateBitaAlumno = () => {
 
         setTimeout(() => {
           Swal.close()
-          navigate("/showbitalumno")
+          navigate(`/showbitalumno/${id_inscripcion_practica}`)
         }, 1000);
 
       }
