@@ -33,6 +33,7 @@ const SubirArchivo = ({id})=>{
                 'Content-Type': 'multipart/form-data'
             }
         })
+        e.target.reset();
         if(response.status==200){
             Swal.fire({
                 title:"Registrado",
@@ -44,6 +45,7 @@ const SubirArchivo = ({id})=>{
             })
             setTimeout(()=>{
                 navigate(`/archivosbitacora/${id_bitacora}`)
+                setArchivo(null)
                 setOpen(false);
                 queryClient.refetchQueries("archivos_bitacora")
                 Swal.close()
@@ -60,6 +62,7 @@ const SubirArchivo = ({id})=>{
             setExtension(e.target.files[0].name.split(".")[1])
         }else{
                 setPdf(true);
+                setArchivo(null)
                 Swal.fire({
                     title:"Error",
                     text:"El tipo de archivo no es pdf",

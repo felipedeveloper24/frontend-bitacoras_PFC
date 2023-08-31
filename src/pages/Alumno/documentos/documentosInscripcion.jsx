@@ -20,7 +20,7 @@ const DocumentosInscripcion = ()=>{
             flexDirection:"column"
         }}>
             <HeaderAlumno/>
-            <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px"}}>Documentos Inscripción <FileCopyOutlined/></Typography>
+            <Typography variant="h5" sx={{textAlign:"center",marginTop:"10px"}}>Documentos <FileCopyOutlined/></Typography>
             <Grid container sx={{width:"100%",display:"flex",marginTop:"15px"}}>
                 <SubirConvenios id={id}/>
                 <SubirInformes id={id} />
