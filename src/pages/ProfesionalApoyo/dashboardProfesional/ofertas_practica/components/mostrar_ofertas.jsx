@@ -83,7 +83,7 @@ const MostrarOfertas = ()=>{
                                         <TableCell>{oferta.cupos}</TableCell>
                                         <TableCell>{oferta.modalidad.nombre_modalidad}</TableCell>
                                         <TableCell>{oferta.periodo_academico.anio} - {oferta.periodo_academico.periodo} </TableCell>
-                                          <TableCell>{oferta.empresa !=null ? oferta.empresa.razon_social : "No hay una empresa asociada" }</TableCell>
+                                          <TableCell>{oferta.empresa == null ?  "No hay una empresa asociada" : oferta.empresa.razon_social }</TableCell>
                                         <TableCell>
                                             <Tooltip title="Modificar Oferta">
                                                  <Edit sx={{cursor:"pointer"}} onClick={()=>navigate(`/modificaroferta/${oferta.id_oferta_practica}`)} />
